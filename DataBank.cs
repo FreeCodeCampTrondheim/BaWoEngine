@@ -29,24 +29,6 @@ static class DataBank
 
     public static ulong globalEntityID = 0;
 
-    #region ENTITY RELATIONSHIPS
-    float GetChar2CharOpinion(uint fromChar, uint toChar);    // gets one character's opinion of another
-
-    float GetChar2OrgOpinion(uint fromChar, uint toOrg);      // gets one character's opinion of an organization
-    float GetOrg2CharOpinion(uint fromOrg, uint toChar);      // gets one organization's opinion of a character
-
-    uint GetChar2OrgInvestment(uint fromChar, uint toOrg);    // gets number of stocks owned in an organization
-    #endregion
-
-    #region ATTRIBUTES OF ENTITIES
-
-    float GetCharLuck(int fromChar);
-
-    List<E.Option> GetCharOptions(int fromChar);
-    List<E.Situation> GetCharSituations(int fromChar);
-
-    #endregion
-
     #region CENTRAL ENTITIES
     // key1 = id of entity, value = an entity of undefined type
     public static Dictionary<ulong, E.BaseEntity> entities;

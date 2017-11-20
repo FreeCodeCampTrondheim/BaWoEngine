@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+
+
+// handles generation of new entities
 namespace G
 {
     #region CHARACTER GENERATION CLASSES

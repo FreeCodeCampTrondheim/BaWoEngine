@@ -6,7 +6,7 @@ using System.Text;
 
 
 
-// where classes for in-game entities are defined
+// where in-game entity classes are defined
 namespace E
 {
     #region INTERFACES AND BASE CLASSES
@@ -88,7 +88,7 @@ namespace E
     namespace Modules
     {
         #region CHARACTER MODULES
-        // formal data about the character
+        // all personal information and all methods for their data
         public class PersonProfile : DataModule, IUpdateAble, AI.IConsiderable
         {
             public void Update(DateTime d)
@@ -97,7 +97,7 @@ namespace E
             }
         }
 
-        // constant base stats and modifiers for character based on biological heritage
+        // all biological situations and all methods for their data
         public class Biology : DataModule, IUpdateAble, AI.IConsiderable
         {
             public void Update(DateTime d)
@@ -106,8 +106,17 @@ namespace E
             }
         }
 
-        // constant base stats and modifiers for character based on social heritage
+        // all social situations and all methods for their data
         public class SocialLife : DataModule, IUpdateAble, AI.IConsiderable
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+
+        // all opinions and all methods for their data
+        public class Opinions : DataModule, IUpdateAble, AI.IConsiderable
         {
             public void Update(DateTime d)
             {

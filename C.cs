@@ -6,24 +6,32 @@ using System.Text;
 
 
 
-// handles in-game entity templates and creation
+// handles in-game entity templates
 namespace C
 {
     #region TEMPLATE CLASSES
-    class SituationTemplate
+    class BaseSituation
     {
         // code here
     }
 
-    class OptionTemplate
+    class BaseOption
     {
         // code here
     }
     #endregion
-
+    
     #region CATALOGUES
     public static class PersonProfileCatalogue
     {
+        static Dictionary<string, BaseSituation> baseSituations;
+        public static void SetupBaseSituation() { }
+        public static E.Situation GetSituation() { return null; }
+
+        static Dictionary<string, BaseOption> baseOptions;
+        public static void SetupBaseOption() { }
+        public static E.Option GetOption() { return null; }
+
         // code here
     }
 
