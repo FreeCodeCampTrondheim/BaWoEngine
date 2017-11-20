@@ -44,7 +44,7 @@ namespace E
     #endregion
 
     #region CHARACTER CLASSES
-    // all relationless data about character
+    // all data about a character
     public class Character : BaseEntity
     {
         public Modules.PersonProfile personProfile;
@@ -66,8 +66,10 @@ namespace E
     }
 
     // all data about a situation
-    public class Situation : BaseEntity
+    public class Situation : BaseEntity, IUpdateAble
     {
+        public C.SituationTemplate template;
+
         public void Update(DateTime d)
         {
             // code here
@@ -75,16 +77,18 @@ namespace E
     }
 
     // all data about an option
-    public class Option
+    public class Option : BaseEntity, IUpdateAble
     {
-        ulong id;
-        string title;
-        string description;
+        public C.OptionTemplate template;
 
-        List<string> optionTags;        // identifies what tags a situation must have to be included in this option
+        public void Update(DateTime d)
+        {
+            // code here
+        }
     }
     #endregion
 
+    // modules extending character situations, options, data and how to handle them
     namespace Modules
     {
         #region CHARACTER MODULES

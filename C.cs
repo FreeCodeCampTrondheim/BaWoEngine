@@ -10,26 +10,26 @@ using System.Text;
 namespace C
 {
     #region TEMPLATE CLASSES
-    class BaseSituation
+    public class SituationTemplate
     {
         // code here
     }
 
-    class BaseOption
+    public class OptionTemplate
     {
         // code here
     }
     #endregion
-    
+
     #region CATALOGUES
     public static class PersonProfileCatalogue
     {
-        static Dictionary<string, BaseSituation> baseSituations;
-        public static void SetupBaseSituation() { }
+        static Dictionary<string, SituationTemplate> situationTemplates;
+        public static void SetupSituationTemplates() { }
         public static E.Situation GetSituation() { return null; }
 
-        static Dictionary<string, BaseOption> baseOptions;
-        public static void SetupBaseOption() { }
+        static Dictionary<string, OptionTemplate> optionTemplates;
+        public static void SetupOptionTemplates() { }
         public static E.Option GetOption() { return null; }
 
         // code here
