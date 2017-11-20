@@ -9,100 +9,69 @@ using System.Text;
 // where classes for in-game entities are defined
 namespace E
 {
+    #region INTERFACES AND BASE CLASSES
+    // declares that the entity or module should be updateable
+    interface IUpdateAble
+    {
+        void Update(DateTime d);
+    }
+
+    // data and methods that all entities must have
     public class BaseEntity
     {
         public ulong id;
         public string name;
         public bool isAliveOrActive;
-
-        public virtual void Update(DateTime d) { }
     }
+
+    // data and methods that all modules must have
+    public class BaseModule
+    {
+        // figure out necessary variables and methods
+    }
+
+    // data and methods for unit data, i.e. single character
+    public class DataModule : BaseModule
+    {
+        // figure out necessary variables and methods
+    }
+
+    // data and methods for aggregate unit data, i.e. characters of an organization or location
+    public class StatisticalDataModule : BaseModule
+    {
+        // figure out necessary variables and methods
+    }
+    #endregion
 
     #region CHARACTER CLASSES
     // all relationless data about character
     public class Character : BaseEntity
     {
-        public PersonalInformation personalInformation;
+        public Modules.PersonProfile personProfile;
 
-        public BiologicalHeritage biologicalHeritage;
-        public SocialHeritage socialHeritage;
+        public Modules.Biology biology;
+        public Modules.SocialLife socialLife;
 
-        public SituationManager situationManager;
-        public OptionsManager optionManager;
-
-        public Emotion emotion;
-        public MentalFocus mentalFocus;
+        public Modules.Emotions emotions;
+        public Modules.MentalFocus mentalFocus;
 
         public void Update(DateTime d)
         {
-            personalInformation.Update(d);
-            situationManager.Update(d);
-            optionManager.Update(d);
-            emotion.Update(d);
+            personProfile.Update(d);
+            biology.Update(d);
+            socialLife.Update(d);
+            emotions.Update(d);
             mentalFocus.Update(d);
         }
-    }
-
-    // formal data about the character
-    public class PersonalInformation
-    {
-        public void Update(DateTime d)
-        {
-            // code here
-        }
-    }
-
-    // constant base stats and modifiers for character based on biological heritage
-    public class BiologicalHeritage { }
-
-    // constant base stats and modifiers for character based on social heritage
-    public class SocialHeritage { }
-
-    // all situations and all methods for their data
-    public class SituationManager
-    {
-        public void Update(DateTime d)
-        {
-            // code here
-        }
-
-        List<Situation> currentSituations;
-        List<Situation> latestSituations;   // used for smaller iterations
     }
 
     // all data about a situation
     public class Situation : BaseEntity
     {
-        string description;             // all hash tags with numbers are replaced by the corresponding entity reference from list
-        public void GetDescription()
-        {
-            string result = description;
-            for (int num = 0; num < entityReferences.Count; num++)
-            {
-                result.Replace("#" + num, DataBank.entities[entityReferences[num]].name);
-            }
-        }
-
         public void Update(DateTime d)
         {
             // code here
         }
-
-        List<ulong> entityReferences;
-
-        List<string> optionTags;        // identifies what tags an option must have to use this situation
-        List<string> situationTags;     // identifies what type of situation this is
-    }
-
-    // all options and all methods for their data
-    public class OptionsManager
-    {
-        public void Update(DateTime d)
-        {
-            // code here
-        }
-
-        List<Option> availableOptions;
     }
 
     // all data about an option
@@ -114,39 +83,87 @@ namespace E
 
         List<string> optionTags;        // identifies what tags a situation must have to be included in this option
     }
-
-    // all emotions and all methods for their data
-    public class Emotion
-    {
-        public void Update(DateTime d)
-        {
-            // code here
-        }
-    }
-
-    // all mental focus and all methods for their data
-    public class MentalFocus
-    {
-        public void Update(DateTime d)
-        {
-            // code here
-        }
-    }
-    
     #endregion
+
+    namespace Modules
+    {
+        #region CHARACTER MODULES
+        // formal data about the character
+        public class PersonProfile : DataModule, IUpdateAble, AI.IConsiderable
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+
+        // constant base stats and modifiers for character based on biological heritage
+        public class Biology : DataModule, IUpdateAble, AI.IConsiderable
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+
+        // constant base stats and modifiers for character based on social heritage
+        public class SocialLife : DataModule, IUpdateAble, AI.IConsiderable
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+
+        // all emotions and all methods for their data
+        public class Emotions : DataModule, IUpdateAble, AI.IConsiderable
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+
+        // all mental focus and all methods for their data
+        public class MentalFocus : DataModule, IUpdateAble, AI.IConsiderable
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+        #endregion
+
+        #region ORGANIZATION MODULES
+        // modules here
+        #endregion
+
+        #region LOCATION MODULES
+        // modules here
+        #endregion
+    }
 
     #region ORGANIZATION CLASSES
     // all relationless data about organization
-    public class Organization : BaseEntity
+    public class Organization : BaseEntity, IUpdateAble
     {
-
+        public void Update(DateTime d)
+        {
+            // update modules
+        }
     }
 
     #endregion
 
     #region LOCATION CLASSES
     // all relationless data about location
-    public class Location : BaseEntity { }
+    public class Location : BaseEntity, IUpdateAble
+    {
+        public void Update(DateTime d)
+        {
+            // update modules
+        }
+    }
 
     #endregion
 }
