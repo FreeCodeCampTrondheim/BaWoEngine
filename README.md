@@ -2,25 +2,26 @@
 
 ##  ARCHITECTURAL DESCRIPTION:
     
-Game Manager
+Game Manager (not implemented yet, reserved for later because it's a trivial implementation)
 * instantiates central objects
 * controls speed and ticks of the game
 * runs UpdateBehaviour on AI, and UpdateData on Data Bank
 
-AI Engines
-* define and create a set of options for each tick of the game 
+AI Engines (AI.cs)
+* defines and creates sets of options for each tick of the game 
 * chooses an option at a time, but makes a variable amount of 
   choices after each other
 
-Entities
-* define non-relational data about in-game entities
+Entities (E.cs)
+* defines data about in-game entities
 
-Data Bank
-* define relational data
-* stores all data and gives easy access to it, 
-  either directly or for iteration
+Data Bank (DataBank.cs)
+* stores all data and gives easy access to it
 
-Player
+Catalogues (Catalogue.cs)
+* contains templates for new entities and classes for randomly generating content
+
+Player (InformationFeeder.cs and InteractionResponder.cs)
 * defines all possible responses to user actions, like retrieving data and applying choices
 * defines all automated tasks done for the user
 * includes searching, various information feeds, character creation, user choices and so forth
@@ -47,9 +48,9 @@ Options to be separated into
   - how much they like or dislike the targets of the situations
 - organization options, what options organizations have, they choose based on:
   - how many of the owning characters are willing to support the option
-- nature options, what options nature has, it chooses based on:
+- luck options, what options nature has, it chooses based on:
   - base likelihood weight
-  - aggragate likelihood weight from pairing "aggregation tags" of option with "aggregatable tags" of situations
+  - aggragate likelihood weight from organization- and location statistics
 
 
 Characters need list of emotions and emotional weight/value

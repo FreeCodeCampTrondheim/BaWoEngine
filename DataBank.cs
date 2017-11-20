@@ -7,9 +7,9 @@ using System.Text;
 
 
 // handles storage and access of data throughout game
-class DataBank
+static class DataBank
 {
-    public void UpdateData(DateTime d)
+    public static void UpdateData(DateTime d)
     {
         foreach (var c in characters)
         {
@@ -27,7 +27,7 @@ class DataBank
         }
     }
 
-    public ulong globalEntityID = 0;
+    public static ulong globalEntityID = 0;
 
     #region ENTITY RELATIONSHIPS
     float GetChar2CharOpinion(uint fromChar, uint toChar);    // gets one character's opinion of another
@@ -49,15 +49,15 @@ class DataBank
 
     #region CENTRAL ENTITIES
     // key1 = id of entity, value = an entity of undefined type
-    public Dictionary<ulong, E.BaseEntity> entities;
+    public static Dictionary<ulong, E.BaseEntity> entities;
 
     // key1 = id of character, value = all relationless data about character
-    public Dictionary<ulong, E.Character> characters;
+    public static Dictionary<ulong, E.Character> characters;
 
     // key1 = id of organization, value = all relationless data about organization
-    public Dictionary<ulong, E.Organization> organizations;
+    public static Dictionary<ulong, E.Organization> organizations;
 
     // key1 = id of location, value = all relationless data about location
-    public Dictionary<ulong, E.Location> locations;
+    public static Dictionary<ulong, E.Location> locations;
     #endregion
 }

@@ -7,41 +7,25 @@ using System.Text;
 
 
 // handles in-game entity templates and creation
-class Catalogue
+static class Catalogue
 {
-    public Catalogue(DataBank INIT_dBank) { dBank = INIT_dBank; }
-
-    DataBank dBank;
-
     #region TEMPLATE CLASSES
     class SituationTemplates
     {
         List<E.Situation> templates;
 
-        public E.Situation GetRandom()
-        {
-            // code here
-        }
+        public static E.Situation GetRandom() { return null; }
 
-        public E.Situation GetRandom(List<string> desiredTags)
-        {
-            // code here
-        }
+        public static E.Situation GetRandom(List<string> desiredTags) { return null; }
     }
 
     class OptionTemplates
     {
         List<E.Option> templates;
 
-        public E.Option GetRandom()
-        {
-            // code here
-        }
+        public E.Option GetRandom() { return null; }
 
-        public E.Option GetRandom(List<string> desiredTags)
-        {
-            // code here
-        }
+        public E.Option GetRandom(List<string> desiredTags) { return null; }
     }
 
     #endregion
@@ -49,85 +33,74 @@ class Catalogue
     #region CHARACTER GENERATION CLASSES
     class CharacterGenerator
     {
-        PersonalInformationGenerator personalInformationGenerator = new PersonalInformationGenerator();
-
-        BiologicalHeritageGenerator biologicalHeritageGenerator = new BiologicalHeritageGenerator();
-        SocialHeritageGenerator socialHeritageGenerator = new SocialHeritageGenerator();
-
-        SituationManagerGenerator situationManagerGenerator = new SituationManagerGenerator();
-        OptionManagerGenerator optionManagerGenerator = new OptionManagerGenerator();
-
-        EmotionGenerator emotionGenerator = new EmotionGenerator();
-        MentalFocusGenerator mentalFocusGenerator = new MentalFocusGenerator();
-
         public E.Character Generate()
         {
             E.Character character = new E.Character();
 
-            character.personalInformation = personalInformationGenerator.Generate();
+            character.personalInformation = PersonalInformationGenerator.Generate();
 
-            character.biologicalHeritage = biologicalHeritageGenerator.Generate();
-            character.socialHeritage = socialHeritageGenerator.Generate();
+            character.biologicalHeritage = BiologicalHeritageGenerator.Generate();
+            character.socialHeritage = SocialHeritageGenerator.Generate();
 
-            character.situationManager = situationManagerGenerator.Generate();
-            character.optionManager = optionManagerGenerator.Generate();
+            character.situationManager = SituationManagerGenerator.Generate();
+            character.optionManager = OptionManagerGenerator.Generate();
 
-            character.emotion = emotionGenerator.Generate();
-            character.mentalFocus = mentalFocusGenerator.Generate();
+            character.emotion = EmotionGenerator.Generate();
+            character.mentalFocus = MentalFocusGenerator.Generate();
 
             return character;
         }
     }
 
-    class PersonalInformationGenerator
+    static class PersonalInformationGenerator
     {
-        public E.PersonalInformation Generate();
+        public static E.PersonalInformation Generate() { return null; }
     }
 
-    class BiologicalHeritageGenerator
+    static class BiologicalHeritageGenerator
     {
-        public E.BiologicalHeritage Generate();
+        public static E.BiologicalHeritage Generate() { return null; }
     }
 
-    class SocialHeritageGenerator
+    static class SocialHeritageGenerator
     {
-        public E.SocialHeritage Generate();
+        public static E.SocialHeritage Generate() { return null; }
     }
 
-    class SituationManagerGenerator
+    static class SituationManagerGenerator
     {
-        public E.SituationManager Generate();
+        public static E.SituationManager Generate() { return null; }
     }
 
-    class OptionManagerGenerator
+    static class OptionManagerGenerator
     {
-        public E.OptionsManager Generate();
+        public static E.OptionsManager Generate() { return null; }
     }
 
-    class EmotionGenerator
+    static class EmotionGenerator
     {
-        public E.Emotion Generate();
+        public static E.Emotion Generate() { return null; }
     }
 
-    class MentalFocusGenerator
+    static class MentalFocusGenerator
     {
-        public E.MentalFocus Generate();
+        public static E.MentalFocus Generate() { return null; }
     }
 
     #endregion
 
     #region ORGANIZATION GENERATION CLASSES
-    public class OrganizationGenerator
+    public static class OrganizationGenerator
     {
-        public E.Organization GenerateOrganization();
+        public static E.Organization GenerateOrganization() { return null; }
     }
 
     #endregion
 
     #region LOCATION GENERATION CLASSES
-    public class LocationGenerator
+    public static class LocationGenerator
     {
-        public E.Location GenerateLocation();
+        public static E.Location GenerateLocation() { return null; }
     }
 
     #endregion

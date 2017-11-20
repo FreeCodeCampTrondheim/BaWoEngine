@@ -7,12 +7,8 @@ using System.Text;
 
 
 // where classes for in-game entities are defined
-class E
+namespace E
 {
-    public E(DataBank INIT_dBank) { dBank = INIT_dBank; }
-
-    DataBank dBank;
-
     public class BaseEntity
     {
         public ulong id;
@@ -83,13 +79,13 @@ class E
             string result = description;
             for (int num = 0; num < entityReferences.Count; num++)
             {
-                result.Replace("#" + num, dBank.entities[entityReferences[num]].name);
+                result.Replace("#" + num, DataBank.entities[entityReferences[num]].name);
             }
         }
 
         public void Update(DateTime d)
         {
-
+            // code here
         }
 
         List<ulong> entityReferences;
