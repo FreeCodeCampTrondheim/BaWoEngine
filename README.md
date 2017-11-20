@@ -2,28 +2,28 @@
 
 ##  ARCHITECTURAL DESCRIPTION:
     
-    Game Manager
-    * instantiates central objects
-    * controls speed and ticks of the game
-    * runs UpdateBehaviour on AI, and UpdateData on Data Bank
+Game Manager
+* instantiates central objects
+* controls speed and ticks of the game
+* runs UpdateBehaviour on AI, and UpdateData on Data Bank
 
-    AI Engines
-    * define and create a set of options for each tick of the game 
-    * chooses an option at a time, but makes a variable amount of 
-      choices after each other
+AI Engines
+* define and create a set of options for each tick of the game 
+* chooses an option at a time, but makes a variable amount of 
+  choices after each other
 
-    Entities
-    * define non-relational data about in-game entities
+Entities
+* define non-relational data about in-game entities
 
-    Data Bank
-    * define relational data
-    * stores all data and gives easy access to it, 
-      either directly or for iteration
-    
-    Player
-    * defines all possible responses to user actions, like retrieving data and applying choices
-    * defines all automated tasks done for the user
-    * includes searching, various information feeds, character creation, user choices and so forth
+Data Bank
+* define relational data
+* stores all data and gives easy access to it, 
+  either directly or for iteration
+
+Player
+* defines all possible responses to user actions, like retrieving data and applying choices
+* defines all automated tasks done for the user
+* includes searching, various information feeds, character creation, user choices and so forth
 
 	
 ##	MENTAL NOTES:
