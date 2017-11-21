@@ -6,45 +6,41 @@ using System.Text;
 
 
 
-// 
-class InformationFeeder
+// handles passive information feeding to the GUI
+static class InformationFeeder
 {
-    public InformationFeeder(DataBank INIT_dBank) { dBank = INIT_dBank; }
-
-    DataBank dBank;
-
     // handles user interaction and updating of displayed information about searches and selected search results
-    public class Inspector
+    public static class Inspector
     {
-        void DisplayCharacter(E.Character c);
-        void DisplayOrganization(E.Organization o);
-        void DisplayLocation(E.Location l);
+        static void DisplayCharacter(E.Character c) { }
+        static void DisplayOrganization(E.Organization o) { }
+        static void DisplayLocation(E.Location l) { }
 
-        void DisplaySearchResults(List<uint> entityResults);
+        static void DisplaySearchResults(List<uint> entityResults) { }
     }
 
     // handles updating of displayed information about new situations
-    public class SituationNews
+    public static class SituationNews
     {
-        Queue<E.Situation> newSituations;
+        static Queue<E.Situation> newSituations;
 
-        void DisplayNews();
+        static void DisplayNews() { }
     }
 
     // handles user interaction and updating of displayed information about player situations 
-    public class SituationResponder
+    public static class SituationResponder
     {
 
     }
 
     // handles user interaction and updating of displayed information about player information
-    public class PlayerInfo
+    public static class PlayerInfo
     {
 
     }
 
     // handles updating of displayed information about character dialogue
-    public class Hangout
+    public static class Hangout
     {
 
     }

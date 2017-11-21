@@ -6,29 +6,28 @@ using System.Text;
 
 
 
-// 
-class InteractionResponder
+// handles the response to GUI interaction by the player
+static class InteractionResponder
 {
-    public InteractionResponder(DataBank INIT_dBank) { dBank = INIT_dBank; }
-
-    DataBank dBank;
-
-    public class SearchEngine
+    public static class SearchEngine
     {
         const uint NUM_STORED_SEARCHES = 5;
 
-        object[] lastSearches = new object[NUM_STORED_SEARCHES];    // stores last chosen searches
+        static object[] lastSearches = new object[NUM_STORED_SEARCHES];    // stores last chosen searches
 
         // finds all characters, organizations and locations,
         // sorts them by type (characters, organizations, then locations),
         // followed by name alphabetically, followed by age descending
         // (except locations which don't have age), followed by id ascending 
-        public List<object>[] Search(string searchTxt);
+        public static List<object>[] Search(string searchTxt) { return null; }
 
-        List<E.Character> FindCharacters();         // finds all characters from string
+        // finds all characters from string
+        static List<E.Character> FindCharacters() { return null; }
 
-        List<E.Organization> FindOrganizations();   // finds all organizations from string
+        // finds all organizations from string
+        static List<E.Organization> FindOrganizations() { return null; }
 
-        List<E.Location> FindLocations();           // finds all locations from string
+        // finds all locations from string
+        static List<E.Location> FindLocations() { return null; }
     }
 }

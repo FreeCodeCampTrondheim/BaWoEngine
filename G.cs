@@ -17,7 +17,6 @@ namespace G
             E.Character character = new E.Character();
 
             character.personProfile = PersonProfileGenerator.Generate();
-
             character.biology = BiologyGenerator.Generate();
 
             character.socialLife = SocialLifeGenerator.Generate();
@@ -73,6 +72,14 @@ namespace G
     public static class LocationGenerator
     {
         public static E.Location GenerateLocation() { return null; }
+    }
+
+    #endregion
+
+    #region WORLD GENERATION CLASSES
+    public static class WorldGenerator
+    {
+        public static void GenerateWorld() { }
     }
 
     #endregion

@@ -1,7 +1,18 @@
 #	Golden Hands - From Nowhere to Anywhere
 
+###	ABOUT GAME:
+In Golden Hands you explore life while trying to push yourself
+to the very limits of what it has to offer. You start with nothing, 
+but with the potential to become anything. What will you be?
+Who will you meet? Where will you end up?
+
+Overcome your biological- and social heritage by defying the world,
+shaping successful businesses, organizations and spreading joy and
+happiness about the world as you do so.
+
+Show the world that you truly have ***golden hands***.
+
 ##  ARCHITECTURAL DESCRIPTION:
-    
 Game Manager (not implemented yet, reserved for later because it's trivial and may change alot)
 * runs setup for central objects
 * controls speed and ticks of the game
@@ -29,8 +40,39 @@ Player (InformationFeeder.cs and InteractionResponder.cs)
 * defines all automated tasks done for the user
 * includes searching, various information feeds, character creation, user choices and so forth
 
-	
-##	MENTAL NOTES:
+##	DATA FLOWS
+Each of the following categories refer to times
+when data is created or changed, and specifies: 
+* what data is created and changed,
+* by what is it created or changed, and
+* for what purpose is it created or changed
+
+### GAME START
+The player starts a game by setting up the world and the 
+player character. To do this the following data is specified:
+* World:
+  * By Exact Number:
+    * World Foreground Population (characters that can be interacted with)
+    * World Background Population (non-interactable, only relevant for statistics)
+	* World Organization Quantity
+	* World Location Quantity
+* Player Character:
+  * Name
+  * Age
+  * Gender
+
+This data is then loaded by the Game Manager on start as
+PlayerCharacterRecipe and WorldRecipe, with subsequent calls
+to the functions G.WorldGenerator.Generate(WorldRecipe) and
+G.CharacterGenerator.GeneratePlayer(PlayerCharacterRecipe).
+
+### GAME TICKS
+ff
+
+### PLAYER INTERACTION
+ff
+
+##	SCRIBBLES AND NOTES:
 Situations need to have an origin
 - can be:
   - character (also includes specification of which)

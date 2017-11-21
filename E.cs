@@ -20,13 +20,14 @@ namespace E
     public class BaseEntity
     {
         public ulong id;
-        public string name;
         public bool isAliveOrActive;
     }
 
     // data and methods that all modules must have
     public class BaseModule
     {
+
+
         // figure out necessary variables and methods
     }
 
