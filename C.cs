@@ -43,6 +43,11 @@ namespace C
         // code here
     }
 
+    public static class OpinionsCatalogue
+    {
+        // code here
+    }
+
     public static class EmotionsCatalogue
     {
         // code here

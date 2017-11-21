@@ -50,7 +50,9 @@ namespace E
         public Modules.PersonProfile personProfile;
 
         public Modules.Biology biology;
+
         public Modules.SocialLife socialLife;
+        public Modules.Opinions opinions;
 
         public Modules.Emotions emotions;
         public Modules.MentalFocus mentalFocus;

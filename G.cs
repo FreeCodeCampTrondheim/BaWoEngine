@@ -19,7 +19,9 @@ namespace G
             character.personProfile = PersonProfileGenerator.Generate();
 
             character.biology = BiologyGenerator.Generate();
+
             character.socialLife = SocialLifeGenerator.Generate();
+            character.opinions = OpinionsGenerator.Generate();
 
             character.emotions = EmotionsGenerator.Generate();
             character.mentalFocus = MentalFocusGenerator.Generate();
@@ -41,6 +43,11 @@ namespace G
     static class SocialLifeGenerator
     {
         public static E.Modules.SocialLife Generate() { return null; }
+    }
+
+    static class OpinionsGenerator
+    {
+        public static E.Modules.Opinions Generate() { return null; }
     }
 
     static class EmotionsGenerator
