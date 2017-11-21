@@ -2,8 +2,8 @@
 
 ##  ARCHITECTURAL DESCRIPTION:
     
-Game Manager (not implemented yet, reserved for later because it's a trivial implementation)
-* instantiates central objects
+Game Manager (not implemented yet, reserved for later because it's trivial and may change alot)
+* runs setup for central objects
 * controls speed and ticks of the game
 * runs UpdateBehaviour on AI, and UpdateData on Data Bank
 
@@ -18,8 +18,11 @@ Entities (E.cs)
 Data Bank (DataBank.cs)
 * stores all data and gives easy access to it
 
-Catalogues (Catalogue.cs)
-* contains templates for new entities and classes for randomly generating content
+Catalogues (C.cs)
+* contains templates for new entities
+
+Generator (G.cs)
+* classes for randomly generating content
 
 Player (InformationFeeder.cs and InteractionResponder.cs)
 * defines all possible responses to user actions, like retrieving data and applying choices
