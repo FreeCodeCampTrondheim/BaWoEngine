@@ -15,40 +15,34 @@ static class AI
         {
             E.Character c = item.Value;
 
-            PersonalizationEngine.Act(c);
+            ConsiderationEngine.Act(c);
             CreativityEngine.Act(c);
             LuckEngine.Act(c);
             ReasoningEngine.Act(c);
         }
     }
 
-    // declares methods that a module must implement to be available for the AI Engines
-    public interface IConsiderable
+    #region INTELLIGENCE UNITS
+    // generates new options for character based on module data
+    public class Considerator
     {
-        // figure out necessary methods
+        List<E.Situation> recentSituationChanges;
+
+        // consider new options using recent changes in situations
+        public void Consider() { }
     }
+
+    // measures option scores based on module data
+    public interface IReasoner
+    {
+        // measure score of single option based on module data
+        float Reason(E.Option o);
+    }
+    #endregion
 
     #region ENGINES
-    // figures out how an option should look like for the particular character
-    static class PersonalizationEngine
-    {
-        public static void Act(E.Character c)
-        {
-            // code here
-        }
-    }
-
-    // figures out what options a character should have
-    static class CreativityEngine
-    {
-        public static void Act(E.Character c)
-        {
-            // code here
-        }
-    }
-
-    // figures out when, how much and upon whom luck-based situations should occur
-    static class LuckEngine
+    // figures out what new options should be on the table for the character
+    static class ConsiderationEngine
     {
         public static void Act(E.Character c)
         {

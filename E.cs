@@ -11,7 +11,7 @@ namespace E
 {
     #region INTERFACES AND BASE CLASSES
     // declares that the entity or module should be updateable
-    interface IUpdateAble
+    interface IUpdateable
     {
         void Update(DateTime d);
     }
@@ -30,13 +30,13 @@ namespace E
         // figure out necessary variables and methods
     }
 
-    // data and methods for unit data, i.e. single character
+    // data and methods for unit data module, i.e. single character
     public class DataModule : BaseModule
     {
         // figure out necessary variables and methods
     }
 
-    // data and methods for aggregate unit data, i.e. characters of an organization or location
+    // data and methods for aggregate unit data module, i.e. characters of an organization or location
     public class StatisticalDataModule : BaseModule
     {
         // figure out necessary variables and methods
@@ -45,10 +45,9 @@ namespace E
 
     #region CHARACTER CLASSES
     // all data about a character
-    public class Character : BaseEntity
+    public class Character : BaseEntity, IUpdateable
     {
         public Modules.PersonProfile personProfile;
-
         public Modules.Biology biology;
 
         public Modules.SocialLife socialLife;
@@ -68,7 +67,7 @@ namespace E
     }
 
     // all data about a situation
-    public class Situation : BaseEntity, IUpdateAble
+    public class Situation : BaseEntity, IUpdateable
     {
         public C.SituationTemplate template;
 
@@ -79,7 +78,7 @@ namespace E
     }
 
     // all data about an option
-    public class Option : BaseEntity, IUpdateAble
+    public class Option : BaseEntity, IUpdateable
     {
         public C.OptionTemplate template;
 
@@ -93,37 +92,12 @@ namespace E
     // modules extending character situations, options, data and how to handle them
     namespace Modules
     {
-        #region CHARACTER MODULES
+        #region CORE CHARACTER MODULES
         // all personal information and all methods for their data
-        public class PersonProfile : DataModule, IUpdateAble, AI.IConsiderable
+        public class PersonProfile : DataModule, IUpdateable
         {
-            public void Update(DateTime d)
-            {
-                // code here
-            }
-        }
+            AI.Considerator considerator = new AI.Considerator();
 
-        // all biological situations and all methods for their data
-        public class Biology : DataModule, IUpdateAble, AI.IConsiderable
-        {
-            public void Update(DateTime d)
-            {
-                // code here
-            }
-        }
-
-        // all social situations and all methods for their data
-        public class SocialLife : DataModule, IUpdateAble, AI.IConsiderable
-        {
-            public void Update(DateTime d)
-            {
-                // code here
-            }
-        }
-
-        // all opinions and all methods for their data
-        public class Opinions : DataModule, IUpdateAble, AI.IConsiderable
-        {
             public void Update(DateTime d)
             {
                 // code here
@@ -131,17 +105,56 @@ namespace E
         }
 
         // all emotions and all methods for their data
-        public class Emotions : DataModule, IUpdateAble, AI.IConsiderable
+        public class Emotions : DataModule, IUpdateable, AI.IReasoner
         {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+
+            public float Reason(E.Option o) { return 0; }
+        }
+
+        // all mental focus and all methods for their data
+        public class MentalFocus : DataModule, IUpdateable, AI.IReasoner
+        {
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+
+            public float Reason(E.Option o) { return 0; }
+        }
+        #endregion
+
+        #region EXTENDING CHARACTER MODULES
+        // all biological situations and all methods for their data
+        public class Biology : DataModule, IUpdateable
+        {
+            AI.Considerator considerator = new AI.Considerator();
+
             public void Update(DateTime d)
             {
                 // code here
             }
         }
 
-        // all mental focus and all methods for their data
-        public class MentalFocus : DataModule, IUpdateAble, AI.IConsiderable
+        // all social situations and all methods for their data
+        public class SocialLife : DataModule, IUpdateable
         {
+            AI.Considerator considerator = new AI.Considerator();
+
+            public void Update(DateTime d)
+            {
+                // code here
+            }
+        }
+
+        // all opinions and all methods for their data
+        public class Opinions : DataModule, IUpdateable
+        {
+            AI.Considerator considerator = new AI.Considerator();
+
             public void Update(DateTime d)
             {
                 // code here
@@ -160,7 +173,7 @@ namespace E
 
     #region ORGANIZATION CLASSES
     // all relationless data about organization
-    public class Organization : BaseEntity, IUpdateAble
+    public class Organization : BaseEntity, IUpdateable
     {
         public void Update(DateTime d)
         {
@@ -172,7 +185,7 @@ namespace E
 
     #region LOCATION CLASSES
     // all relationless data about location
-    public class Location : BaseEntity, IUpdateAble
+    public class Location : BaseEntity, IUpdateable
     {
         public void Update(DateTime d)
         {

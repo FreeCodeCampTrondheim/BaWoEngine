@@ -30,7 +30,7 @@ namespace C
         static Dictionary<string, OptionTemplate> optionTemplates;
         public static void SetupOptionTemplates() { }
 
-        // code here
+        // more code here
     }
 
     public static class BiologyCatalogue
