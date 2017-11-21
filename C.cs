@@ -26,11 +26,9 @@ namespace C
     {
         static Dictionary<string, SituationTemplate> situationTemplates;
         public static void SetupSituationTemplates() { }
-        public static E.Situation GetSituation() { return null; }
 
         static Dictionary<string, OptionTemplate> optionTemplates;
         public static void SetupOptionTemplates() { }
-        public static E.Option GetOption() { return null; }
 
         // code here
     }
