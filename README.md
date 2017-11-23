@@ -58,8 +58,8 @@ To do this, the player specifies the following data:
   * Exact Number Attributes:
     * World Foreground Population (characters that can be interacted with)
     * World Background Population (non-interactable, only relevant for statistics)
-	  * World Organization Quantity
-	  * World Location Quantity
+	* World Organization Quantity
+	* World Location Quantity
 * Player Character:
   * Name
   * Age
