@@ -19,9 +19,8 @@ Game Manager (not implemented yet, reserved for later because it's trivial and m
 * runs UpdateBehaviour on AI.cs, UpdateTime on DataBank.cs, UpdateLuck on Fate.cs
 
 AI Engines (AI.cs)
-* defines and creates sets of options for each tick of the game 
-* chooses an option at a time, but makes a variable amount of 
-  choices after each other
+* defines and creates sets of options for each tick of the game
+* makes choices for character until it runs out of willpower
 
 Fate Engines (not implemented yet)
 * controls happenings in the game that are outside the control
