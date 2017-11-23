@@ -16,12 +16,16 @@ Show the world that you truly have ***golden hands***.
 Game Manager (not implemented yet, reserved for later because it's trivial and may change alot)
 * runs setup for central objects
 * controls speed and ticks of the game
-* runs UpdateBehaviour on AI, and UpdateData on Data Bank
+* runs UpdateBehaviour on AI.cs, UpdateTime on DataBank.cs, UpdateLuck on Fate.cs
 
 AI Engines (AI.cs)
 * defines and creates sets of options for each tick of the game 
 * chooses an option at a time, but makes a variable amount of 
   choices after each other
+
+Fate Engines (not implemented yet)
+* controls happenings in the game that are outside the control
+  of any character
 
 Entities (E.cs)
 * defines data about in-game entities
