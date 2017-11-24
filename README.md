@@ -115,8 +115,9 @@ Additionally, once a day at night, the following extra operation is ran:
 ### PLAYER INTERACTION
 There are two types of actions the player
 can take in the game that changes data:
-* choose new Options, which in turn creates new Options,
-  Situations and Forecasts
+* choose new Options as long as there is enough willpower points
+  to do so (choosing an Option creates new Options, Situations
+  and Forecasts for player character)
 * regret (abort) the Situation marked as "activity", which is
   the Situation describing what the player character is currently
   doing (this will leave the player character without an activity 
