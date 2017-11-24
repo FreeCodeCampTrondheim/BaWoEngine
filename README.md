@@ -76,8 +76,8 @@ The first one deals with the simulation of human behaviour, while the other deal
 outside of any character's control, a.k.a. "fate", "nature's course" or "the will of god".
 
 Characters, organizations and locations are made up of modules that each handle a category
-of data. Both AI.cs and Fate.cs run functions on these modules, fetching data about three
-types of data objects from them, processing it, and then storing new such data objects.
+of data. Both AI.cs and Fate.cs run functions on these modules, fetching three types of 
+objects from them. These are then processed, before new such objects are sent back.
 The three types are:
 * Situations - Describes the status of the character in terms of tags and attribute values
 * Options - Describes actions the character can take, to get new situations and new options
@@ -93,9 +93,10 @@ operations are ran by GameManager.cs on the following classes:
 * AI.cs
   * Runs UpdateBehaviour() which iterates over all characters (only). Characters then run
     UpdateBehaviour() on all modules. Each module can then load AI.cs with data about
-    options and/or option value. AI.cs then produces a priority queue from option value
-    with highest first, before running Chosen() on options from the queue until all
-    character "Willpower points" are spent.
+    options and/or option value. AI.cs then produces a priority queue of options sorted
+	lowest to highest by willpower cost, which is option value divided by the option's 
+	base value. Chosen() is then ran on options from the queue until all character 
+	"Willpower points" are spent.
 
 Additionally, once a day at night, the following extra operation is ran:
 * Fate.cs
@@ -112,50 +113,20 @@ Additionally, once a day at night, the following extra operation is ran:
 
 
 ### PLAYER INTERACTION
-ff
+There are two types of actions the player
+can take in the game that changes data:
+* choose new Options, which in turn creates new Options,
+  Situations and Forecasts
+* regret (abort) the Situation marked as "activity", which is
+  the Situation describing what the player character is currently
+  doing (this will leave the player character without an activity 
+  Situation, automatically giving it the "procrastinating" Situation)
 
-##	SCRIBBLES AND NOTES:
-Situations need to have an origin
-- can be:
-  - character (also includes specification of which)
-  - organization (also includes specification of which)
-  - luck
-  - mystery
-
-Situations need to have descriptors/tags that categorizes them
-
-Options need to add and subtract other options???
-
-Options need personalization method that adjusts variables for specific characters or organizations
-
-Options to be separated into
-- character options, what options characters have, they choose based on:
-  - mental focus targets and their focus degree
-  - emotions and their weights
-  - how much they like or dislike the targets of the situations
-- organization options, what options organizations have, they choose based on:
-  - how many of the owning characters are willing to support the option
-- luck options, what options nature has, it chooses based on:
-  - base likelihood weight
-  - aggragate likelihood weight from organization- and location statistics
-
-
-Characters need list of emotions and emotional weight/value
-
-Characters need list of mental focus targets
-- can be:
-  - characters
-  - organizations
-  - locations
-  - options
-  - situations
-- mental focus towards a target is aggregated for every situation with that target as an origin
-
-Characters need heritage that modifies base statistics
-- when players create their character, they have a max amount
-  of points they can use to add advantage through these,
-  the available amount depends on difficulty setting,
-  and adding disadvantage gives back extra points
-- comes with two types:
-  - biological
-  - social
+The character can also actively:
+* use a search engine to search the world for entities, 
+  inspect them and retrieve data from them
+* increase or reduce minimum tick speed of game
+* pause/continue game
+* choose different parts of oneself or different parts
+  of another entitiy to view, basically switch between
+  different data sections/data views
