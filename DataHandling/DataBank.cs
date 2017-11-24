@@ -31,15 +31,15 @@ static class DataBank
 
     #region CENTRAL ENTITIES
     // key1 = id of entity, value = an entity of undefined type
-    public static Dictionary<ulong, E.BaseEntity> entities;
+    public static Dictionary<ulong, Entity.BaseEntity> entities;
 
     // key1 = id of character, value = all relationless data about character
-    public static Dictionary<ulong, E.Character> characters;
+    public static Dictionary<ulong, Entity.Character> characters;
 
     // key1 = id of organization, value = all relationless data about organization
-    public static Dictionary<ulong, E.Organization> organizations;
+    public static Dictionary<ulong, Entity.Organization> organizations;
 
     // key1 = id of location, value = all relationless data about location
-    public static Dictionary<ulong, E.Location> locations;
+    public static Dictionary<ulong, Entity.Location> locations;
     #endregion
 }

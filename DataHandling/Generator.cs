@@ -7,79 +7,79 @@ using System.Text;
 
 
 // handles generation of new entities
-namespace G
+static class Generator
 {
     #region CHARACTER GENERATION CLASSES
-    static class CharacterGenerator
+    static class Character
     {
-        public static E.Character Generate()
+        public static Entity.Character Generate()
         {
-            E.Character character = new E.Character();
+            Entity.Character character = new Entity.Character();
 
-            character.personProfile = PersonProfileGenerator.Generate();
-            character.biology = BiologyGenerator.Generate();
+            character.personProfile = PersonProfile.Generate();
+            character.biology = Biology.Generate();
 
-            character.socialLife = SocialLifeGenerator.Generate();
-            character.opinions = OpinionsGenerator.Generate();
+            character.socialLife = SocialLife.Generate();
+            character.opinions = Opinions.Generate();
 
-            character.emotions = EmotionsGenerator.Generate();
-            character.mentalFocus = MentalFocusGenerator.Generate();
+            character.emotions = Emotions.Generate();
+            character.mentalFocus = MentalFocus.Generate();
 
             return character;
         }
     }
 
-    static class PersonProfileGenerator
+    static class PersonProfile
     {
-        public static E.Modules.PersonProfile Generate() { return null; }
+        public static Entity.Modules.PersonProfile Generate() { return null; }
     }
 
-    static class BiologyGenerator
+    static class Biology
     {
-        public static E.Modules.Biology Generate() { return null; }
+        public static Entity.Modules.Biology Generate() { return null; }
     }
 
-    static class SocialLifeGenerator
+    static class SocialLife
     {
-        public static E.Modules.SocialLife Generate() { return null; }
+        public static Entity.Modules.SocialLife Generate() { return null; }
     }
 
-    static class OpinionsGenerator
+    static class Opinions
     {
-        public static E.Modules.Opinions Generate() { return null; }
+        public static Entity.Modules.Opinions Generate() { return null; }
     }
 
-    static class EmotionsGenerator
+    static class Emotions
     {
-        public static E.Modules.Emotions Generate() { return null; }
+        public static Entity.Modules.Emotions Generate() { return null; }
     }
 
-    static class MentalFocusGenerator
+    static class MentalFocus
     {
-        public static E.Modules.MentalFocus Generate() { return null; }
+        public static Entity.Modules.MentalFocus Generate() { return null; }
     }
     #endregion
 
     #region ORGANIZATION GENERATION CLASSES
-    public static class OrganizationGenerator
+    public static class Organization
     {
-        public static E.Organization GenerateOrganization() { return null; }
+        public static Entity.Organization GenerateOrganization() { return null; }
     }
 
     #endregion
 
     #region LOCATION GENERATION CLASSES
-    public static class LocationGenerator
+    public static class Location
     {
-        public static E.Location GenerateLocation() { return null; }
+        public static Entity.Location GenerateLocation() { return null; }
     }
 
     #endregion
 
     #region WORLD GENERATION CLASSES
-    public static class WorldGenerator
+    public static class World
     {
-        public static void GenerateWorld() { }
+        public static void Generate() { }
     }
 
     #endregion

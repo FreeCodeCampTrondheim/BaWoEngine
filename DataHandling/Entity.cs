@@ -7,7 +7,7 @@ using System.Text;
 
 
 // where in-game entity classes are defined
-namespace E
+namespace Entity
 {
     #region INTERFACES AND BASE CLASSES
     // data and methods that all entities must have
@@ -159,7 +159,7 @@ namespace E
     public class Situation
     {
         public ulong id;
-        public C.SituationTemplate template;
+        public Catalogue.SituationTemplate template;
 
         public void Terminated()
         {
@@ -171,7 +171,7 @@ namespace E
     public class Option
     {
         public ulong id;
-        public C.OptionTemplate template;
+        public Catalogue.OptionTemplate template;
 
         public void Choose(Character c)
         {

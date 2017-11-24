@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 
 
 
 
 // handles in-game entity templates
-namespace C
+static class Catalogue
 {
     #region TEMPLATE CLASSES
     public class SituationTemplate
@@ -31,7 +30,7 @@ namespace C
     #endregion
 
     #region CATALOGUES
-    public static class PersonProfileCatalogue
+    public static class PersonProfile
     {
         static Dictionary<string, SituationTemplate> situationTemplates;
         public static void SetupSituationTemplates() { }
@@ -42,27 +41,27 @@ namespace C
         // more code here
     }
 
-    public static class BiologyCatalogue
+    public static class Biology
     {
         // code here
     }
 
-    public static class SocialLifeCatalogue
+    public static class SocialLife
     {
         // code here
     }
 
-    public static class OpinionsCatalogue
+    public static class Opinions
     {
         // code here
     }
 
-    public static class EmotionsCatalogue
+    public static class Emotions
     {
         // code here
     }
 
-    public static class MentalFocusCatalogue
+    public static class MentalFocus
     {
         // code here
     }
