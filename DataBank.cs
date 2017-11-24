@@ -13,7 +13,7 @@ static class DataBank
     {
         foreach (var c in characters)
         {
-            c.Value.Update(d);
+            c.Value.UpdateTime(d);
         }
 
         foreach (var o in organizations)

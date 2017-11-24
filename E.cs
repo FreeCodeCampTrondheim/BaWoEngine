@@ -10,44 +10,67 @@ using System.Text;
 namespace E
 {
     #region INTERFACES AND BASE CLASSES
-    // declares that the entity or module should be updateable
-    interface IUpdateable
-    {
-        void Update(DateTime d);
-    }
-
     // data and methods that all entities must have
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public ulong id;
-        public bool isAliveOrActive;
+        public abstract void UpdateTime(DateTime d);    // ran through DataBank.cs -> Entity
     }
 
     // data and methods that all modules must have
-    public class BaseModule
+    public abstract class CharacterModule
     {
+        List<Situation> currentSituations;
+        List<Option> currentOptions;
 
+        public abstract void UpdateTime(DateTime d);            // ran through DataBank.cs -> Character -> Module
+        public abstract void UpdateBehaviour(Character c);      // ran through AI.cs -> Character -> Module
+        public abstract void UpdateLuck(Character c);           // ran through Fate.cs -> Character -> Module
 
-        // figure out necessary variables and methods
-    }
-
-    // data and methods for unit data module, i.e. single character
-    public class DataModule : BaseModule
-    {
-        // figure out necessary variables and methods
-    }
-
-    // data and methods for aggregate unit data module, i.e. characters of an organization or location
-    public class StatisticalDataModule : BaseModule
-    {
         // figure out necessary variables and methods
     }
     #endregion
 
     #region CHARACTER CLASSES
     // all data about a character
-    public class Character : BaseEntity, IUpdateable
+    public class Character : BaseEntity
     {
+        #region TAG COUNTER
+        Dictionary<string, uint> tagCounter;
+
+        public bool HasTag(string tag)
+        {
+            if (tagCounter.ContainsKey(tag) && tagCounter[tag] > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public uint GetTagCount(string tag)
+        {
+            if (tagCounter.ContainsKey(tag)) return tagCounter[tag];
+            else return 0;
+        }
+
+        public void AddTag(string tag)
+        {
+            if (tagCounter.ContainsKey(tag)) tagCounter[tag]++;
+            else tagCounter[tag] = 1;
+        }
+
+        public void RemoveTag(string tag)
+        {
+            if (tagCounter.ContainsKey(tag) && tagCounter[tag] > 0) tagCounter[tag]--;
+            else tagCounter[tag] = 0;
+        }
+
+        public Dictionary<string, uint>.Enumerator GetTagIterator()
+        {
+            return tagCounter.GetEnumerator();
+        }
+        #endregion
+
         public Modules.PersonProfile personProfile;
         public Modules.Biology biology;
 
@@ -57,33 +80,62 @@ namespace E
         public Modules.Emotions emotions;
         public Modules.MentalFocus mentalFocus;
 
-        public void Update(DateTime d)
+        public override void UpdateTime(DateTime d)
         {
-            personProfile.Update(d);
-            biology.Update(d);
-            socialLife.Update(d);
-            emotions.Update(d);
-            mentalFocus.Update(d);
+            personProfile.UpdateTime(d);
+            biology.UpdateTime(d);
+
+            socialLife.UpdateTime(d);
+            opinions.UpdateTime(d);
+
+            emotions.UpdateTime(d);
+            mentalFocus.UpdateTime(d);
+        }
+
+        public void UpdateBehaviour()
+        {
+            personProfile.UpdateBehaviour(this);
+            biology.UpdateBehaviour(this);
+
+            socialLife.UpdateBehaviour(this);
+            opinions.UpdateBehaviour(this);
+
+            emotions.UpdateBehaviour(this);
+            mentalFocus.UpdateBehaviour(this);
+        }
+
+        public void UpdateLuck()
+        {
+            personProfile.UpdateLuck(this);
+            biology.UpdateLuck(this);
+
+            socialLife.UpdateLuck(this);
+            opinions.UpdateLuck(this);
+
+            emotions.UpdateLuck(this);
+            mentalFocus.UpdateLuck(this);
         }
     }
 
-    // all data about a situation
-    public class Situation : BaseEntity, IUpdateable
+    // all data and methods for a situation
+    public class Situation
     {
+        public ulong id;
         public C.SituationTemplate template;
 
-        public void Update(DateTime d)
+        public void Terminated()
         {
             // code here
         }
     }
 
-    // all data about an option
-    public class Option : BaseEntity, IUpdateable
+    // all data and methods for an option
+    public class Option
     {
+        public ulong id;
         public C.OptionTemplate template;
 
-        public void Update(DateTime d)
+        public void Chosen()
         {
             // code here
         }
@@ -95,68 +147,116 @@ namespace E
     {
         #region CORE CHARACTER MODULES
         // all personal information and all methods for their data
-        public class PersonProfile : DataModule, IUpdateable
+        public class PersonProfile : CharacterModule
         {
-            AI.Considerator considerator = new AI.Considerator();
+            public override void UpdateTime(DateTime d)
+            {
+                // code here
+            }
 
-            public void Update(DateTime d)
+            public override void UpdateBehaviour(Character c)
+            {
+                // code here
+            }
+
+            public override void UpdateLuck(Character c)
             {
                 // code here
             }
         }
 
         // all emotions and all methods for their data
-        public class Emotions : DataModule, IUpdateable, AI.IReasoner
+        public class Emotions : CharacterModule
         {
-            public void Update(DateTime d)
+            public override void UpdateTime(DateTime d)
             {
                 // code here
             }
 
-            public float Reason(E.Option o) { return 0; }
+            public override void UpdateBehaviour(Character c)
+            {
+                // code here
+            }
+
+            public override void UpdateLuck(Character c)
+            {
+                // code here
+            }
         }
 
         // all mental focus and all methods for their data
-        public class MentalFocus : DataModule, IUpdateable, AI.IReasoner
+        public class MentalFocus : CharacterModule
         {
-            public void Update(DateTime d)
+            public override void UpdateTime(DateTime d)
             {
                 // code here
             }
 
-            public float Reason(E.Option o) { return 0; }
+            public override void UpdateBehaviour(Character c)
+            {
+                // code here
+            }
+
+            public override void UpdateLuck(Character c)
+            {
+                // code here
+            }
         }
         #endregion
 
         #region EXTENDING CHARACTER MODULES
         // all biological situations and all methods for their data
-        public class Biology : DataModule, IUpdateable
+        public class Biology : CharacterModule
         {
-            AI.Considerator considerator = new AI.Considerator();
+            public override void UpdateTime(DateTime d)
+            {
+                // code here
+            }
 
-            public void Update(DateTime d)
+            public override void UpdateBehaviour(Character c)
+            {
+                // code here
+            }
+
+            public override void UpdateLuck(Character c)
             {
                 // code here
             }
         }
 
         // all social situations and all methods for their data
-        public class SocialLife : DataModule, IUpdateable
+        public class SocialLife : CharacterModule
         {
-            AI.Considerator considerator = new AI.Considerator();
+            public override void UpdateTime(DateTime d)
+            {
+                // code here
+            }
 
-            public void Update(DateTime d)
+            public override void UpdateBehaviour(Character c)
+            {
+                // code here
+            }
+
+            public override void UpdateLuck(Character c)
             {
                 // code here
             }
         }
 
         // all opinions and all methods for their data
-        public class Opinions : DataModule, IUpdateable
+        public class Opinions : CharacterModule
         {
-            AI.Considerator considerator = new AI.Considerator();
+            public override void UpdateTime(DateTime d)
+            {
+                // code here
+            }
 
-            public void Update(DateTime d)
+            public override void UpdateBehaviour(Character c)
+            {
+                // code here
+            }
+
+            public override void UpdateLuck(Character c)
             {
                 // code here
             }
@@ -174,9 +274,9 @@ namespace E
 
     #region ORGANIZATION CLASSES
     // all relationless data about organization
-    public class Organization : BaseEntity, IUpdateable
+    public class Organization : BaseEntity
     {
-        public void Update(DateTime d)
+        public override void UpdateTime(DateTime d)
         {
             // update modules
         }
@@ -186,9 +286,9 @@ namespace E
 
     #region LOCATION CLASSES
     // all relationless data about location
-    public class Location : BaseEntity, IUpdateable
+    public class Location : BaseEntity
     {
-        public void Update(DateTime d)
+        public override void UpdateTime(DateTime d)
         {
             // update modules
         }

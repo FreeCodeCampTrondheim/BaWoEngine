@@ -17,6 +17,8 @@ namespace C
 
     public class OptionTemplate
     {
+        public uint baseCost;
+
         // code here
     }
     #endregion
