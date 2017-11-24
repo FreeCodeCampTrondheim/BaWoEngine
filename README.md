@@ -18,11 +18,11 @@ Game Manager (not implemented yet, reserved for later because it's trivial and m
 * controls speed and ticks of the game
 * runs UpdateBehaviour on AI.cs, UpdateTime on DataBank.cs, UpdateLuck on Fate.cs
 
-AI Engines (AI.cs)
+AI Engine (AI.cs)
 * defines and creates sets of options for each tick of the game
 * makes choices for character until it runs out of willpower
 
-Fate Engines (not implemented yet)
+Fate Engine (Fate.cs - not implemented yet)
 * controls happenings in the game that are outside the control
   of any character
 
@@ -38,7 +38,7 @@ Catalogues (C.cs)
 Generator (G.cs)
 * classes for randomly generating content
 
-Player (InformationFeeder.cs and InteractionResponder.cs, not prioritized now in early development)
+Player (F.cs for information feeding and R.cs for interaction response - not prioritized now in early development)
 * defines all possible responses to user actions, like retrieving data and applying choices
 * defines all automated tasks done for the user
 * includes searching, various information feeds, character creation, user choices and so forth
