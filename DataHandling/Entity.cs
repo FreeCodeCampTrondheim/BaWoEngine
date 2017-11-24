@@ -63,8 +63,8 @@ namespace Entity
 
         public void RemoveTag(string tag)
         {
-            if (tags.ContainsKey(valueTag) && tags[valueTag] > 0) tags[valueTag]--;
-            else tags[valueTag] = 0;
+            if (tags.ContainsKey(tag) && tags[tag] > 0) tags[tag]--;
+            else tags[tag] = 0;
         }
 
         public Dictionary<string, uint>.Enumerator GetTagIterator()

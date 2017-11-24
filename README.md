@@ -26,19 +26,19 @@ Fate Engine (Fate.cs - not implemented yet)
 * controls happenings in the game that are outside the control
   of any character
 
-Entities (E.cs)
+Entities (Entity.cs)
 * defines data about in-game entities
 
 Data Bank (DataBank.cs)
 * stores all data and gives easy access to it
 
-Catalogues (C.cs)
+Catalogues (Catalogue.cs)
 * contains templates for new entities
 
-Generator (G.cs)
+Generator (Generator.cs)
 * classes for randomly generating content
 
-Player (F.cs for information feeding and R.cs for interaction response - not prioritized now in early development)
+Player (Feeder.cs for information feeding and Responder.cs for interaction response - not prioritized now in early development)
 * defines all possible responses to user actions, like retrieving data and applying choices
 * defines all automated tasks done for the user
 * includes searching, various information feeds, character creation, user choices and so forth
@@ -66,8 +66,8 @@ To do this, the player specifies the following data:
 
 This data is then loaded by the Game Manager on start as
 PlayerCharacterRecipe and WorldRecipe, with subsequent calls
-to the functions G.WorldGenerator.Generate(WorldRecipe) and
-G.CharacterGenerator.GeneratePlayer(PlayerCharacterRecipe).
+to the functions Generator.World.Generate(WorldRecipe) and
+Generator.Character.GeneratePlayer(PlayerCharacterRecipe).
 
 ### GAME TICKS
 The game has two types of major change determinators: character behaviour and fate's course.

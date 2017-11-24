@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 
 // handles in-game entity templates
-static class Catalogue
+public static class Catalogue
 {
     #region TEMPLATE CLASSES
     public class SituationTemplate
