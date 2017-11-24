@@ -38,7 +38,7 @@ Catalogues (C.cs)
 Generator (G.cs)
 * classes for randomly generating content
 
-Player (InformationFeeder.cs and InteractionResponder.cs)
+Player (InformationFeeder.cs and InteractionResponder.cs, not prioritized now in early development)
 * defines all possible responses to user actions, like retrieving data and applying choices
 * defines all automated tasks done for the user
 * includes searching, various information feeds, character creation, user choices and so forth
