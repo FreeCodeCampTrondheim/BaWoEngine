@@ -7,7 +7,7 @@ using System.Text;
 
 
 // handles the response to GUI interaction by the player
-static class InteractionResponder
+static class R
 {
     public static class SearchEngine
     {

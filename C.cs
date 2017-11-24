@@ -12,6 +12,9 @@ namespace C
     #region TEMPLATE CLASSES
     public class SituationTemplate
     {
+        public List<string> tags;
+        public Dictionary<string, uint> valueTags;
+
         // code here
     }
 

@@ -14,7 +14,7 @@ namespace E
     public abstract class BaseEntity
     {
         public ulong id;
-        public abstract void UpdateTime(DateTime d);    // ran through DataBank.cs -> Entity
+        public abstract void UpdateTime(DateTime d);            // ran through DataBank.cs -> Entity
     }
 
     // data and methods that all modules must have
@@ -35,12 +35,14 @@ namespace E
     // all data about a character
     public class Character : BaseEntity
     {
-        #region TAG COUNTER
-        Dictionary<string, uint> tagCounter;
+        public uint willpowerPoints = 0;
+
+        #region CHARACTER TAGS
+        Dictionary<string, uint> tags;
 
         public bool HasTag(string tag)
         {
-            if (tagCounter.ContainsKey(tag) && tagCounter[tag] > 0)
+            if (tags.ContainsKey(tag) && tags[tag] > 0)
             {
                 return true;
             }
@@ -49,25 +51,61 @@ namespace E
 
         public uint GetTagCount(string tag)
         {
-            if (tagCounter.ContainsKey(tag)) return tagCounter[tag];
+            if (tags.ContainsKey(tag)) return tags[tag];
             else return 0;
         }
 
         public void AddTag(string tag)
         {
-            if (tagCounter.ContainsKey(tag)) tagCounter[tag]++;
-            else tagCounter[tag] = 1;
+            if (tags.ContainsKey(tag)) tags[tag]++;
+            else tags[tag] = 1;
         }
 
         public void RemoveTag(string tag)
         {
-            if (tagCounter.ContainsKey(tag) && tagCounter[tag] > 0) tagCounter[tag]--;
-            else tagCounter[tag] = 0;
+            if (tags.ContainsKey(valueTag) && tags[valueTag] > 0) tags[valueTag]--;
+            else tags[valueTag] = 0;
         }
 
         public Dictionary<string, uint>.Enumerator GetTagIterator()
         {
-            return tagCounter.GetEnumerator();
+            return tags.GetEnumerator();
+        }
+        #endregion
+
+        #region CHARACTER VALUE TAGS
+        Dictionary<string, uint> valueTags;
+
+        public bool HasValueTag(string valueTag)
+        {
+            if (tags.ContainsKey(valueTag) && tags[valueTag] > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public uint GetValueTagAmount(string valueTag)
+        {
+            if (tags.ContainsKey(valueTag)) return tags[valueTag];
+            else return 0;
+        }
+
+        public void AddValueTag(string valueTag)
+        {
+            if (tags.ContainsKey(valueTag)) tags[valueTag]++;
+            else tags[valueTag] = 1;
+        }
+
+        public void RemoveValueTag(string valueTag)
+        {
+            if (tags.ContainsKey(valueTag) && tags[valueTag] > 0) tags[valueTag]--;
+            else tags[valueTag] = 0;
+        }
+
+        public Dictionary<string, uint>.Enumerator GetValueTagIterator()
+        {
+            return valueTags.GetEnumerator();
         }
         #endregion
 

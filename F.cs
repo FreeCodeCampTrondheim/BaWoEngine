@@ -7,7 +7,7 @@ using System.Text;
 
 
 // handles passive information feeding to the GUI
-static class InformationFeeder
+static class F
 {
     // handles user interaction and updating of displayed information about searches and selected search results
     public static class Inspector

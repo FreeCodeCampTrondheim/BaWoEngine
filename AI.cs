@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
+
+
 
 
 
@@ -51,6 +50,7 @@ static class AI
 
             c.UpdateBehaviour();
             BuildScoreList(c);
+            BuildChoiceQueue(c);
             ExecuteChoices(c);
         }
     }
@@ -66,7 +66,7 @@ static class AI
         }
     }
     
-    static void BuildChoiceQueue()
+    static void BuildChoiceQueue(E.Character c)
     {
         while(scoreList.Count > 0)
         {
@@ -81,6 +81,10 @@ static class AI
                     currentLowestCost = item;
             }
 
+            if (c.willpowerPoints - currentLowestCost.willpowerCost > 0)
+                c.willpowerPoints -= currentLowestCost.willpowerCost;
+            else break;
+
             choiceQueue.Enqueue(currentLowestCost);
             scoreList.Remove(currentLowestCost);
         }
@@ -88,7 +92,8 @@ static class AI
 
     static void ExecuteChoices(E.Character c)
     {
-        choiceQueue.Dequeue().option.Choose(c);
+        while(choiceQueue.Count > 0)
+            choiceQueue.Dequeue().option.Choose(c);
     }
     #endregion
 }
