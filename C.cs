@@ -17,9 +17,13 @@ namespace C
 
     public class OptionTemplate
     {
-        public uint baseCost;
+        public string moduleType;
 
-        // code here
+        public uint baseCost;
+        public List<string> typeTags;
+        public Dictionary<string, uint> valueTags;
+
+        // more code here
     }
     #endregion
 

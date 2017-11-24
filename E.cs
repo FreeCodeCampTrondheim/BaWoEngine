@@ -135,7 +135,7 @@ namespace E
         public ulong id;
         public C.OptionTemplate template;
 
-        public void Chosen()
+        public void Choose(Character c)
         {
             // code here
         }

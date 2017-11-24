@@ -10,21 +10,36 @@ using System.Text;
 // handles all non-player behaviour in the game
 static class AI
 {
-    public static Dictionary<string, uint> optionTagValue;     // stores combined value for each tag on character
-    public static List<E.Option> availableOptions;             // stores all options available to character
+    public static Dictionary<string, uint> combinedOptionValueTags;  // stores combined value for each tag on character
+    public static Stack<E.Option> availableOptions;  // stores all options available to character
 
-    public static List<OptionScore> unprocessedScores;         // simple list for processing scores before being added to choiceQueue
-    public static Queue<OptionScore> choiceQueue;              // final queue from which choices are made and sorted by willpower cost
+    public static List<OptionScore> scoreList;  // simple list for processing scores before being added to choiceQueue
+    public static Queue<OptionScore> choiceQueue;   // final queue from which choices are made and sorted by willpower cost
 
     public struct OptionScore
     {
-        uint willpowerCost;
-        uint combinedTagValue;
-        E.Option option;
+        public E.Option option;
 
-        public void CalcWillpowerCost()
+        uint combinedValueTags;
+        public uint willpowerCost;
+        
+        public void Initialize(E.Option o)
         {
-            willpowerCost = combinedTagValue / option.template.baseCost;
+            option = o;
+            CalcCombinedValueTags();
+            CalcWillpowerCost();
+        }
+
+        void CalcCombinedValueTags()
+        {
+            foreach (var valueTag in option.template.valueTags.Keys)
+            {
+                combinedValueTags += combinedOptionValueTags[valueTag];
+            }
+        }
+        void CalcWillpowerCost()
+        {
+            willpowerCost = combinedValueTags / option.template.baseCost;
         }
     }
     
@@ -34,30 +49,46 @@ static class AI
         {
             E.Character c = item.Value;
 
-            ConsiderationEngine.Act(c);
-            ReasoningEngine.Act(c);
+            c.UpdateBehaviour();
+            BuildScoreList(c);
+            ExecuteChoices(c);
         }
     }
 
-    #region ENGINES
-    // figures out what new options should be on the table for the character
-    static class ConsiderationEngine
+    #region COMPUTATION
+    static void BuildScoreList(E.Character c)
     {
-        public static void Act(E.Character c)
+        for (int i = 0; i < availableOptions.Count; i++)
         {
-            // code here
+            OptionScore temp = new OptionScore();
+            temp.Initialize(availableOptions.Pop());
+            scoreList.Add(temp);
+        }
+    }
+    
+    static void BuildChoiceQueue()
+    {
+        while(scoreList.Count > 0)
+        {
+            OptionScore currentLowestCost = new OptionScore()
+            {
+                willpowerCost = uint.MaxValue
+            };
 
-           
+            foreach (var item in scoreList)
+            {
+                if (item.willpowerCost < currentLowestCost.willpowerCost)
+                    currentLowestCost = item;
+            }
+
+            choiceQueue.Enqueue(currentLowestCost);
+            scoreList.Remove(currentLowestCost);
         }
     }
 
-    // figures out what character should do
-    static class ReasoningEngine
+    static void ExecuteChoices(E.Character c)
     {
-        public static void Act(E.Character c)
-        {
-            // code here
-        }
+        choiceQueue.Dequeue().option.Choose(c);
     }
     #endregion
 }
