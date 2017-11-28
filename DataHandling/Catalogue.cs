@@ -67,3 +67,10 @@ public static class Catalogue
     }
     #endregion
 }
+
+/*  NOTES:
+    Remember to store all valueTag values here, 
+    so they only need to be stored once, and can
+    be fetched directly from the Catalogue using
+    the tag as a value
+*/ 

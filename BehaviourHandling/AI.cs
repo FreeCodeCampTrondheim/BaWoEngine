@@ -7,21 +7,24 @@ using System.Collections.Generic;
 
 
 // handles all non-player behaviour in the game
-static class AI
+public static class AI
 {
     // combines all occurences of each individual 
     // value tag into a series of sums
-    public static Dictionary<string, uint> individualValueTagSums;
+    public static Dictionary<string, uint> valueTagSums;
 
-    public static Stack<Entity.Option> availableOptions;  // stores all options available to character
-    public static List<OptionScore> scoreList;       // simple list for processing scores before being added to choiceQueue
+    // stores all options available to character
+    public static Stack<Entity.Option> availableOptions;
+
+    // simple list for processing scores before being added to choiceQueue
+    static List<OptionScore> scoreList;
 
     // final queue from which choices are made and 
     // sorted by willpower cost in ascending order
-    public static Queue<OptionScore> choiceQueue;
+    static Queue<OptionScore> choiceQueue;
 
     // stores temporary data about the score of an option
-    public struct OptionScore
+    struct OptionScore
     {
         public Entity.Option option;     // the represented option
 
@@ -47,7 +50,7 @@ static class AI
         {
             foreach (var valueTag in option.template.valueTags.Keys)
             {
-                combinedValueTagSum += individualValueTagSums[valueTag];
+                combinedValueTagSum += valueTagSums[valueTag];
             }
         }
 
@@ -65,14 +68,19 @@ static class AI
         foreach (var item in DataBank.characters)
         {
             // reset all AI collections for each Character handled
-            individualValueTagSums = new Dictionary<string, uint>();
+            valueTagSums = new Dictionary<string, uint>();
             availableOptions = new Stack<Entity.Option>();
             scoreList = new List<OptionScore>();
             choiceQueue = new Queue<OptionScore>();
 
             Entity.Character c = item.Value;
 
-            c.UpdateBehaviour();
+            /*
+                TODO:
+                change from function call iterating characters and
+                over Modules, to accessing values directly
+            */
+            //c.UpdateBehaviour();
             BuildScoreList(c);
             BuildChoiceQueue(c);
             ExecuteChoices(c);
@@ -80,7 +88,6 @@ static class AI
     }
 
     #region COMPUTATION
-
     // sets up all OptionScores and adds them to scoreList
     static void BuildScoreList(Entity.Character c)
     {

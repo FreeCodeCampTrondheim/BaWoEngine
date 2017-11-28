@@ -37,75 +37,104 @@ namespace Entity
     {
         public uint willpowerPoints = 0;
 
-        #region CHARACTER TAGS
-        Dictionary<string, uint> tags;
+        #region CHARACTER STATS
+        Dictionary<string, int> characterStats;
+
+        public int GetStatSum(string stat)
+        {
+            if (characterStats.ContainsKey(stat)) return characterStats[stat];
+            else return 0;
+        }
+
+        public void AddStat(string stat, int valueFromSituation)
+        {
+            if (characterStats.ContainsKey(stat))
+                characterStats[stat] += valueFromSituation;
+            else characterStats[stat] = valueFromSituation;
+        }
+
+        public void RemoveStat(string stat, int valueFromSituation)
+        {
+            if (characterStats.ContainsKey(stat) && characterStats[stat] > 0)
+                characterStats[stat] -= valueFromSituation;
+        }
+
+        public Dictionary<string, int>.Enumerator GetStatIterator()
+        {
+            return characterStats.GetEnumerator();
+        }
+        #endregion
+
+        #region CHARACTER TAG OCCURENCES
+        // contains records of all value tags from modules, 
+        // indicating the social and physical state of the character,
+        // with string=tag and uint=number of occurences
+        Dictionary<string, uint> tagsOccurences;
 
         public bool HasTag(string tag)
         {
-            if (tags.ContainsKey(tag) && tags[tag] > 0)
-            {
-                return true;
-            }
+            if (tagsOccurences.ContainsKey(tag) && tagsOccurences[tag] > 0) return true;
             else return false;
         }
 
         public uint GetTagCount(string tag)
         {
-            if (tags.ContainsKey(tag)) return tags[tag];
+            if (tagsOccurences.ContainsKey(tag)) return tagsOccurences[tag];
             else return 0;
         }
 
         public void AddTag(string tag)
         {
-            if (tags.ContainsKey(tag)) tags[tag]++;
-            else tags[tag] = 1;
+            if (tagsOccurences.ContainsKey(tag)) tagsOccurences[tag]++;
+            else tagsOccurences[tag] = 1;
         }
 
         public void RemoveTag(string tag)
         {
-            if (tags.ContainsKey(tag) && tags[tag] > 0) tags[tag]--;
-            else tags[tag] = 0;
+            if (tagsOccurences.ContainsKey(tag) && tagsOccurences[tag] > 0) tagsOccurences[tag]--;
+            else tagsOccurences[tag] = 0;
         }
 
         public Dictionary<string, uint>.Enumerator GetTagIterator()
         {
-            return tags.GetEnumerator();
+            return tagsOccurences.GetEnumerator();
         }
         #endregion
 
-        #region CHARACTER VALUE TAGS
-        Dictionary<string, uint> valueTags;
+        #region CHARACTER VALUE TAG OCCURENCES
+        // contains records of all value tags from modules,
+        // indicating the mental state of the character,
+        // with string=tag and uint=combined value of tags
+        Dictionary<string, uint> valueTagsOccurences;
 
         public bool HasValueTag(string valueTag)
         {
-            if (tags.ContainsKey(valueTag) && tags[valueTag] > 0)
-            {
-                return true;
-            }
+            if (valueTagsOccurences.ContainsKey(valueTag) && valueTagsOccurences[valueTag] > 0) return true;
             else return false;
         }
 
-        public uint GetValueTagAmount(string valueTag)
+        public uint GetValueTagSum(string valueTag)
         {
-            if (tags.ContainsKey(valueTag)) return tags[valueTag];
+            if (valueTagsOccurences.ContainsKey(valueTag)) return valueTagsOccurences[valueTag];
             else return 0;
         }
 
-        public void AddValueTag(string valueTag)
+        public void AddValueTag(string valueTag, uint valueFromSituation)
         {
-            if (tags.ContainsKey(valueTag)) tags[valueTag]++;
-            else tags[valueTag] = 1;
+            if (valueTagsOccurences.ContainsKey(valueTag))
+                valueTagsOccurences[valueTag] += valueFromSituation;
+            else valueTagsOccurences[valueTag] = valueFromSituation;
         }
 
-        public void RemoveValueTag(string valueTag)
+        public void RemoveValueTag(string valueTag, uint valueFromSituation)
         {
-            if (tags.ContainsKey(valueTag) && tags[valueTag] > 0) tags[valueTag]--;
-            else tags[valueTag] = 0;
+            if (valueTagsOccurences.ContainsKey(valueTag) && valueTagsOccurences[valueTag] > 0)
+                valueTagsOccurences[valueTag] -= valueFromSituation;
         }
 
         public Dictionary<string, uint>.Enumerator GetValueTagIterator()
         {
-            return valueTags.GetEnumerator();
+            return valueTagsOccurences.GetEnumerator();
         }
         #endregion
 
