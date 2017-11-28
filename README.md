@@ -36,7 +36,6 @@ Golden Hands will be available at this repo for free):
 To get a background world up and running you'll also need to run these commands:
 * Command.SetupGame(Command.WorldRecipe wr, Command.PlayerRecipe pd)
   * for multiplayer treat second parameter as *Command.PlayerRecipe[] pd*
-* 
 * Command.SetMinimumTickRate(float seconds) - default is 0.5f, doesn't affect player
 * Command.Start() - starts ticking
 
