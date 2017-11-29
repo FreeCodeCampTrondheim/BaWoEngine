@@ -32,7 +32,7 @@ After finishing setting up the JSON assets, you'll also have to run these
 to get your background world up and running:
 * Command.SetupGame(Command.WorldRecipe wr, Command.PlayerRecipe pd)
   * for multiplayer treat second parameter as *Command.PlayerRecipe[] pd*
-* *optional* Command.SetMinimumTickRate(float seconds) - default is 0.5f
+* *optional* Command.SetMinimumTickRate(float seconds) - default is 1.0f
 * Command.Start() - starts ticking
 
 You'll then have the ability to anytime later run:

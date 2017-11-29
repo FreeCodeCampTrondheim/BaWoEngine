@@ -9,12 +9,8 @@ using System.Collections.Generic;
 // handles all non-player behaviour in the game
 public static class AI
 {
-    // combines all occurences of each individual 
-    // value tag into a series of sums
-    public static Dictionary<string, uint> valueTagSums;
-
-    // stores all options available to character
-    public static Stack<Entity.Option> availableOptions;
+    // currently computed character
+    static Entity.Character c;
 
     // simple list for processing scores before being added to choiceQueue
     static List<OptionScore> scoreList;
@@ -50,7 +46,7 @@ public static class AI
         {
             foreach (var valueTag in option.template.valueTags.Keys)
             {
-                combinedValueTagSum += valueTagSums[valueTag];
+                combinedValueTagSum += c.GetValueTagSum(valueTag);
             }
         }
 
@@ -68,40 +64,32 @@ public static class AI
         foreach (var item in DataBank.characters)
         {
             // reset all AI collections for each Character handled
-            valueTagSums = new Dictionary<string, uint>();
-            availableOptions = new Stack<Entity.Option>();
             scoreList = new List<OptionScore>();
             choiceQueue = new Queue<OptionScore>();
 
-            Entity.Character c = item.Value;
-
-            /*
-                TODO:
-                change from function call iterating characters and
-                over Modules, to accessing values directly
-            */
-            //c.UpdateBehaviour();
-            BuildScoreList(c);
-            BuildChoiceQueue(c);
-            ExecuteChoices(c);
+            c = item.Value;
+            
+            BuildScoreList();
+            BuildChoiceQueue();
+            ExecuteChoices();
         }
     }
 
     #region COMPUTATION
     // sets up all OptionScores and adds them to scoreList
-    static void BuildScoreList(Entity.Character c)
+    static void BuildScoreList()
     {
-        for (int i = 0; i < availableOptions.Count; i++)
+        for (int i = 0; i < c.options.Count; i++)
         {
             OptionScore temp = new OptionScore();
-            temp.Setup(availableOptions.Pop());
+            temp.Setup(c.options[i]);
             scoreList.Add(temp);
         }
     }
     
     // extracts OptionScores until the character is out of willpower,
     // building the choiceQueue with cheapest Options first
-    static void BuildChoiceQueue(Entity.Character c)
+    static void BuildChoiceQueue()
     {
         while(scoreList.Count > 0)
         {
@@ -127,7 +115,7 @@ public static class AI
     }
 
     // apply choices to character
-    static void ExecuteChoices(Entity.Character c)
+    static void ExecuteChoices()
     {
         while(choiceQueue.Count > 0)
             choiceQueue.Dequeue().option.Choose(c);

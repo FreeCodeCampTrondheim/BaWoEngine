@@ -14,20 +14,9 @@ namespace Entity
     public abstract class BaseEntity
     {
         public ulong id;
-        public abstract void UpdateTime(DateTime d);            // ran through DataBank.cs -> Entity
-    }
 
-    // data and methods that all modules must have
-    public abstract class CharacterModule
-    {
-        List<Situation> currentSituations;
-        List<Option> currentOptions;
-
-        public abstract void UpdateTime(DateTime d);            // ran through DataBank.cs -> Character -> Module
-        public abstract void UpdateBehaviour(Character c);      // ran through AI.cs -> Character -> Module
-        public abstract void UpdateLuck(Character c);           // ran through Fate.cs -> Character -> Module
-
-        // figure out necessary variables and methods
+        // ran through DataBank.cs -> Entity
+        public abstract void UpdateTime(DateTime d);
     }
     #endregion
 
@@ -36,13 +25,20 @@ namespace Entity
     public class Character : BaseEntity
     {
         public uint willpowerPoints = 0;
+        public List<Situation> situations;
+        public List<Option> options;
+        public List<Forecast> forecasts;
 
         #region CHARACTER STATS
-        Dictionary<string, int> characterStats;
+        Dictionary<string, int> characterStats =
+            new Dictionary<string, int>();
 
         public int GetStatSum(string stat)
         {
-            if (characterStats.ContainsKey(stat)) return characterStats[stat];
+            // negative stat sums are ignored upon retrieval because they
+            // have no meaning, however they are stored so that adding and
+            // subtracting on collection is never messed up
+            if (characterStats.ContainsKey(stat) && characterStats[stat] > 0) return characterStats[stat];
             else return 0;
         }
 
@@ -69,7 +65,8 @@ namespace Entity
         // contains records of all value tags from modules, 
         // indicating the social and physical state of the character,
         // with string=tag and uint=number of occurences
-        Dictionary<string, uint> tagsOccurences;
+        Dictionary<string, uint> tagsOccurences =
+            new Dictionary<string, uint>();
 
         public bool HasTag(string tag)
         {
@@ -105,7 +102,8 @@ namespace Entity
         // contains records of all value tags from modules,
         // indicating the mental state of the character,
         // with string=tag and uint=combined value of tags
-        Dictionary<string, uint> valueTagsOccurences;
+        Dictionary<string, uint> valueTagsOccurences =
+            new Dictionary<string, uint>();
 
         public bool HasValueTag(string valueTag)
         {
@@ -138,49 +136,10 @@ namespace Entity
         }
         #endregion
 
-        public Modules.PersonProfile personProfile;
-        public Modules.Biology biology;
-
-        public Modules.SocialLife socialLife;
-        public Modules.Opinions opinions;
-
-        public Modules.Emotions emotions;
-        public Modules.MentalFocus mentalFocus;
-
         public override void UpdateTime(DateTime d)
         {
-            personProfile.UpdateTime(d);
-            biology.UpdateTime(d);
-
-            socialLife.UpdateTime(d);
-            opinions.UpdateTime(d);
-
-            emotions.UpdateTime(d);
-            mentalFocus.UpdateTime(d);
-        }
-
-        public void UpdateBehaviour()
-        {
-            personProfile.UpdateBehaviour(this);
-            biology.UpdateBehaviour(this);
-
-            socialLife.UpdateBehaviour(this);
-            opinions.UpdateBehaviour(this);
-
-            emotions.UpdateBehaviour(this);
-            mentalFocus.UpdateBehaviour(this);
-        }
-
-        public void UpdateLuck()
-        {
-            personProfile.UpdateLuck(this);
-            biology.UpdateLuck(this);
-
-            socialLife.UpdateLuck(this);
-            opinions.UpdateLuck(this);
-
-            emotions.UpdateLuck(this);
-            mentalFocus.UpdateLuck(this);
+            // delete expired countdown situations,
+            // add time to stopwatch situations
         }
     }
 
@@ -207,137 +166,19 @@ namespace Entity
             // code here
         }
     }
-    #endregion
 
-    // modules extending character situations, options, data and how to handle them
-    namespace Modules
+    // all data and methods for an option
+    public class Forecast
     {
-        #region CORE CHARACTER MODULES
-        // all personal information and all methods for their data
-        public class PersonProfile : CharacterModule
+        public ulong id;
+        public Catalogue.ForecastTemplate template;
+
+        public void PlayOut(Character c)
         {
-            public override void UpdateTime(DateTime d)
-            {
-                // code here
-            }
-
-            public override void UpdateBehaviour(Character c)
-            {
-                // code here
-            }
-
-            public override void UpdateLuck(Character c)
-            {
-                // code here
-            }
+            // code here
         }
-
-        // all emotions and all methods for their data
-        public class Emotions : CharacterModule
-        {
-            public override void UpdateTime(DateTime d)
-            {
-                // code here
-            }
-
-            public override void UpdateBehaviour(Character c)
-            {
-                // code here
-            }
-
-            public override void UpdateLuck(Character c)
-            {
-                // code here
-            }
-        }
-
-        // all mental focus and all methods for their data
-        public class MentalFocus : CharacterModule
-        {
-            public override void UpdateTime(DateTime d)
-            {
-                // code here
-            }
-
-            public override void UpdateBehaviour(Character c)
-            {
-                // code here
-            }
-
-            public override void UpdateLuck(Character c)
-            {
-                // code here
-            }
-        }
-        #endregion
-
-        #region EXTENDING CHARACTER MODULES
-        // all biological situations and all methods for their data
-        public class Biology : CharacterModule
-        {
-            public override void UpdateTime(DateTime d)
-            {
-                // code here
-            }
-
-            public override void UpdateBehaviour(Character c)
-            {
-                // code here
-            }
-
-            public override void UpdateLuck(Character c)
-            {
-                // code here
-            }
-        }
-
-        // all social situations and all methods for their data
-        public class SocialLife : CharacterModule
-        {
-            public override void UpdateTime(DateTime d)
-            {
-                // code here
-            }
-
-            public override void UpdateBehaviour(Character c)
-            {
-                // code here
-            }
-
-            public override void UpdateLuck(Character c)
-            {
-                // code here
-            }
-        }
-
-        // all opinions and all methods for their data
-        public class Opinions : CharacterModule
-        {
-            public override void UpdateTime(DateTime d)
-            {
-                // code here
-            }
-
-            public override void UpdateBehaviour(Character c)
-            {
-                // code here
-            }
-
-            public override void UpdateLuck(Character c)
-            {
-                // code here
-            }
-        }
-        #endregion
-
-        #region ORGANIZATION MODULES
-        // modules here
-        #endregion
-
-        #region LOCATION MODULES
-        // modules here
-        #endregion
     }
+    #endregion
 
     #region ORGANIZATION CLASSES
     // all relationless data about organization

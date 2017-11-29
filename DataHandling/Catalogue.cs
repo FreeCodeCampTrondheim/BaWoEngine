@@ -13,8 +13,6 @@ public static class Catalogue
     {
         public List<string> tags;
         public Dictionary<string, uint> valueTags;
-
-        // code here
     }
 
     public class OptionTemplate
@@ -24,8 +22,15 @@ public static class Catalogue
         public uint baseCost;
         public List<string> typeTags;
         public Dictionary<string, uint> valueTags;
+    }
 
-        // more code here
+    public class ForecastTemplate
+    {
+        public string moduleType;
+
+        public uint probabilityWeight;
+        public List<string> typeTags;
+        public Dictionary<string, uint> valueTags;
     }
     #endregion
 
