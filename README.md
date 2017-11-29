@@ -6,7 +6,8 @@ BaWo Project Stages: *early* | mid | late | beta
 Golden Hands Stages: postponed until BaWo is nearing completion
 
 ##	ABOUT PROJECT:
-Ever needed to simulate a vast world, interacting with itself in the background of a visual one?
+Ever needed to simulate a vast world, interacting with itself in the
+background of a visual one? That is the problem BaWo is trying to solve!
 
 ###	Introduction
 The "BaWo - Background World" API will in its final stage be applicable to any C# project
