@@ -19,35 +19,30 @@ access to the DataBank where you can create or change content manually.
 
 To setup for your own use, you only need to run:
 
-	// string values are folders where all JSON-defined modules lie
-	Command.SetupModules(
-		string filePathCharacterModules,
-		string filePathOrganizationModules,
-		string filePathLocationModules)
-
-An example use follows below (JSON modules made for the game
-Golden Hands will be available at this repo for free):
-
-	// example use with example string
     Command.SetupModules(
 		"\characterModules\",
 		"\organizationModules\",
 		"\locationModules\");
 
-To get a background world up and running you'll also need to run these commands:
+The string values above are examples of folders where all the JSON-defined
+modules for your game will lie. JSON modules made for the game Golden Hands
+will be available at this repo for free, to get you started.
+
+After finishing setting up the JSON assets, you'll also have to run these
+to get your background world up and running:
 * Command.SetupGame(Command.WorldRecipe wr, Command.PlayerRecipe pd)
   * for multiplayer treat second parameter as *Command.PlayerRecipe[] pd*
-* Command.SetMinimumTickRate(float seconds) - default is 0.5f, doesn't affect player
+* *optional* Command.SetMinimumTickRate(float seconds) - default is 0.5f
 * Command.Start() - starts ticking
 
-With the ability to anytime later run:
+You'll then have the ability to anytime later run:
 * Command.Pause() - stops ticking
 * string Command.GetWorldJSON() - all world data as one huge JSON, use it for save files
 * string Command.GetPlayerJSON(uint playerNumber = 0) - all player data as a JSON, use it for save files
 
 And if you already have a saved world:
-* Command.SetupGameFromJSON(JSONObject world, string player)
-  * for multiplayer treat second parameter as *JSONObject[] players*
+* Command.SetupGameFromJSON(string world, string player)
+  * for multiplayer treat second parameter as *string[] players*
 
 ### Create feature- and content game expansions using *only JSON*!
 Central to BaWo will be the ability to generate background content with
@@ -105,16 +100,16 @@ when data is created or changed, and specifies:
 * for what purpose is it created or changed
 
 ### START
-The player starts a game by setting up the world and the player character.
-To do this, the player specifies the following data:
+The developer can allow the player starts a game by setting up the world and the 
+player character, or configure these themselves. Anyway, these must be specified:
 * The World:
-  * Exact Number Attributes:
-    * World Foreground Population (characters that can be interacted with)
-    * World Background Population (non-interactable, only relevant for statistics)
+  * World Foreground Population (characters that can be interacted with)
+  * World Background Population (non-interactable, only relevant for statistics)
 	* World Organization Quantity
 	* World Location Quantity
 * Player Character:
-  * Any module data that the player should be able to choose
+  * The module ID of any module data that the player should be able to choose.
+    Unless all module IDs are included, remaining modules will be generated randomly.
 
 This data is then loaded by the Game Manager on start as
 PlayerCharacterRecipe and WorldRecipe, with subsequent calls
@@ -124,59 +119,58 @@ Generator.Character.GeneratePlayer(PlayerCharacterRecipe).
 ### TICKS
 The game has two types of major change determinators: character behaviour and fate's course.
 Both types are dealt with by a static class each, defined in the AI.cs and Fate.cs files.
-The first one deals with the simulation of human behaviour, while the other deals with happenings 
+The first one deals with the simulation of human behaviour, while the other deals with happenings
 outside of any character's control, a.k.a. "fate", "nature's course" or "the will of god".
 
 Characters, organizations and locations are made up of modules that each handle a category
-of data. Both AI.cs and Fate.cs run functions on these modules, fetching three types of 
+of data. Both AI.cs and Fate.cs run functions on these modules, fetching three types of
 objects from them. These are then processed, before new such objects are sent back.
 The three types are:
 * Situations - Describes the status of the character in terms of tags and attribute values
 * Options - Describes actions the character can take, to get new situations and new options
 * Forecasts - Describes what can happen to the character in the future, ergo fate's options
 
-During every game tick (represents 1 hour of virtual time), two primary 
+During every game tick (represents 1 hour of virtual time), two primary
 operations are ran by GameManager.cs on the following classes:
 * DataBank.cs
   * Runs UpdateTime(DateTime) which iterates over all characters, organizations and locations.
-    These entities then run UpdateTime(DateTime) on all modules. Each module checks if any 
-    Situation is past expiration date, and if so, runs Terminated() which launches any new 
+    These entities then run UpdateTime(DateTime) on all modules. Each module checks if any
+    Situation is past expiration date, and if so, runs Terminated() which launches any new
     Situations, Options or Forecasts. Any expired Situations are then deleted.
 * AI.cs
   * Runs UpdateBehaviour() which iterates over all characters (only). Characters then run
     UpdateBehaviour() on all modules. Each module can then load AI.cs with data about
     options and/or option value. AI.cs then produces a priority queue of options sorted
-	lowest to highest by willpower cost, which is option value divided by the option's 
-	base value. Chosen() is then ran on options from the queue until all character 
-	"Willpower points" are spent.
+	  lowest to highest by willpower cost, which is option value divided by the option's
+	  base value. Chosen() is then ran on options from the queue until all character
+	  "Willpower points" are spent.
 
 Additionally, once a day at night, the following extra operation is ran:
 * Fate.cs
   * Runs UpdateLuck() which iterates over all characters and organizations (only).
     These entities then run UpdateLuck() on all modules. Each module can then load
-    Fate.cs with data about Forecasts. Each Forecast has a "Fortune" integer value 
+    Fate.cs with data about Forecasts. Each Forecast has a "Fortune" integer value
     related to it describing how good (positive value) or bad (negative value) it is.
     Fate.cs then generates a semi-random number (from predefined list with bias
-    towards zero) for both positive and negative fortune, before randomly selecting 
-    eligible Forecasts for each type until the combined positive and negative values 
-    either match the randomly generated numbers, or there are no more Forecasts to 
+    towards zero) for both positive and negative fortune, before randomly selecting
+    eligible Forecasts for each type until the combined positive and negative values
+    either match the randomly generated numbers, or there are no more Forecasts to
     choose from. Destiny() is then ran on the selected Forecasts, creating new
     Situations, Options and Forecasts.
 
 
 ### PLAYER INTERACTION
-There are two types of actions the player
-can take in the game that changes data:
+There are two types of actions the player can take in the game that changes data:
 * choose new Options as long as there is enough willpower points
   to do so (choosing an Option creates new Options, Situations
   and Forecasts for player character)
 * regret (abort) the Situation marked as "activity", which is
   the Situation describing what the player character is currently
-  doing (this will leave the player character without an activity 
+  doing (this will leave the player character without an activity
   Situation, automatically giving it the "procrastinating" Situation)
 
 BaWo also allows the character to actively:
-* use the search engine to search the world for entities, 
+* use the search engine to search the world for entities,
   inspect them and retrieve data from them
 * increase or reduce minimum tick speed of game
 * pause/continue game
