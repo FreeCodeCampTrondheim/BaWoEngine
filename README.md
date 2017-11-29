@@ -111,51 +111,50 @@ player character, or configure these themselves. Anyway, these must be specified
   * The module ID of any module data that the player should be able to choose.
     Unless all module IDs are included, remaining modules will be generated randomly.
 
-This data is then loaded by the Game Manager on start as
-PlayerCharacterRecipe and WorldRecipe, with subsequent calls
-to the functions Generator.World.Generate(WorldRecipe) and
-Generator.Character.GeneratePlayer(PlayerCharacterRecipe).
+This data is then sent to Generator.cs to call the subsequent functions:
+* Generator.World.Generate(WorldRecipe) and
+* Generator.Character.GeneratePlayer(PlayerCharacterRecipe).
 
 ### TICKS
-The game has two types of major change determinators: character behaviour and fate's course.
+BaWo has two types of major change determinators: character behaviour and fate's course.
 Both types are dealt with by a static class each, defined in the AI.cs and Fate.cs files.
 The first one deals with the simulation of human behaviour, while the other deals with happenings
 outside of any character's control, a.k.a. "fate", "nature's course" or "the will of god".
 
-Characters, organizations and locations are made up of modules that each handle a category
-of data. Both AI.cs and Fate.cs run functions on these modules, fetching three types of
-objects from them. These are then processed, before new such objects are sent back.
+Characters, organizations and locations are made up of modules that each define a category
+of data. Both AI.cs and Fate.cs run functions on the entities, fetching three types of objects 
+from them that at some point came into existence as a cause of data provided about the module
+setup. These data are then processed, before new such objects are sent back.
 The three types are:
 * Situations - Describes the status of the character in terms of tags and attribute values
 * Options - Describes actions the character can take, to get new situations and new options
 * Forecasts - Describes what can happen to the character in the future, ergo fate's options
 
-During every game tick (represents 1 hour of virtual time), two primary
-operations are ran by GameManager.cs on the following classes:
+During every tick (represents a unit of virtual game time, for instance an hour),
+two primary operations are ran by Command.cs on the following classes:
 * DataBank.cs
   * Runs UpdateTime(DateTime) which iterates over all characters, organizations and locations.
     These entities then run UpdateTime(DateTime) on all modules. Each module checks if any
     Situation is past expiration date, and if so, runs Terminated() which launches any new
     Situations, Options or Forecasts. Any expired Situations are then deleted.
 * AI.cs
-  * Runs UpdateBehaviour() which iterates over all characters (only). Characters then run
-    UpdateBehaviour() on all modules. Each module can then load AI.cs with data about
-    options and/or option value. AI.cs then produces a priority queue of options sorted
+  * Runs UpdateBehaviour() which iterates over all characters (only). AI.cs then retrieves
+    data about options and/or option value, before producing a queue of options sorted
 	  lowest to highest by willpower cost, which is option value divided by the option's
-	  base value. Chosen() is then ran on options from the queue until all character
-	  "Willpower points" are spent.
+	  base cost. Chosen() is then ran on options from the queue until all character
+	  "Willpower points" are spent. From this, new Situations, Options and Forecasts
+    come into being.
 
 Additionally, once a day at night, the following extra operation is ran:
 * Fate.cs
   * Runs UpdateLuck() which iterates over all characters and organizations (only).
-    These entities then run UpdateLuck() on all modules. Each module can then load
-    Fate.cs with data about Forecasts. Each Forecast has a "Fortune" integer value
-    related to it describing how good (positive value) or bad (negative value) it is.
-    Fate.cs then generates a semi-random number (from predefined list with bias
-    towards zero) for both positive and negative fortune, before randomly selecting
+    Fate.cs then retrieves data about Forecasts. Each Forecast has a "Fortune" integer
+    value related to it describing how good (positive value) or bad (negative value) 
+    it is. A semi-random number (from predefined list with bias towards zero) is
+    generated for both positive and negative fortune, before randomly selecting
     eligible Forecasts for each type until the combined positive and negative values
     either match the randomly generated numbers, or there are no more Forecasts to
-    choose from. Destiny() is then ran on the selected Forecasts, creating new
+    choose from. PlayOut() is then ran on the selected Forecasts, creating new
     Situations, Options and Forecasts.
 
 

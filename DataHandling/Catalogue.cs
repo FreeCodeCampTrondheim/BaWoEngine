@@ -9,26 +9,27 @@ using System.Collections.Generic;
 public static class Catalogue
 {
     #region TEMPLATE CLASSES
-    public class SituationTemplate
+    public abstract class BaseTemplate
+    {
+        ulong id;
+    }
+
+    public class SituationTemplate : BaseTemplate
     {
         public List<string> tags;
         public Dictionary<string, uint> valueTags;
     }
 
-    public class OptionTemplate
+    public class OptionTemplate : BaseTemplate
     {
-        public string moduleType;
-
         public uint baseCost;
         public List<string> typeTags;
         public Dictionary<string, uint> valueTags;
     }
 
-    public class ForecastTemplate
+    public class ForecastTemplate : BaseTemplate
     {
-        public string moduleType;
-
-        public uint probabilityWeight;
+        public uint fortune;
         public List<string> typeTags;
         public Dictionary<string, uint> valueTags;
     }
