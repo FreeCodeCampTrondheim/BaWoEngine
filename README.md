@@ -26,7 +26,17 @@ To setup for your own use, you only need to run:
 
 The string values above are examples of folders where all the JSON-defined
 modules for your game will lie. JSON modules made for the game Golden Hands
-will be available at this repo for free, to get you started.
+will be available at this repo for free, to get you started. A JSON module
+folder contains four .json files with the following prefixes:
+
+* "module_"
+  * describes how the module affects character generation
+* "situations_"
+  * a JSON array of descriptions of situations the module adds to the catalogue
+* "options_"
+  * same as above but for options
+* "forecasts_"
+  * same as above but for forecasts
 
 After finishing setting up the JSON assets, you'll also have to run these
 to get your background world up and running:
