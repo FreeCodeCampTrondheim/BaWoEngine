@@ -1,4 +1,11 @@
 # How to write JSON modules
+JSON modules is how the engine decides what the background world
+will consist of, including how much it will have of it, etc.
+The following is description on how to write the 4 required
+.JSON files for any module folder loaded into the BaWo engine.
+
+Reading this can be helpful even if you decide to use the
+BaWo Module Creator instead once it is up and running.
 
 ## Writing module.json file
 
@@ -8,8 +15,16 @@ The module file is the answer to three different questions:
 * how should the module generally be represented in data views? (Feeder.cs)
 * how should the module react to user actions? (Responder.cs)
 
-#### Generator.cs - TODO
-ff
+#### Generator.cs
+Object arrays with specified key-value pairs:
+1. startSituations[] -> situationName string -> startLikelihood float
+  * start likelihood is value from more than 0.0f to equal or
+    less than 1.0f, it represents how likely the situation is
+	to be part of a fully generated character
+2. startOptions[] -> optionName string -> startLikelihood float
+  * same as above but for option
+3. startForecasts[] -> forecastName string -> startLikelihood float
+  * same as above but for option
 
 #### Feeder.cs - TODO
 ff
@@ -38,8 +53,11 @@ Object arrays with specified key-value pairs:
   * used to make judgement and central in AI.cs, the target 
     string is filled during personalization in Generator.cs
 2. textStats[] -> tag string
-  * represents boolean character statistics, the existence
-    of the tag equals true, while its absence equals false
+  * can represent boolean character statistics, the existence
+    of the tag equals true, while its absence equals false,
+	but counting the number of occurences of the tag can 
+	also be useful, though each situation can only grant
+	one occurence of the tag
 3. integerStats[] -> tag string -> size int
   * represents integer character statistics
 4. floatStats[] -> tag string -> size float
@@ -160,7 +178,12 @@ Key-value pairs:
 
 #### Forecast Evaluations
 * fortune int
-* baseChance float
+  * whether this represents good fortune (more than 0)
+    for the character, or negative fortune (less than 0),
+	and if so, by what degree
+* chanceOfHappening float
+  * how likely this is to play out, represented by
+    positive percentage values of 0.0f to 1.0f
 
 #### Can launch when forecast is played out
 Object arrays with specified key-value pairs:
