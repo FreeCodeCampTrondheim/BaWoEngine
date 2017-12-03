@@ -32,7 +32,8 @@ will be available at this repo for free, to get you started. A JSON module
 folder contains four .json files with the following names:
 
 * "module"
-  * describes how the module affects character generation
+  * describes how the module affects character generation, data viewing
+    and player interaction
 * "situations"
   * a JSON array of descriptions of situations the module adds to the catalogue
 * "options"
@@ -59,13 +60,15 @@ And if you already have a saved world:
 ### Create feature- and content game expansions using *only JSON*!
 Central to BaWo will be the ability to generate background content with
 minimal effort. This also includes entirely new types of background content
-and behaviour. To do this, you define a module with JSON. A module has two
+and behaviour. To do this, you define a module with JSON. A module has four
 core aspects that need specification:
 - generation: what rules follows its random assembling?
+- data viewing: how should the module be represented when data is to be shown?
+- player interaction: how should the module respond to player interactions with the background world?
 - cataloguing: what situations, options and forecasts does it add to the catalogue?
 
-Beyond this, the JSON needs to be consistent, meaning that you'll get
-an error message if you try to setup up any module that prescribes
+Beyond this, the JSON needs to be consistent, meaning that you should
+get an error message if you try to setup up any module that prescribes
 situations and options upon its creation that do not exist.
 
 ##  More Information
