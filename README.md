@@ -3,9 +3,9 @@
 ## META INFO:
 BaWo Project Stages: *early* | mid | late | beta
 
-This project is associated with the following repos:
-* BaWo Module Creator https://github.com/smellyboxers/BaWoModuleCreator (repo currently empty)
-* Golden Hands https://github.com/smellyboxers/GoldenHands (repo currently empty)
+This project is the basis for the following future projects:
+* BaWo Module Creator - web tool for crafting JSON modules
+* Golden Hands - a BaWo-based game about human potential
 
 ##	ABOUT PROJECT:
 Ever needed to simulate a vast world, interacting with itself in the
