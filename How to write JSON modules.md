@@ -8,7 +8,6 @@ Reading this can be helpful even if you decide to use the
 BaWo Module Creator instead once it is up and running.
 
 ## Writing module.json file
-
 ### Three questions
 The module file is the answer to three different questions:
 * how does the module affect character generation?  (Generator.cs)
@@ -33,7 +32,6 @@ ff
 ff
 
 ##   Writing situations.json file
-
 ###  Structure Overview
 #### General
 Key-value pairs:
@@ -103,7 +101,6 @@ Object arrays with specified key-value pairs:
   * used to make a situation be about one or entities
 
 ## Writing options.json file
-
 ###  Structure Overview
 #### General
 Key-value pairs:
@@ -162,7 +159,6 @@ Object arrays with specified key-value pairs:
   * used to make a situation be about one or entities
 
 ## Writing forecasts.json file
-
 ###  Structure Overview
 #### General
 Key-value pairs:

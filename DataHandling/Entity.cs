@@ -13,8 +13,6 @@ namespace Entity
     // data and methods that all entities must have
     public abstract class BaseEntity
     {
-        public ulong id;
-
         // ran through DataBank.cs -> Entity
         public abstract void UpdateTime(DateTime d);
     }
@@ -29,35 +27,67 @@ namespace Entity
         public List<Option> options;
         public List<Forecast> forecasts;
 
-        #region CHARACTER STATS
-        Dictionary<string, int> characterStats =
+        #region CHARACTER INTEGER STATS
+        Dictionary<string, int> characterIntStats =
             new Dictionary<string, int>();
 
-        public int GetStatSum(string stat)
+        public int GetIntStatSum(string stat)
         {
             // negative stat sums are ignored upon retrieval because they
             // have no meaning, however they are stored so that adding and
             // subtracting on collection is never messed up
-            if (characterStats.ContainsKey(stat) && characterStats[stat] > 0) return characterStats[stat];
+            if (characterIntStats.ContainsKey(stat) && characterIntStats[stat] > 0) return characterIntStats[stat];
             else return 0;
         }
 
-        public void AddStat(string stat, int valueFromSituation)
+        public void AddIntStat(string stat, int valueFromSituation)
         {
-            if (characterStats.ContainsKey(stat))
-                characterStats[stat] += valueFromSituation;
-            else characterStats[stat] = valueFromSituation;
+            if (characterIntStats.ContainsKey(stat))
+                characterIntStats[stat] += valueFromSituation;
+            else characterIntStats[stat] = valueFromSituation;
         }
 
-        public void RemoveStat(string stat, int valueFromSituation)
+        public void RemoveIntStat(string stat, int valueFromSituation)
         {
-            if (characterStats.ContainsKey(stat) && characterStats[stat] > 0)
-                characterStats[stat] -= valueFromSituation;
+            if (characterIntStats.ContainsKey(stat) && characterIntStats[stat] > 0)
+                characterIntStats[stat] -= valueFromSituation;
         }
 
-        public Dictionary<string, int>.Enumerator GetStatIterator()
+        public Dictionary<string, int>.Enumerator GetIntStatIterator()
         {
-            return characterStats.GetEnumerator();
+            return characterIntStats.GetEnumerator();
+        }
+        #endregion
+
+        #region CHARACTER FLOAT STATS
+        Dictionary<string, float> characterFloatStats =
+            new Dictionary<string, float>();
+
+        public float GetFloatStatSum(string stat)
+        {
+            // negative stat sums are ignored upon retrieval because they
+            // have no meaning, however they are stored so that adding and
+            // subtracting on collection is never messed up
+            if (characterFloatStats.ContainsKey(stat) && characterFloatStats[stat] > 0) return characterFloatStats[stat];
+            else return 0;
+        }
+
+        public void AddFloatStat(string stat, float valueFromSituation)
+        {
+            if (characterFloatStats.ContainsKey(stat))
+                characterFloatStats[stat] += valueFromSituation;
+            else characterFloatStats[stat] = valueFromSituation;
+        }
+
+        public void RemoveFloatStat(string stat, float valueFromSituation)
+        {
+            if (characterFloatStats.ContainsKey(stat) && characterFloatStats[stat] > 0)
+                characterFloatStats[stat] -= valueFromSituation;
+        }
+
+        public Dictionary<string, float>.Enumerator GetFloatStatIterator()
+        {
+            return characterFloatStats.GetEnumerator();
         }
         #endregion
 
@@ -146,7 +176,7 @@ namespace Entity
     // all data and methods for a situation
     public class Situation
     {
-        public ulong id;
+        public uint id;
         public Catalogue.SituationTemplate template;
 
         public void Terminated()
@@ -158,7 +188,7 @@ namespace Entity
     // all data and methods for an option
     public class Option
     {
-        public ulong id;
+        public uint id;
         public Catalogue.OptionTemplate template;
 
         public void Choose(Character c)
@@ -170,7 +200,7 @@ namespace Entity
     // all data and methods for an option
     public class Forecast
     {
-        public ulong id;
+        public uint id;
         public Catalogue.ForecastTemplate template;
 
         public void PlayOut(Character c)
@@ -189,7 +219,6 @@ namespace Entity
             // update modules
         }
     }
-
     #endregion
 
     #region LOCATION CLASSES
@@ -201,6 +230,5 @@ namespace Entity
             // update modules
         }
     }
-
     #endregion
 }

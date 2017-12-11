@@ -11,35 +11,40 @@ static class DataBank
 {
     public static void UpdateData(DateTime d)
     {
+        foreach (var p in players)
+        {
+            p.UpdateTime(d);
+        }
+
         foreach (var c in characters)
         {
-            c.Value.UpdateTime(d);
+            c.UpdateTime(d);
         }
 
         foreach (var o in organizations)
         {
-            o.Value.Update(d);
+            o.UpdateTime(d);
         }
 
         foreach (var l in locations)
         {
-            l.Value.Update(d);
+            l.UpdateTime(d);
         }
     }
 
-    public static ulong globalEntityID = 0;
+    public static uint globalEntityID = 0;
 
     #region CENTRAL ENTITIES
-    // key1 = id of entity, value = an entity of undefined type
-    public static Dictionary<ulong, Entity.BaseEntity> entities;
+    // index = id of players, value = all relationless data about player
+    public static List<Entity.Character> players = new List<Entity.Character>();
 
-    // key1 = id of character, value = all relationless data about character
-    public static Dictionary<ulong, Entity.Character> characters;
+    // index = id of character, value = all relationless data about character
+    public static List<Entity.Character> characters = new List<Entity.Character>();
 
-    // key1 = id of organization, value = all relationless data about organization
-    public static Dictionary<ulong, Entity.Organization> organizations;
+    // index = id of organization, value = all relationless data about organization
+    public static List<Entity.Organization> organizations = new List<Entity.Organization>();
 
-    // key1 = id of location, value = all relationless data about location
-    public static Dictionary<ulong, Entity.Location> locations;
+    // index = id of location, value = all relationless data about location
+    public static List<Entity.Location> locations = new List<Entity.Location>();
     #endregion
 }
