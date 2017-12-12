@@ -47,7 +47,7 @@ Key-value pairs:
 
 #### Tags and values
 Object arrays with specified key-value pairs:
-1. considerations[] -> tag string -> target string -> emphasis int
+1. cares[] -> tag string, target string, emphasis int
   * used to make judgement and central in AI.cs, the target 
     string is filled during personalization in Generator.cs
 2. textStats[] -> tag string
@@ -66,11 +66,11 @@ Object arrays with specified key-value pairs:
 1. launchesSituations[] -> situation string ->
   * textStatRequirements[] ->
     * tag string
-  * integerStatRequirements[]
+  * intStatRequirements[]
     * tag string -> size int
   * floatStatRequirements[]
     * tag string -> size float
-  * entityIndexMap[] -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] -> sourceIndex int, targetIndex int
   * used to refer to situations launched upon certain conditions met,
     each launched situation can have an array of forwarded entity
     references if desired, kind-of like parameters in a constructors,
@@ -80,20 +80,20 @@ Object arrays with specified key-value pairs:
 2. launchesOptions[] -> option string ->
   * textStatRequirements[] ->
     * tag string
-  * integerStatRequirements[]
+  * intStatRequirements[]
     * tag string -> size int
   * floatStatRequirements[]
     * tag string -> size float
-  * entityIndexMap[] -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] -> sourceIndex int, targetIndex int
   * used same as above but for options
 3. launchesForecasts[] -> forecast string ->
   * textStatRequirements[] ->
     * tag string
-  * integerStatRequirements[]
+  * intStatRequirements[]
     * tag string -> size int
   * floatStatRequirements[]
     * tag string -> size float
-  * entityIndexMap[] -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] -> sourceIndex int, targetIndex int
   * used same as above but for forecasts
 
 ### Data and functionality not defined in JSON
@@ -107,16 +107,16 @@ Key-value pairs:
 1. title string
   * used to identify option
 2. description string
-  * used to display information about the situation, any 
+  * used to display information about the option, any 
     substring of description starting with @ followed by 
     a number is replaced with a string from the index of 
     an *about* array equivalent to the number - the string
     is always an entity's name, and the about array is
-    filled during situation personalization in Generator.cs
+    filled during option personalization in Generator.cs
 
 #### Option Requirements
 * baseWillpowerCost int
-* considerations[] -> tag string
+* relevantCares[] -> tag string
   * used to calculate final willpower cost
 
 #### Can launch when character chooses option
@@ -124,11 +124,11 @@ Object arrays with specified key-value pairs:
 1. launchesSituations[] -> situation string ->
   * textStatRequirements[] (optional) ->
     * tag string
-  * integerStatRequirements[] (optional) ->
+  * intStatRequirements[] (optional) ->
     * tag string -> size int
   * floatStatRequirements[] (optional) ->
     * tag string -> size float
-  * entityIndexMap[] (optional) -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used to refer to situations launched upon certain conditions met,
     each launched situation can have an array of forwarded entity
     references if desired, kind-of like parameters in a constructors,
@@ -138,25 +138,25 @@ Object arrays with specified key-value pairs:
 2. launchesOptions[] -> option string ->
   * textStatRequirements[] (optional) ->
     * tag string
-  * integerStatRequirements[] (optional) ->
+  * intStatRequirements[] (optional) ->
     * tag string -> size int
   * floatStatRequirements[] (optional) ->
     * tag string -> size float
-  * entityIndexMap[] (optional) -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used same as above but for options
 3. launchesForecasts[] -> forecast string ->
   * textStatRequirements[] (optional) ->
     * tag string
-  * integerStatRequirements[] (optional) ->
+  * intStatRequirements[] (optional) ->
     * tag string -> size int
   * floatStatRequirements[] (optional) ->
     * tag string -> size float
-  * entityIndexMap[] (optional) -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used same as above but for forecasts
 
 ### Data and functionality not defined in JSON
 1. about[]
-  * used to make a situation be about one or entities
+  * used to make an option be about one or entities
 
 ## Writing forecasts.json file
 ###  Structure Overview
@@ -165,12 +165,12 @@ Key-value pairs:
 1. title string
   * used to identify option
 2. description string
-  * used to display information about the situation, any 
+  * used to display information about the forecast, any 
     substring of description starting with @ followed by 
     a number is replaced with a string from the index of 
     an *about* array equivalent to the number - the string
     is always an entity's name, and the about array is
-    filled during situation personalization in Generator.cs
+    filled during forecast personalization in Generator.cs
 
 #### Forecast Evaluations
 * fortune int
@@ -186,11 +186,11 @@ Object arrays with specified key-value pairs:
 1. launchesSituations[] -> situation string ->
   * textStatRequirements[] (optional) ->
     * tag string
-  * integerStatRequirements[] (optional) ->
+  * intStatRequirements[] (optional) ->
     * tag string -> size int
   * floatStatRequirements[] (optional) ->
     * tag string -> size float
-  * entityIndexMap[] (optional) -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used to refer to situations launched upon certain conditions met,
     each launched situation can have an array of forwarded entity
     references if desired, kind-of like parameters in a constructors,
@@ -200,22 +200,22 @@ Object arrays with specified key-value pairs:
 2. launchesOptions[] -> option string ->
   * textStatRequirements[] (optional) ->
     * tag string
-  * integerStatRequirements[] (optional) ->
+  * intStatRequirements[] (optional) ->
     * tag string -> size int
   * floatStatRequirements[] (optional) ->
     * tag string -> size float
-  * entityIndexMap[] (optional) -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used same as above but for options
 3. launchesForecasts[] -> forecast string ->
   * textStatRequirements[] (optional) ->
     * tag string
-  * integerStatRequirements[] (optional) ->
+  * intStatRequirements[] (optional) ->
     * tag string -> size int
   * floatStatRequirements[] (optional) ->
     * tag string -> size float
-  * entityIndexMap[] (optional) -> sourceIndex int, targetIndex int
+  * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used same as above but for forecasts
 
 ### Data and functionality not defined in JSON
 1. about[]
-  * used to make a situation be about one or entities
+  * used to make a forecast be about one or entities

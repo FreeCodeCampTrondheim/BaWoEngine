@@ -8,83 +8,99 @@ using Newtonsoft.Json;
 // handles in-game entity templates
 public static class Catalogue
 {
-    
 
-    #region TEMPLATE CLASSES
+    #region Base Template
     public abstract class BaseTemplate
     {
-        uint id;
-    }
-
-    public class SituationTemplate : BaseTemplate
-    {
+        // uniquely identifies template
         string title;
 
         /*
             REFERENCES IN DESCRIPTION:
-            @char123 where "123" is some number references a character in the DataBank
-            @org123 where "123" is some number references an organization in the DataBank
-            @loc123 where "123" is some number references a location in the DataBank
+            @char0 where "0" is some index in the about
+            @org0 - as above but for organizations
+            @loc0 - as above but for locations
+            i.e. "@char1 hates eating muffins at @org0"
         */
         string description;
-        
-        List<Dictionary<string, Dictionary<string, int>>> considerations
-            = new List<Dictionary<string, Dictionary<string, int>>>();
-
-        List<string>                textStats = new List<string>();
-        Dictionary<string, uint>    integerStats = new Dictionary<string, uint>();
-        Dictionary<string, float>   floatStats = new Dictionary<string, float>();
 
         /*
-        #### Can launch at any tick
-        Object arrays with specified key-value pairs:
-        1. launchesSituations[] -> situation string ->
-          * textStatRequirements[] ->
-            * tag string
-          * integerStatRequirements[]
-            * tag string -> size int
-          * floatStatRequirements[]
-            * tag string -> size float
-          * entityIndexMap[] -> sourceIndex int, targetIndex int
-          * used to refer to situations launched upon certain conditions met,
-            each launched situation can have an array of forwarded entity
-            references if desired, kind-of like parameters in a constructors,
-            defining the new situation as derived from the perished one,
-            however any left-out index references are still filled in during
-            personalization in Generator.cs
-        2. launchesOptions[] -> option string ->
-          * textStatRequirements[] ->
-            * tag string
-          * integerStatRequirements[]
-            * tag string -> size int
-          * floatStatRequirements[]
-            * tag string -> size float
-          * entityIndexMap[] -> sourceIndex int, targetIndex int
-          * used same as above but for options
-        3. launchesForecasts[] -> forecast string ->
-          * textStatRequirements[] ->
-            * tag string
-          * integerStatRequirements[]
-            * tag string -> size int
-          * floatStatRequirements[]
-            * tag string -> size float
-          * entityIndexMap[] -> sourceIndex int, targetIndex int
-          * used same as above but for forecasts
-
-        ### Data and functionality not defined in JSON
-        1. about[]
-          * used to make a situation be about one or entities
+            The following three dictionaries are used to refer to 
+            situations/options/forecasts launched upon certain requirements
+            met. Each can have an array of forwarded entity references if 
+            desired, kind-of like parameters in a constructors, defining 
+            the new situation/options/forecasts as derived from this one.
+            Any left-out index references are filled in during personalization
+            in Generator.cs
         */
+        Dictionary<string, LaunchRequirements> launchesSituations;
+        Dictionary<string, LaunchRequirements> launchesOptions;
+        Dictionary<string, LaunchRequirements> launchesForecasts;
+        
+        public struct Care
+        {
+            // descriptive title for how the character cares
+            public string tag;
+
+            public string target;
+            public int emphasis;
+        }
+
+        public class LaunchRequirements
+        {
+            public List<string> textStatRequirements;
+            public Dictionary<string, int> intStatRequirements;
+            public Dictionary<string, float> floatStatRequirements;
+
+            // maps entity indexes from current "about" in 
+            // situation/option/forecast to launched one
+            public Dictionary<uint, uint> aboutIndexMap;
+        }
+    }
+    #endregion
+
+    #region TEMPLATE CLASSES
+
+    public class SituationTemplate : BaseTemplate
+    {
+        // used to make judgement and central in AI.cs, the target 
+        // string is filled during personalization in Generator.cs
+        public List<Care>                  cares = new List<Care>();
+
+        /*
+            can represent boolean character statistics, the existence
+            of the tag equals true, while its absence equals false,
+	        but counting the number of occurences of the tag can 
+	        also be useful, though each situation can only grant
+	        one occurence of the tag
+        */
+        public List<string>                textStats = new List<string>();
+
+        // represents integer character statistics
+        public Dictionary<string, uint>    intStats = new Dictionary<string, uint>();
+
+        // represents decimal character statistics
+        public Dictionary<string, float>   floatStats = new Dictionary<string, float>();
     }
 
     public class OptionTemplate : BaseTemplate
     {
-        // code here        
+        public uint baseWillpowerCost;
+
+        // used to calculate final willpower cost
+        public List<string> relevantCares;
     }
 
     public class ForecastTemplate : BaseTemplate
     {
-        // code here
+        // whether this represents good fortune (more than 0)
+        // for the character, or negative fortune (less than 0),
+        // and if so, by what degree
+        int fortune;
+
+        // how likely this is to play out, represented by
+        // positive percentage values of 0.0f to 1.0f
+        float chanceOfHappening;
     }
     #endregion
 
