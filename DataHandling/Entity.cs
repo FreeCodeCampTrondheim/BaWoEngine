@@ -16,6 +16,11 @@ namespace Entity
         // ran through DataBank.cs -> Entity
         public abstract void UpdateTime(DateTime d);
     }
+
+    interface IDescribeable
+    {
+        string GetDescription();
+    }
     #endregion
 
     #region CHARACTER CLASSES
@@ -23,9 +28,9 @@ namespace Entity
     public class Character : BaseEntity
     {
         public uint willpowerPoints = 0;
-        public List<Situation> situations;
-        public List<Option> options;
-        public List<Forecast> forecasts;
+        public Dictionary<string, Situation> situations;
+        public Dictionary<string, Option> options;
+        public Dictionary<string, Forecast> forecasts;
 
         #region CHARACTER INTEGER STATS
         Dictionary<string, int> characterIntStats =
@@ -174,22 +179,43 @@ namespace Entity
     }
 
     // all data and methods for a situation
-    public class Situation
+    public class Situation : IDescribeable
     {
         public uint id;
         public Catalogue.SituationTemplate template;
+
+        public string GetDescription()
+        {
+            // code here
+
+            return null;
+        }
 
         public void Terminated()
         {
             // code here
         }
+
+        public override string ToString()
+        {
+            // code here
+
+            return null;
+        }
     }
 
     // all data and methods for an option
-    public class Option
+    public class Option : IDescribeable
     {
         public uint id;
         public Catalogue.OptionTemplate template;
+
+        public string GetDescription()
+        {
+            // code here
+
+            return null;
+        }
 
         public void Choose(Character c)
         {
@@ -198,10 +224,17 @@ namespace Entity
     }
 
     // all data and methods for an option
-    public class Forecast
+    public class Forecast : IDescribeable
     {
         public uint id;
         public Catalogue.ForecastTemplate template;
+
+        public string GetDescription()
+        {
+            // code here
+
+            return null;
+        }
 
         public void PlayOut(Character c)
         {

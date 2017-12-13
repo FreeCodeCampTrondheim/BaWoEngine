@@ -8,8 +8,7 @@ using Newtonsoft.Json;
 // handles in-game entity templates
 public static class Catalogue
 {
-
-    #region Base Template
+    #region BASE TEMPLATE
     public abstract class BaseTemplate
     {
         // uniquely identifies template
@@ -39,11 +38,32 @@ public static class Catalogue
         
         public struct Care
         {
-            // descriptive title for how the character cares
+            // descriptive text for how the character cares,
+            // typically includes a verb, i.e. "Enjoyed Dining At",
+            // and should be written so that the name of the target
+            // can be appended at the end
             public string tag;
 
             public string target;
             public int emphasis;
+
+            public override string ToString()
+            {
+                return tag + ": " + target +
+                    "(" + emphasis.ToString() + ")";
+            }
+
+            public string ToString(bool censorCareValue)
+            {
+                if (!censorCareValue)
+                {
+                    return ToString();
+                }
+                else
+                {
+                    return tag + ": " + target;
+                }
+            }
         }
 
         public class LaunchRequirements
@@ -77,7 +97,7 @@ public static class Catalogue
         public List<string>                textStats = new List<string>();
 
         // represents integer character statistics
-        public Dictionary<string, uint>    intStats = new Dictionary<string, uint>();
+        public Dictionary<string, int>     intStats = new Dictionary<string, int>();
 
         // represents decimal character statistics
         public Dictionary<string, float>   floatStats = new Dictionary<string, float>();
@@ -115,10 +135,3 @@ public static class Catalogue
         = new Dictionary<string, ForecastTemplate>();
     #endregion
 }
-
-/*  NOTES:
-    Remember to store all valueTag values here, 
-    so they only need to be stored once, and can
-    be fetched directly from the Catalogue using
-    the tag as a value
-*/ 

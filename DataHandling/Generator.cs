@@ -9,6 +9,24 @@ using System.Text;
 // handles generation of new entities
 static class Generator
 {
+    #region MODULE CLASSES
+    static class CharacterModule
+    {
+        /*
+            start likelihood is value from >0.0f to <=1.0f, it represents how likely 
+            the situation/option/forecast is to be part of a fully generated character
+        */
+        public static Dictionary<string, float> startSituations
+            = new Dictionary<string, float>();
+        public static Dictionary<string, float> startOptions
+            = new Dictionary<string, float>();
+        public static Dictionary<string, float> startForecasts
+            = new Dictionary<string, float>();
+    }
+
+
+    #endregion
+
     #region CHARACTER GENERATION CLASSES
     static class Character
     {
@@ -16,56 +34,23 @@ static class Generator
         {
             Entity.Character character = new Entity.Character();
 
-            character.personProfile = PersonProfile.Generate();
-            character.biology = Biology.Generate();
+            return character;
+        }
 
-            character.socialLife = SocialLife.Generate();
-            character.opinions = Opinions.Generate();
-
-            character.emotions = Emotions.Generate();
-            character.mentalFocus = MentalFocus.Generate();
+        public static Entity.Character GeneratePlayer(Command.PlayerRecipe pr)
+        {
+            Entity.Character character = new Entity.Character();
 
             return character;
         }
     }
-
-    static class PersonProfile
-    {
-        public static Entity.Modules.PersonProfile Generate() { return null; }
-    }
-
-    static class Biology
-    {
-        public static Entity.Modules.Biology Generate() { return null; }
-    }
-
-    static class SocialLife
-    {
-        public static Entity.Modules.SocialLife Generate() { return null; }
-    }
-
-    static class Opinions
-    {
-        public static Entity.Modules.Opinions Generate() { return null; }
-    }
-
-    static class Emotions
-    {
-        public static Entity.Modules.Emotions Generate() { return null; }
-    }
-
-    static class MentalFocus
-    {
-        public static Entity.Modules.MentalFocus Generate() { return null; }
-    }
     #endregion
-
+    
     #region ORGANIZATION GENERATION CLASSES
     public static class Organization
     {
         public static Entity.Organization GenerateOrganization() { return null; }
     }
-
     #endregion
 
     #region LOCATION GENERATION CLASSES
@@ -73,7 +58,6 @@ static class Generator
     {
         public static Entity.Location GenerateLocation() { return null; }
     }
-
     #endregion
 
     #region WORLD GENERATION CLASSES
@@ -81,6 +65,5 @@ static class Generator
     {
         public static void Generate() { }
     }
-
     #endregion
 }

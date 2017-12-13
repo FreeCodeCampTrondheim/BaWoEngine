@@ -16,6 +16,10 @@ public static class Command
 
     public class PlayerRecipe
     {
+        List<string> situationsNotGenerated = new List<string>();
+        List<string> optionsNotGenerated = new List<string>();
+        List<string> forecastsNotGenerated = new List<string>();
+
         // code here
     }
 
