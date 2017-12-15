@@ -41,22 +41,7 @@ public static class Command
         // code here
     }
 
-    public static void SetMinimumTickRate(float secondsPerTick)
-    {
-        // code here
-    }
-
-    public static void RunSingleManualTick()
-    {
-        // code here
-    }
-
-    public static void Stop()
-    {
-        // code here
-    }
-
-    public static void Start()
+    public static void RunTick()
     {
         // code here
     }
