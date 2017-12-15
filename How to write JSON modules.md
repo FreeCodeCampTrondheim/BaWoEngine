@@ -25,8 +25,49 @@ Object arrays with specified key-value pairs:
 3. startForecasts[] -> forecastName string -> startLikelihood float
   * same as above but for option
 
-#### Feeder.cs - TODO
-ff
+#### Feeder.cs
+Feeder.cs has predefined styles for your text formats, but you
+decide the content that should be included or excluded from those
+texts. 
+
+If any situation/option/forecast is not included, it won't
+be shown, and if any property is censored, it won't be added to
+output text strings, which is good way to avoid giving the player
+too much information about the game, both to avoid information bloat
+and to avoid making the game too predictable. You can also censor
+entire categories of data, like it could be very natural to not
+show all care values, as this can make the AI too predictable.
+
+The feeder operates on data views, and you can define as many
+data views as you want to. The JSON syntax is as such:
+
+		"feeder":
+		{
+			"someDataViewName":
+			{
+				// add lists of strings + bools here
+			},
+			"someOtherDataViewName":
+			{
+				// add lists of strings + bools here
+			}
+		}
+
+Object arrays with values:
+1. includeSituations[] (optional) -> situationName string
+2. includeOptions[] (optional) -> optionName string
+3. includeForecasts[] (optional) -> forecastName string
+
+Object arrays with values:
+1. censoredSituationProperties[] (optional) -> situationPropertyName string
+2. censoredOptionProperties[] (optional) -> optionPropertyName string
+3. censoredForecastProperties[] (optional) -> forecastPropertyName string
+
+Key-value pairs:
+censorStats bool (optional)
+censorStatValue bool (optional)
+censorCares bool (optional)
+censorCareValue bool (optional)
 
 #### Responder.cs - TODO
 ff
