@@ -46,24 +46,6 @@ public static class Catalogue
 
             public string target;
             public int emphasis;
-
-            public override string ToString()
-            {
-                return tag + ": " + target +
-                    "(" + emphasis.ToString() + ")";
-            }
-
-            public string ToString(bool censorCareValue)
-            {
-                if (!censorCareValue)
-                {
-                    return ToString();
-                }
-                else
-                {
-                    return tag + ": " + target;
-                }
-            }
         }
 
         public class LaunchRequirements

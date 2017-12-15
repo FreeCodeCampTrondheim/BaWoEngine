@@ -63,7 +63,17 @@ public static class Feeder
         {
             if (!dw.censoredSituationProperties.Contains(care.tag))
             {
-                temp.Append(care.ToString(dw.censorCareValue));
+                string careStr = "";
+                if (!dw.censorCareValue)
+                {
+                    careStr = care.tag + ": " + care.target +
+                    "(" + care.emphasis.ToString() + ")";
+                }
+                else
+                {
+                    careStr = care.tag + ": " + care.target;
+                }
+                temp.Append(careStr);
                 temp.AppendLine();
             }
         }
