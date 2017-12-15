@@ -44,7 +44,7 @@ public static class AI
         // value of all value tag sums
         void CalcCombinedValueTags()
         {
-            foreach (var valueTag in option.template.valueTags.Keys)
+            foreach (var valueTag in option.template.relevantCares)
             {
                 combinedValueTagSum += c.GetValueTagSum(valueTag);
             }
@@ -54,7 +54,7 @@ public static class AI
         // a fraction of the option's base willpower cost
         void CalcWillpowerCost()
         {
-            willpowerCost = combinedValueTagSum / option.template.baseCost;
+            willpowerCost = combinedValueTagSum / option.template.baseWillpowerCost;
         }
     }
     
@@ -67,7 +67,7 @@ public static class AI
             scoreList = new List<OptionScore>();
             choiceQueue = new Queue<OptionScore>();
 
-            c = item.Value;
+            c = item;
             
             BuildScoreList();
             BuildChoiceQueue();
