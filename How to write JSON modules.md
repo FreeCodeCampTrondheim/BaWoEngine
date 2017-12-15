@@ -64,10 +64,10 @@ Object arrays with values:
 3. censoredForecastProperties[] (optional) -> forecastPropertyName string
 
 Key-value pairs:
-censorStats bool (optional)
-censorStatValue bool (optional)
-censorCares bool (optional)
-censorCareValue bool (optional)
+* censorStats bool (optional)
+* censorStatValue bool (optional)
+* censorCares bool (optional)
+* censorCareValue bool (optional)
 
 #### Responder.cs - TODO
 ff
