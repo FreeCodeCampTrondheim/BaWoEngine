@@ -16,6 +16,5 @@ includes sections on:
 
 ![Theorize Studio website screenshot](https://i.imgur.com/logNUmI.png)
 
-"How to write JSON modules.md" will soon be ported to the website,
-meanwhile the latest updated information on JSON module design is
-found here.
+"How to write character JSON modules.md" will soon be ported to the website,
+meanwhile the latest updated information on JSON module design is found here.
