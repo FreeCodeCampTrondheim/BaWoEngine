@@ -13,22 +13,22 @@ static class DataBank
     {
         foreach (var p in players)
         {
-            p.UpdateTime(d);
+            p.UpdateData(d);
         }
 
         foreach (var c in characters)
         {
-            c.UpdateTime(d);
+            c.UpdateData(d);
         }
 
         foreach (var o in organizations)
         {
-            o.UpdateTime(d);
+            o.UpdateData(d);
         }
 
         foreach (var l in locations)
         {
-            l.UpdateTime(d);
+            l.UpdateData(d);
         }
     }
 

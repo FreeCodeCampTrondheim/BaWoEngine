@@ -14,7 +14,7 @@ namespace Entity
     public abstract class BaseEntity
     {
         // ran through DataBank.cs -> Entity
-        public abstract void UpdateTime(DateTime d);
+        public abstract void UpdateData(DateTime d);
     }
 
     interface IDescribeable
@@ -27,11 +27,10 @@ namespace Entity
     // all data about a character
     public class Character : BaseEntity
     {
-        public uint willpowerPoints = 0;
         public Dictionary<string, Situation> situations;
         public Dictionary<string, Option> options;
         public Dictionary<string, Forecast> forecasts;
-
+        
         #region CHARACTER INTEGER STATS
         Dictionary<string, int> characterIntStats =
             new Dictionary<string, int>();
@@ -171,10 +170,14 @@ namespace Entity
         }
         #endregion
 
-        public override void UpdateTime(DateTime d)
+        public override void UpdateData(DateTime d)
         {
             // delete expired countdown situations,
-            // add time to stopwatch situations
+            // add time to stopwatch situations,
+            /* 
+                launch new situations/option/forecasts from
+                any situation where requirements are met
+            */
         }
     }
 
@@ -247,7 +250,7 @@ namespace Entity
     // all relationless data about organization
     public class Organization : BaseEntity
     {
-        public override void UpdateTime(DateTime d)
+        public override void UpdateData(DateTime d)
         {
             // update modules
         }
@@ -258,7 +261,7 @@ namespace Entity
     // all relationless data about location
     public class Location : BaseEntity
     {
-        public override void UpdateTime(DateTime d)
+        public override void UpdateData(DateTime d)
         {
             // update modules
         }

@@ -85,6 +85,11 @@ Key-value pairs:
     an *about* array equivalent to the number - the string
     is always an entity's name, and the about array is
     filled during situation personalization in Generator.cs
+3. durationInTicks int (optional)
+  * used to decide when the situation should expire,
+    the number 0 means it has expired, and any negative
+	number means it continues on indefinitely, the default
+	is negative
 
 #### Tags and values
 Object arrays with specified key-value pairs:
@@ -136,6 +141,10 @@ Object arrays with specified key-value pairs:
     * tag string -> size float
   * aboutIndexMap[] -> sourceIndex int, targetIndex int
   * used same as above but for forecasts
+
+#### Can be removed at any tick
+Same as with launch, but list names changes prefix
+from "launches" to "removes", i.e. "removesSituations"
 
 ### Data and functionality not defined in JSON
 1. about[]
@@ -194,6 +203,10 @@ Object arrays with specified key-value pairs:
     * tag string -> size float
   * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used same as above but for forecasts
+
+#### Can remove when character chooses option
+Same as with launching, but list names changes prefix
+from "launches" to "removes", i.e. "removesSituations"
 
 ### Data and functionality not defined in JSON
 1. about[]
@@ -256,6 +269,10 @@ Object arrays with specified key-value pairs:
     * tag string -> size float
   * aboutIndexMap[] (optional) -> sourceIndex int, targetIndex int
   * used same as above but for forecasts
+
+#### Can remove when forecast is played out
+Same as with launching, but list names changes prefix
+from "launches" to "removes", i.e. "removesSituations"
 
 ### Data and functionality not defined in JSON
 1. about[]

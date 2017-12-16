@@ -74,7 +74,7 @@ public static class Catalogue
             of the tag equals true, while its absence equals false,
 	        but counting the number of occurences of the tag can 
 	        also be useful, though each situation can only grant
-	        one occurence of the tag
+	        one occurence of the tag so it's a count of sources
         */
         public List<string>                textStats = new List<string>();
 
