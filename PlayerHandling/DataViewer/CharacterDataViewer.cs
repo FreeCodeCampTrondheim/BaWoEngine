@@ -7,10 +7,11 @@ using System.Text;
 
 
 // provides collections of strings for outputting in a GUI
-public static class Feeder
+namespace DataViewer
 {
     public static class Character
     {
+        #region Data Views
         public static Dictionary<string, DataView> dataViews
         = new Dictionary<string, DataView>();
 
@@ -31,7 +32,9 @@ public static class Feeder
             public bool censorCares = false;
             public bool censorCareValue = false;
         }
+        #endregion
 
+        #region Situations
         // returns a list of all situations formatted into strings with newline
         // separated property name and -value pairs, subject to predefined censorship
         public static List<string> GetDataViewSituations(DataView dw)
@@ -45,12 +48,12 @@ public static class Feeder
 
                 if (!dw.censorCares)
                 {
-                    temp.Append(GetCares(situation.template.cares, dw));
+                    temp.Append(GetAllCares(situation.template.cares, dw));
                 }
 
                 if (!dw.censorStats)
                 {
-                    temp.Append(GetTextStats(situation.template.textStats, dw));
+                    temp.Append(GetAllTextStats(situation.template.textStats, dw));
                     temp.Append(GetNumberStats(situation.template.intStats, situation.template.floatStats, dw));
                 }
 
@@ -162,7 +165,9 @@ public static class Feeder
         {
             return stat + ": " + value.ToString();
         }
+        #endregion
 
+        #region Options
         // returns a list of all options formatted into strings with newline
         // separated property name and -value pairs, subject to predefined censorship
         public static List<string> GetDataViewOptions(DataView dw)
@@ -171,7 +176,9 @@ public static class Feeder
 
             return null;
         }
+        #endregion
 
+        #region Forecasts
         // returns a list of all forecasts formatted into strings with newline
         // separated property name and -value pairs, subject to predefined censorship
         public static List<string> GetDataViewForecasts(DataView dw)
@@ -180,11 +187,12 @@ public static class Feeder
 
             return null;
         }
+        #endregion
 
         // builds a table alignment of data from situations in data view
         public static string[] FormatAsTable(DataView dw, uint numAlongAxis, bool axisIsHorizontal = false)
         {
-            StringBuilder builder = new StringBuilder();
+            // code here
 
             return null;
         }

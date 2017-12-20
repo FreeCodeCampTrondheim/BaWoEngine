@@ -24,19 +24,14 @@ public static class Command
     }
 
     public static void SetupModules(
-        string characterModules = "\\characterModules\\",
-        string organizationModules = "\\organizationModules\\",
-        string locationModules = "\\locationModules\\")
+        string characterModules = @"\characterModules\",
+        string organizationModules = @"\organizationModules\",
+        string locationModules = @"\locationModules\")
     {
         // code here
     }
 
     public static void SetupData(WorldRecipe wr = null, PlayerRecipe pr = null)
-    {
-        // code here
-    }
-
-    public static void SetupData(WorldRecipe wr = null, PlayerRecipe[] prs = null)
     {
         // code here
     }
@@ -52,18 +47,13 @@ public static class Command
         return null;
     }
 
-    public static string[] GetPlayerJSON()
+    public static string GetPlayerJSON()
     {
         // code here
         return null;
     }
 
     public static void SetupGameFromJSON(string world, string player)
-    {
-        // code here
-    }
-
-    public static void SetupGameFromJSON(string world, string[] players)
     {
         // code here
     }

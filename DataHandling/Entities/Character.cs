@@ -9,20 +9,6 @@ using System.Text;
 // where in-game entity classes are defined
 namespace Entity
 {
-    #region INTERFACES AND BASE CLASSES
-    // data and methods that all entities must have
-    public abstract class BaseEntity
-    {
-        // ran through DataBank.cs -> Entity
-        public abstract void UpdateData(DateTime d);
-    }
-
-    interface IDescribeable
-    {
-        string GetDescription();
-    }
-    #endregion
-
     #region CHARACTER CLASSES
     // all data about a character
     public class Character : BaseEntity
@@ -185,7 +171,7 @@ namespace Entity
     public class Situation : IDescribeable
     {
         public uint id;
-        public Catalogue.SituationTemplate template;
+        public Catalogue.Character.SituationTemplate template;
 
         public string GetDescription()
         {
@@ -211,7 +197,7 @@ namespace Entity
     public class Option : IDescribeable
     {
         public uint id;
-        public Catalogue.OptionTemplate template;
+        public Catalogue.Character.OptionTemplate template;
 
         public string GetDescription()
         {
@@ -230,7 +216,7 @@ namespace Entity
     public class Forecast : IDescribeable
     {
         public uint id;
-        public Catalogue.ForecastTemplate template;
+        public Catalogue.Character.ForecastTemplate template;
 
         public string GetDescription()
         {
@@ -242,28 +228,6 @@ namespace Entity
         public void PlayOut(Character c)
         {
             // code here
-        }
-    }
-    #endregion
-
-    #region ORGANIZATION CLASSES
-    // all relationless data about organization
-    public class Organization : BaseEntity
-    {
-        public override void UpdateData(DateTime d)
-        {
-            // update modules
-        }
-    }
-    #endregion
-
-    #region LOCATION CLASSES
-    // all relationless data about location
-    public class Location : BaseEntity
-    {
-        public override void UpdateData(DateTime d)
-        {
-            // update modules
         }
     }
     #endregion
