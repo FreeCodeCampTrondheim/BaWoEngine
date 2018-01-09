@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-static partial class Catalogue
+public static partial class Catalogue
 {
     // A unit for representing something that the character can choose to do,
     // granted that the character has the willpower to do so.

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+
+
+
 static partial class Catalogue
 {
     // A unit representing a source of care directed at some entity. The emphasis

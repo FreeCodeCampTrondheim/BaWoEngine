@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
-partial class Character
+static class Command
 {
-    public Catalogue.StatGroup stats;
+    public static List<World> worlds = new List<World>();
 }

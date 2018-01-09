@@ -6,7 +6,7 @@ BaWo Project Stages: *early* | mid | late | beta
 Trello Workflow: https://trello.com/b/ZAjtOhZX/bawo-engine
 
 This project is the basis for the following future projects:
-* BaWo Module Creator - web tool for crafting JSON modules
+* BaWo Module Creator - web tool for crafting modules
 * Golden Hands - a BaWo-based game about human potential
 
 ## UPDATED DOCUMENTATION:
@@ -17,6 +17,3 @@ includes sections on:
 * and [Data Flows](http://theorizestudio.com/BaWoEngine.aspx#dataFlows).
 
 ![Theorize Studio website screenshot](https://i.imgur.com/logNUmI.png)
-
-If you're looking for detailed and updated information on module design,
-this repository is currently the most updated and reliable source.
