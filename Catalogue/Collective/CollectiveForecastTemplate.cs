@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 public static partial class Catalogue
 {
     // A unit for representing something that can happen to the characters 
     // that are part of the collective, but which the controlling characters
-    // have no immediate control over - ergo "fate". 
+    // have no immediate control over - ergo "fate".
     public class CollectiveForecastTemplate : CollectiveSimpleEntityTemplate
     {
         // Whether this represents positive fortune (0 or above)

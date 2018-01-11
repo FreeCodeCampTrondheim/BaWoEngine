@@ -6,7 +6,7 @@ using System.Text;
 
 
 
-public partial class Collective
+public partial class Collective : BaseSimpleEntity
 {
     public class CollectiveSituation
     {

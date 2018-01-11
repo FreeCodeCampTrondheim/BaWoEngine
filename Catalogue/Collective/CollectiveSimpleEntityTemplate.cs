@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public static partial class Catalogue
 {
-    // Defines shared fields between all collective simple templates,
-    // like character situations, -options and -forecasts.
+    // Defines shared fields and methods between all collective simple
+    // templates, like collective situations, -options and -forecasts.
     public abstract class CollectiveSimpleEntityTemplate : SimpleEntityTemplate
     {
         // use this to control whether the situation, option or

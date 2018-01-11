@@ -15,7 +15,7 @@ public static partial class Catalogue
         string indexedTitle;
 
         indexedTitle = "Living";
-        CharacterTemplating.situations.Add(indexedTitle, new CharacterSituationTemplate
+        characterSituations.Add(indexedTitle, new CharacterSituationTemplate
         {
             title = indexedTitle,
             description = "This character is lives life.",
@@ -35,7 +35,7 @@ public static partial class Catalogue
         });
 
         indexedTitle = "Incapacitated";
-        CharacterTemplating.situations.Add(indexedTitle, new CharacterSituationTemplate
+        characterSituations.Add(indexedTitle, new CharacterSituationTemplate
         {
             title = indexedTitle,
             description = "This character is unable to live life.",
@@ -50,7 +50,7 @@ public static partial class Catalogue
         });
 
         indexedTitle = "Dead";
-        CharacterTemplating.situations.Add(indexedTitle, new CharacterSituationTemplate
+        characterSituations.Add(indexedTitle, new CharacterSituationTemplate
         {
             title = indexedTitle,
             description = "This person is dead.",
