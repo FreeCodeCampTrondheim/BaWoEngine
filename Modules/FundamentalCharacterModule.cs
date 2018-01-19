@@ -14,18 +14,18 @@ public static partial class Catalogue
         #region Situations
         string indexedTitle;
 
-        indexedTitle = "Living";
+        indexedTitle = "Active";
         characterSituations.Add(indexedTitle, new CharacterSituationTemplate
         {
             title = indexedTitle,
-            description = "This character is lives life.",
+            description = "This character is able to do things.",
             ShouldTerminate = null,
             AttemptLaunching = null,
             stats =
             {
                 boolStats = new List<string>()
                 {
-                    "Living"
+                    "Active"
                 },
                 numericalStatsBase = new Dictionary<string, double>()
                 {
@@ -33,51 +33,21 @@ public static partial class Catalogue
                 }
             }
         });
-
-        indexedTitle = "Incapacitated";
-        characterSituations.Add(indexedTitle, new CharacterSituationTemplate
-        {
-            title = indexedTitle,
-            description = "This character is unable to live life.",
-            ShouldTerminate = delegate (Character c)
-            {
-                throw new NotImplementedException();
-            },
-            AttemptLaunching = delegate(Character c)
-            {
-                throw new NotImplementedException();
-            }
-        });
-
-        indexedTitle = "Dead";
-        characterSituations.Add(indexedTitle, new CharacterSituationTemplate
-        {
-            title = indexedTitle,
-            description = "This person is dead.",
-            ShouldTerminate = delegate (Character c)
-            {
-                throw new NotImplementedException();
-            },
-            AttemptLaunching = delegate (Character c)
-            {
-                throw new NotImplementedException();
-            }
-        });
         #endregion
 
 
         #region Options
-
+        // this module adds no options
         #endregion
 
 
         #region Forecasts
-
+        // this module adds no forecasts
         #endregion
 
 
         #region Enumerations
-
+        // this module adds no enumerations
         #endregion
     }
 }
