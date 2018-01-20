@@ -7,7 +7,7 @@ using System.Text;
 
 public partial class Collective : BaseSimpleEntity
 {
-    public class CollectiveForecast
+    public struct CollectiveForecast
     {
         public Catalogue.CollectiveForecastTemplate template;
     }

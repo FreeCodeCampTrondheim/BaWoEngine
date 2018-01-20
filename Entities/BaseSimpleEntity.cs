@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class BaseSimpleEntity
+public abstract class BaseSimpleEntity
 {
     // which entity is responsible for launching this
     // situation/option/forecast, the target being the 

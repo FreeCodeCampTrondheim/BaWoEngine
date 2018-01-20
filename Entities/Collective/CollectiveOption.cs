@@ -8,7 +8,7 @@ using System.Text;
 
 public partial class Collective : BaseSimpleEntity
 {
-    public class CollectiveOption
+    public struct CollectiveOption
     {
         public Catalogue.CollectiveOptionTemplate template;
     }
