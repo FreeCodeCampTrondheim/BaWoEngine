@@ -13,7 +13,7 @@ public partial class Designer
         Character characterBeingDesigned;
         Queue<CharacterAssemblyPattern> assemblyPatterns;
 
-        public void StartNewDesign()
+        public void ResetToNewDesign()
         {
             characterBeingDesigned = new Character();
             assemblyPatterns = new Queue<CharacterAssemblyPattern>();
@@ -42,6 +42,8 @@ public partial class Designer
         public int SendToWorld(int worldNr = 0)
         {
             int id = Generator.GenerateCharacterFromDesign(characterBeingDesigned, assemblyPatterns);
+
+            ResetToNewDesign();
             return id;
         }
     }

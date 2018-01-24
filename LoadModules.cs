@@ -17,7 +17,7 @@ static partial class Catalogue
         #endregion
 
         #region CharacterModules
-        FundamentalCharacterModule();   // example of function call
+        WillpowerModule();   // example of function call
 
         #endregion
 

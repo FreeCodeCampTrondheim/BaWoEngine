@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 
+
+
+
+
 public abstract class BaseSimpleEntity
 {
     // which entity is responsible for launching this

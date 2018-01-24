@@ -28,5 +28,9 @@ public static partial class Catalogue
             option and forecast.
         */
         public string description;
+
+        // the resource id for the simple id, to identify it when the
+        // developer wants to display or play associated images, sound etc.
+        public int simpleEntityTemplateID;
     }
 }

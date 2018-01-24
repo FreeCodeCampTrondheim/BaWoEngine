@@ -9,27 +9,28 @@ using System.Collections.Generic;
 
 public static partial class Catalogue
 {
-    static void FundamentalCharacterModule()
+    static void WillpowerModule()
     {
         #region Situations
         string indexedTitle;
 
-        indexedTitle = "Active";
+        indexedTitle = "Willpower";
         characterSituations.Add(indexedTitle, new CharacterSituationTemplate
         {
+            simpleEntityTemplateID = Command.GetNewSimpleEntityTemplateID(),
             title = indexedTitle,
-            description = "This character is able to do things.",
+            description = "This character has the will to act.",
             ShouldTerminate = null,
             AttemptLaunching = null,
             stats =
             {
-                boolStats = new List<string>()
-                {
-                    "Active"
-                },
                 numericalStatsBase = new Dictionary<string, double>()
                 {
-                    { "Willpower", 1000.0 }
+                    { "Willpower Constant Modifier", 0.0 }
+                },
+                numericalStatsModifiers = new Dictionary<string, double>()
+                {
+                    { "Willpower Percentage Modifier", 1.0 }
                 }
             }
         });

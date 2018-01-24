@@ -9,7 +9,7 @@ using System.Text;
 
 public partial class Designer
 {
-    public struct CharacterAssemblyPattern
+    public struct ControllingCharacterAssemblyPattern
     {
         // code here
     }
