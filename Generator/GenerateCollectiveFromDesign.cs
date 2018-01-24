@@ -5,9 +5,9 @@ partial class Generator
 {
     public static int GenerateCollectiveFromDesign(
         Collective c,
-        Queue<Designer.CollectiveAssemblyPattern> patterns,
-        Queue<Designer.ControllingCharacterAssemblyPattern> controllingCharacterPatterns,
-        Queue<Designer.MemberCharacterAssemblyPattern> memberCharacterPatterns)
+        Queue<AssemblyPattern.Collective> patterns,
+        Queue<AssemblyPattern.ControllingCharacter> controllingCharacterPatterns,
+        Queue<AssemblyPattern.MemberCharacter> memberCharacterPatterns)
     {
         throw new NotImplementedException();
     }

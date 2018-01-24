@@ -11,12 +11,12 @@ public partial class Designer
     public class CharacterDesigner
     {
         Character characterBeingDesigned;
-        Queue<CharacterAssemblyPattern> assemblyPatterns;
+        Queue<AssemblyPattern.Character> assemblyPatterns;
 
         public void ResetToNewDesign()
         {
             characterBeingDesigned = new Character();
-            assemblyPatterns = new Queue<CharacterAssemblyPattern>();
+            assemblyPatterns = new Queue<AssemblyPattern.Character>();
         }
 
         public void AddSituation(Character.CharacterSituation situation)
@@ -34,7 +34,7 @@ public partial class Designer
             characterBeingDesigned.forecasts.Add(forecast);
         }
 
-        public void AddAssemblyPattern(CharacterAssemblyPattern newPattern)
+        public void AddAssemblyPattern(AssemblyPattern.Character newPattern)
         {
             assemblyPatterns.Enqueue(newPattern);
         }

@@ -7,9 +7,9 @@ using System.Text;
 
 
 
-public partial class Designer
+namespace AssemblyPattern
 {
-    public struct CollectiveAssemblyPattern
+    public class MemberCharacter
     {
         // code here
     }
