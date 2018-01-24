@@ -16,4 +16,4 @@ includes sections on:
 * [Architecture](http://theorizestudio.com/BaWoEngine.aspx#architecture), 
 * and [Data Flows](http://theorizestudio.com/BaWoEngine.aspx#dataFlows).
 
-![Theorize Studio website screenshot](https://image.ibb.co/mLPAjG/Skjermbilde.png)
+![Theorize Studio website screenshot](https://image.ibb.co/cHSrrw/BaWo.png)
