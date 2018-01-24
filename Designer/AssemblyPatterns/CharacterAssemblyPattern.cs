@@ -18,17 +18,17 @@ namespace AssemblyPattern
         // use special setup method to perform special
         // setup procedures during generation
         public delegate void SpecialSetupMethod(Character c);
-        SpecialSetupMethod specialSetupMethod = null;
+        public SpecialSetupMethod specialSetupMethod = null;
 
         #region Pattern Queues
-        public Queue<SituationByChance> situationsByChance = new Queue<SituationByChance>();
-        public Queue<SituationByMethod> situationsByMethod = new Queue<SituationByMethod>();
+        public List<SituationByChance> situationsByChance = new List<SituationByChance>();
+        public List<SituationByMethod> situationsByMethod = new List<SituationByMethod>();
 
-        public Queue<OptionByChance> optionsByChance = new Queue<OptionByChance>();
-        public Queue<OptionByMethod> optionsByMethod = new Queue<OptionByMethod>();
+        public List<OptionByChance> optionsByChance = new List<OptionByChance>();
+        public List<OptionByMethod> optionsByMethod = new List<OptionByMethod>();
 
-        public Queue<ForecastByChance> forecastsByChance = new Queue<ForecastByChance>();
-        public Queue<ForecastByMethod> forecastsByMethod = new Queue<ForecastByMethod>();
+        public List<ForecastByChance> forecastsByChance = new List<ForecastByChance>();
+        public List<ForecastByMethod> forecastsByMethod = new List<ForecastByMethod>();
         #endregion
 
         // adds a function pointer which runs special
@@ -45,7 +45,7 @@ namespace AssemblyPattern
             Catalogue.CharacterSituationTemplate situationTemplate,
             float percentageChance)
         {
-            situationsByChance.Enqueue(new SituationByChance()
+            situationsByChance.Add(new SituationByChance()
             {
                 template = situationTemplate,
                 chance = percentageChance
@@ -57,7 +57,7 @@ namespace AssemblyPattern
             Catalogue.CharacterSituationTemplate situationTemplate,
             ConditionMethod conditionMethod)
         {
-            situationsByMethod.Enqueue(new SituationByMethod()
+            situationsByMethod.Add(new SituationByMethod()
             {
                 template = situationTemplate,
                 method = conditionMethod
@@ -72,7 +72,7 @@ namespace AssemblyPattern
             Catalogue.CharacterOptionTemplate optionTemplate,
             float percentageChance)
         {
-            optionsByChance.Enqueue(new OptionByChance()
+            optionsByChance.Add(new OptionByChance()
             {
                 template = optionTemplate,
                 chance = percentageChance
@@ -84,7 +84,7 @@ namespace AssemblyPattern
             Catalogue.CharacterOptionTemplate optionTemplate,
             ConditionMethod conditionMethod)
         {
-            optionsByMethod.Enqueue(new OptionByMethod()
+            optionsByMethod.Add(new OptionByMethod()
             {
                 template = optionTemplate,
                 method = conditionMethod
@@ -99,7 +99,7 @@ namespace AssemblyPattern
             Catalogue.CharacterForecastTemplate forecastTemplate,
             float percentageChance)
         {
-            forecastsByChance.Enqueue(new ForecastByChance()
+            forecastsByChance.Add(new ForecastByChance()
             {
                 template = forecastTemplate,
                 chance = percentageChance
@@ -111,7 +111,7 @@ namespace AssemblyPattern
             Catalogue.CharacterForecastTemplate forecastTemplate,
             ConditionMethod conditionMethod)
         {
-            forecastsByMethod.Enqueue(new ForecastByMethod()
+            forecastsByMethod.Add(new ForecastByMethod()
             {
                 template = forecastTemplate,
                 method = conditionMethod
@@ -119,7 +119,7 @@ namespace AssemblyPattern
         }
         #endregion
         
-        #region Structs for representing ByChance and ByMethod
+        #region Structs for representing generation by chance and -method
         public struct SituationByChance
         {
             public Catalogue.CharacterSituationTemplate template;
