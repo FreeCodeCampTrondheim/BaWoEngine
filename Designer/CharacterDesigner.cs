@@ -8,38 +8,38 @@ using System.Text;
 
 public partial class Designer
 {
-    public class CharacterDesigner
+    public static class CharacterDesigner
     {
-        Character characterBeingDesigned;
-        Queue<AssemblyPattern.Character> assemblyPatterns;
+        static Character characterBeingDesigned;
+        static Queue<CharacterAssemblyPattern> assemblyPatterns;
 
-        public void ResetToNewDesign()
+        public static void ResetToNewDesign()
         {
             characterBeingDesigned = new Character();
-            assemblyPatterns = new Queue<AssemblyPattern.Character>();
+            assemblyPatterns = new Queue<CharacterAssemblyPattern>();
         }
 
-        public void AddSituation(Character.CharacterSituation situation)
+        public static void AddSituation(Character.CharacterSituation situation)
         {
             characterBeingDesigned.situations.Add(situation);
         }
 
-        public void AddOption(Character.CharacterOption option)
+        public static void AddOption(Character.CharacterOption option)
         {
             characterBeingDesigned.options.Add(option);
         }
 
-        public void AddForecast(Character.CharacterForecast forecast)
+        public static void AddForecast(Character.CharacterForecast forecast)
         {
             characterBeingDesigned.forecasts.Add(forecast);
         }
 
-        public void AddAssemblyPattern(AssemblyPattern.Character newPattern)
+        public static void AddAssemblyPattern(CharacterAssemblyPattern newPattern)
         {
             assemblyPatterns.Enqueue(newPattern);
         }
 
-        public int SendToWorld(int worldNr = 0)
+        public static int SendToWorld(int worldNr = 0)
         {
             int id = Generator.GenerateCharacterFromDesign(characterBeingDesigned, assemblyPatterns);
 

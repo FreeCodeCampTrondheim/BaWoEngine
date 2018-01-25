@@ -8,14 +8,14 @@ using System.Text;
 
 public partial class Designer
 {
-    public class CollectiveDesigner
+    public static class CollectiveDesigner
     {
-        Collective collectiveBeingDesigned;
-        Queue<CollectiveAssemblyPattern> assemblyPatterns;
-        Queue<ControllingCharacterAssemblyPattern> controllingCharacterAssemblyPatterns;
-        Queue<MemberCharacterAssemblyPattern> memberCharacterAssemblyPatterns;
+        static Collective collectiveBeingDesigned;
+        static Queue<CollectiveAssemblyPattern> assemblyPatterns;
+        static Queue<ControllingCharacterAssemblyPattern> controllingCharacterAssemblyPatterns;
+        static Queue<MemberCharacterAssemblyPattern> memberCharacterAssemblyPatterns;
 
-        public void ResetToNewDesign()
+        public static void ResetToNewDesign()
         {
             collectiveBeingDesigned = new Collective();
             assemblyPatterns = new Queue<CollectiveAssemblyPattern>();
@@ -23,49 +23,49 @@ public partial class Designer
             memberCharacterAssemblyPatterns = new Queue<MemberCharacterAssemblyPattern>();
         }
 
-        public void AddSituation(Collective.CollectiveSituation situation)
+        public static void AddSituation(Collective.CollectiveSituation situation)
         {
             collectiveBeingDesigned.situations.Add(situation);
         }
 
-        public void AddOption(Collective.CollectiveOption option)
+        public static void AddOption(Collective.CollectiveOption option)
         {
             collectiveBeingDesigned.options.Add(option);
         }
 
-        public void AddForecast(Collective.CollectiveForecast forecast)
+        public static void AddForecast(Collective.CollectiveForecast forecast)
         {
             collectiveBeingDesigned.forecasts.Add(forecast);
         }
 
-        public void AddAssemblyPattern(CollectiveAssemblyPattern newPattern)
+        public static void AddAssemblyPattern(CollectiveAssemblyPattern newPattern)
         {
             assemblyPatterns.Enqueue(newPattern);
         }
 
-        public void AddControllingCharacterAssemblyPattern(ControllingCharacterAssemblyPattern newPattern)
+        public static void AddControllingCharacterAssemblyPattern(ControllingCharacterAssemblyPattern newPattern)
         {
             controllingCharacterAssemblyPatterns.Enqueue(newPattern);
         }
 
-        public void AddMemberCharacterAssemblyPattern(MemberCharacterAssemblyPattern newPattern)
+        public static void AddMemberCharacterAssemblyPattern(MemberCharacterAssemblyPattern newPattern)
         {
             memberCharacterAssemblyPatterns.Enqueue(newPattern);
         }
 
-        public void AddNewControllingCharacter(int characterID)
+        public static void AddNewControllingCharacter(int characterID)
         {
             if (!collectiveBeingDesigned.controllingCharacters.Contains(characterID))
                 collectiveBeingDesigned.controllingCharacters.Add(characterID);
         }
 
-        public void AddNewMemberCharacter(int characterID)
+        public static void AddNewMemberCharacter(int characterID)
         {
             if (!collectiveBeingDesigned.memberCharacters.Contains(characterID))
                 collectiveBeingDesigned.memberCharacters.Add(characterID);
         }
 
-        public int SendToWorld(int worldNr = 0)
+        public static int SendToWorld(int worldNr = 0)
         {
             int id = Generator.GenerateCollectiveFromDesign(
                 collectiveBeingDesigned, 

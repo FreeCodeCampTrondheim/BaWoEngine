@@ -7,9 +7,9 @@ using System.Text;
 
 
 
-namespace AssemblyPattern
+public partial class Designer
 {
-    public class Collective
+    public class CollectiveAssemblyPattern
     {
         // code here
     }

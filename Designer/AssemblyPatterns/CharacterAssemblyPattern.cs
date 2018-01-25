@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 
 
 
 
-namespace AssemblyPattern
+
+public partial class Designer
 {
-    public class Character
+    public class CharacterAssemblyPattern
     {
         // use condition method to check for whether you 
         // want the simple entity to be generated or not
@@ -17,25 +17,33 @@ namespace AssemblyPattern
 
         // use special setup method to perform special
         // setup procedures during generation
-        public delegate void SpecialSetupMethod(Character c);
-        public SpecialSetupMethod specialSetupMethod = null;
+        public delegate void AdditionalSetupMethod(Character c);
+        AdditionalSetupMethod additionalSetupMethod = null;
+
+        // random number engine
+        Random randomizer = new Random();
 
         #region Pattern Queues
-        public List<SituationByChance> situationsByChance = new List<SituationByChance>();
-        public List<SituationByMethod> situationsByMethod = new List<SituationByMethod>();
+        List<SituationByChance> situationsByChance = new List<SituationByChance>();
+        List<SituationByMethod> situationsByMethod = new List<SituationByMethod>();
 
-        public List<OptionByChance> optionsByChance = new List<OptionByChance>();
-        public List<OptionByMethod> optionsByMethod = new List<OptionByMethod>();
+        List<OptionByChance> optionsByChance = new List<OptionByChance>();
+        List<OptionByMethod> optionsByMethod = new List<OptionByMethod>();
 
-        public List<ForecastByChance> forecastsByChance = new List<ForecastByChance>();
-        public List<ForecastByMethod> forecastsByMethod = new List<ForecastByMethod>();
+        List<ForecastByChance> forecastsByChance = new List<ForecastByChance>();
+        List<ForecastByMethod> forecastsByMethod = new List<ForecastByMethod>();
         #endregion
 
         // adds a function pointer which runs special
         // generation procedures on character
-        public void SetSpecialSetupMethod(SpecialSetupMethod method)
+        public void SetAdditionalSetup(AdditionalSetupMethod method)
         {
-            specialSetupMethod = method;
+            additionalSetupMethod = method;
+        }
+
+        public void ExecuteAdditionalSetup(Character c)
+        {
+            if (additionalSetupMethod != null) additionalSetupMethod(c);
         }
 
         #region Adding Situations
@@ -118,12 +126,80 @@ namespace AssemblyPattern
             });
         }
         #endregion
-        
+
+        #region Assemble Semi-Randomized Template Queues
+        public Queue<Catalogue.CharacterSituationTemplate> AssembleSituationsQueue(Character c)
+        {
+            Queue<Catalogue.CharacterSituationTemplate> situationTemplates
+                    = new Queue<Catalogue.CharacterSituationTemplate>();
+
+            double randomNumber;
+            for (int i = 0; i < situationsByChance.Count; i++)
+            {
+                randomNumber = randomizer.NextDouble();
+                if (situationsByChance[i].chance >= randomNumber)
+                    situationTemplates.Enqueue(situationsByChance[i].template);
+            }
+
+            for (int i = 0; i < situationsByMethod.Count; i++)
+            {
+                if (situationsByMethod[i].method(c))
+                    situationTemplates.Enqueue(situationsByChance[i].template);
+            }
+
+            return situationTemplates;
+        }
+
+        public Queue<Catalogue.CharacterOptionTemplate> AssembleOptionsQueue(Character c)
+        {
+            Queue<Catalogue.CharacterOptionTemplate> optionTemplates
+                    = new Queue<Catalogue.CharacterOptionTemplate>();
+
+            double randomNumber;
+            for (int i = 0; i < optionsByChance.Count; i++)
+            {
+                randomNumber = randomizer.NextDouble();
+                if (optionsByChance[i].chance >= randomNumber)
+                    optionTemplates.Enqueue(optionsByChance[i].template);
+            }
+
+            for (int i = 0; i < optionsByMethod.Count; i++)
+            {
+                if (optionsByMethod[i].method(c))
+                    optionTemplates.Enqueue(optionsByChance[i].template);
+            }
+
+            return optionTemplates;
+        }
+
+        public Queue<Catalogue.CharacterForecastTemplate> AssembleForecastsQueue(Character c)
+        {
+            Queue<Catalogue.CharacterForecastTemplate> forecastTemplates
+                    = new Queue<Catalogue.CharacterForecastTemplate>();
+
+            double randomNumber;
+            for (int i = 0; i < forecastsByChance.Count; i++)
+            {
+                randomNumber = randomizer.NextDouble();
+                if (forecastsByChance[i].chance >= randomNumber)
+                    forecastTemplates.Enqueue(forecastsByChance[i].template);
+            }
+
+            for (int i = 0; i < forecastsByMethod.Count; i++)
+            {
+                if (forecastsByMethod[i].method(c))
+                    forecastTemplates.Enqueue(forecastsByChance[i].template);
+            }
+
+            return forecastTemplates;
+        }
+        #endregion
+
         #region Structs for representing generation by chance and -method
         public struct SituationByChance
         {
             public Catalogue.CharacterSituationTemplate template;
-            public float chance;
+            public double chance;
         }
 
         public struct SituationByMethod
@@ -135,7 +211,7 @@ namespace AssemblyPattern
         public struct OptionByChance
         {
             public Catalogue.CharacterOptionTemplate template;
-            public float chance;
+            public double chance;
         }
 
         public struct OptionByMethod
@@ -147,7 +223,7 @@ namespace AssemblyPattern
         public struct ForecastByChance
         {
             public Catalogue.CharacterForecastTemplate template;
-            public float chance;
+            public double chance;
         }
 
         public struct ForecastByMethod
