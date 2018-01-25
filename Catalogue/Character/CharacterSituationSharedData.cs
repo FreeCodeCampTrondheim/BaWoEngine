@@ -5,7 +5,7 @@ using System.Text;
 public static partial class Catalogue
 {
     // A unit of measure of the STATE of the character, described through statistical data.
-    public class CharacterSituationTemplate : CharacterSimpleEntityTemplate
+    public class CharacterSituationSharedData : CharacterSimpleEntitySharedData
     {
         // The statistical data that are added to the
         // character with this situation.

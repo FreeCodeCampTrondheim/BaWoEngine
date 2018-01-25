@@ -6,7 +6,7 @@ public static partial class Catalogue
 {
     // Defines shared fields between all simple templates,
     // like character situations, -options and -forecasts.
-    public abstract class SimpleEntityTemplate
+    public abstract class SimpleEntitySharedData
     {
         // what the situation/option/forecast is called
         public string title;

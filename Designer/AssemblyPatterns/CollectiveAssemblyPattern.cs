@@ -9,7 +9,7 @@ using System.Text;
 
 public partial class Designer
 {
-    public class CollectiveAssemblyPattern
+    public class CollectiveAssemblyPattern : IRegisterable
     {
         // code here
     }

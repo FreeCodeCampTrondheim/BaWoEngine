@@ -7,6 +7,6 @@ public partial class Character
 {
     public class CharacterForecast : BaseSimpleEntity
     {
-        Catalogue.CharacterForecastTemplate template;
+        Catalogue.CharacterForecastSharedData template;
     }
 }

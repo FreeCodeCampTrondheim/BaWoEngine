@@ -6,7 +6,7 @@ public static partial class Catalogue
 {
     // Defines shared fields between all character simple templates,
     // like character situations, -options and -forecasts.
-    public abstract class CharacterSimpleEntityTemplate : SimpleEntityTemplate
+    public abstract class CharacterSimpleEntitySharedData : SimpleEntitySharedData
     {
         // use this to control whether the situation, option or
         // forecast should be terminated from the character

@@ -9,8 +9,8 @@ using System.Text;
 
 public partial class Designer
 {
-    public class ControllingCharacterAssemblyPattern : IRegisterable
+    interface IRegisterable
     {
-        // code here
+        int RegisterAtCatalogue();
     }
 }

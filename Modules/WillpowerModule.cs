@@ -15,7 +15,7 @@ public static partial class Catalogue
         string indexedTitle;
 
         indexedTitle = "Willpower";
-        characterSituations.Add(indexedTitle, new CharacterSituationTemplate
+        characterSituations.Add(indexedTitle, new CharacterSituationSharedData
         {
             simpleEntityTemplateID = Command.GetNewSimpleEntityTemplateID(),
             title = indexedTitle,

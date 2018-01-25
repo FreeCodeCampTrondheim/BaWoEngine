@@ -19,7 +19,7 @@ public abstract class BaseSimpleEntity
 
     // combines "about" with description to supply description 
     // relevant for current situation/option/forecast
-    public string GetDescription(int worldID, Catalogue.SimpleEntityTemplate template)
+    public string GetDescription(int worldID, Catalogue.SimpleEntitySharedData template)
     {
         // where the "@" symbols start
         string[] startPoints = template.description.Split('@');

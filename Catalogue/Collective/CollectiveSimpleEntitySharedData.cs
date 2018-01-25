@@ -6,7 +6,7 @@ public static partial class Catalogue
 {
     // Defines shared fields and methods between all collective simple
     // templates, like collective situations, -options and -forecasts.
-    public abstract class CollectiveSimpleEntityTemplate : SimpleEntityTemplate
+    public abstract class CollectiveSimpleEntitySharedData : SimpleEntitySharedData
     {
         // use this to control whether the situation, option or
         // forecast should be terminated from the collective,

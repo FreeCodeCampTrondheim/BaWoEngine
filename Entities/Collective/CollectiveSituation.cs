@@ -10,6 +10,6 @@ public partial class Collective : BaseSimpleEntity
 {
     public struct CollectiveSituation
     {
-        public Catalogue.CollectiveSituationTemplate template;
+        public Catalogue.CollectiveSituationSharedData template;
     }
 }

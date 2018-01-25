@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 public static partial class Catalogue
 {
-    // A unit for representing something that can happen to the character, 
-    // but which is outside of its immediate control - ergo "fate". 
-    public class CharacterForecastTemplate : CharacterSimpleEntityTemplate
+    // A unit for representing something that can happen to the characters 
+    // that are part of the collective, but which the controlling characters
+    // have no immediate control over - ergo "fate".
+    public class CollectiveForecastSharedData : CollectiveSimpleEntitySharedData
     {
         // Whether this represents positive fortune (0 or above)
-        // for the character, or negative fortune (below 0).
+        // for the collective, or negative fortune (below 0).
         public int fortune;
 
         // The base chance that this will happen relative to other forecasts,

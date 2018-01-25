@@ -9,6 +9,6 @@ public partial class Collective : BaseSimpleEntity
 {
     public struct CollectiveForecast
     {
-        public Catalogue.CollectiveForecastTemplate template;
+        public Catalogue.CollectiveForecastSharedData template;
     }
 }

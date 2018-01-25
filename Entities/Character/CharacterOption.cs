@@ -7,6 +7,6 @@ public partial class Character
 {
     public class CharacterOption : BaseSimpleEntity
     {
-        Catalogue.CharacterOptionTemplate template;
+        Catalogue.CharacterOptionSharedData template;
     }
 }

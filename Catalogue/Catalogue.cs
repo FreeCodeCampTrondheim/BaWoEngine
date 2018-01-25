@@ -9,14 +9,14 @@ using System.Collections.Generic;
 public static partial class Catalogue
 {
     // for access to simple character entities by title
-    public static Dictionary<string, CharacterSituationTemplate> characterSituations;
-    public static Dictionary<string, CharacterOptionTemplate> characterOptions;
-    public static Dictionary<string, CharacterForecastTemplate> characterForecasts;
+    public static Dictionary<string, CharacterSituationSharedData> characterSituations;
+    public static Dictionary<string, CharacterOptionSharedData> characterOptions;
+    public static Dictionary<string, CharacterForecastSharedData> characterForecasts;
 
     // for access to simple collective entities by title
-    public static Dictionary<string, CollectiveSituationTemplate> collectiveSituations;
-    public static Dictionary<string, CollectiveOptionTemplate> collectiveOptions;
-    public static Dictionary<string, CollectiveForecastTemplate> collectiveForecasts;
+    public static Dictionary<string, CollectiveSituationSharedData> collectiveSituations;
+    public static Dictionary<string, CollectiveOptionSharedData> collectiveOptions;
+    public static Dictionary<string, CollectiveForecastSharedData> collectiveForecasts;
 
     // for accessing random allowed values
     public static Dictionary<string, List<string>> textList;
@@ -27,65 +27,11 @@ public static partial class Catalogue
     public static List<Designer.ControllingCharacterAssemblyPattern> controllingCharacterAssemblyPatterns;
     public static List<Designer.MemberCharacterAssemblyPattern> memberCharacterAssemblyPatterns;
 
-    #region Register Assembly Patterns
-    public static int RegisterAssemblyPattern(Designer.CharacterAssemblyPattern pattern)
-    {
-        if (!characterAssemblyPatterns.Contains(pattern))
-        {
-            characterAssemblyPatterns.Add(pattern);
-            return characterAssemblyPatterns.Count;
-        }
-        else
-        {
-            return characterAssemblyPatterns.IndexOf(pattern);
-        }
-    }
-
-    public static int RegisterAssemblyPattern(Designer.CollectiveAssemblyPattern pattern)
-    {
-        if (!collectiveAssemblyPatterns.Contains(pattern))
-        {
-            collectiveAssemblyPatterns.Add(pattern);
-            return collectiveAssemblyPatterns.Count;
-        }
-        else
-        {
-            return collectiveAssemblyPatterns.IndexOf(pattern);
-        }
-    }
-
-    public static int RegisterAssemblyPattern(Designer.ControllingCharacterAssemblyPattern pattern)
-    {
-        if (!controllingCharacterAssemblyPatterns.Contains(pattern))
-        {
-            controllingCharacterAssemblyPatterns.Add(pattern);
-            return controllingCharacterAssemblyPatterns.Count;
-        }
-        else
-        {
-            return controllingCharacterAssemblyPatterns.IndexOf(pattern);
-        }
-    }
-
-    public static int RegisterAssemblyPattern(Designer.MemberCharacterAssemblyPattern pattern)
-    {
-        if (!memberCharacterAssemblyPatterns.Contains(pattern))
-        {
-            memberCharacterAssemblyPatterns.Add(pattern);
-            return memberCharacterAssemblyPatterns.Count;
-        }
-        else
-        {
-            return memberCharacterAssemblyPatterns.IndexOf(pattern);
-        }
-    }
-    #endregion
-
     public static void Initialize()
     {
-        characterSituations = new Dictionary<string, CharacterSituationTemplate>();
-        characterOptions = new Dictionary<string, CharacterOptionTemplate>();
-        characterForecasts = new Dictionary<string, CharacterForecastTemplate>();
+        characterSituations = new Dictionary<string, CharacterSituationSharedData>();
+        characterOptions = new Dictionary<string, CharacterOptionSharedData>();
+        characterForecasts = new Dictionary<string, CharacterForecastSharedData>();
 
         textList = new Dictionary<string, List<string>>();
         numberList = new Dictionary<string, List<float>>();

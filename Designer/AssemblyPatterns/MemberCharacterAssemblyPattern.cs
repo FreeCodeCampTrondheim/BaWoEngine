@@ -9,7 +9,7 @@ using System.Text;
 
 public partial class Designer
 {
-    public class MemberCharacterAssemblyPattern
+    public class MemberCharacterAssemblyPattern : IRegisterable
     {
         // code here
     }
