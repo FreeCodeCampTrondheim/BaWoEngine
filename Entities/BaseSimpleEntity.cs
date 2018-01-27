@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
+
 
 
 
@@ -44,13 +44,13 @@ public abstract class BaseSimpleEntity
                     else continue;
 
                     string name = "";
-                    for (int j = 0; j < stats.numericalStatsBase["numberOfNames"]; j++)
+                    for (int j = 0; j < stats.baseNumberStats["numberOfNames"]; j++)
                     {
                         // concatenate all available name variables
                         if (stats.textStats.ContainsKey("name" + j))
                         {
                             int listNr = stats.textStats["name" + j];
-                            name += Catalogue.textList["name" + j][listNr] + " ";
+                            name += Catalogue.textEnums["name" + j][listNr] + " ";
                         }
                     }
 

@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 
 
 
 
-public partial class Collective : BaseSimpleEntity
+
+
+
+
+public partial class Collective
 {
-    public struct CollectiveSituation
+    public class CollectiveSituation : BaseSimpleEntity
     {
         public Catalogue.CollectiveSituationSharedData template;
     }

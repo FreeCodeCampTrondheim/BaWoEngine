@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 
 
 
-public partial class Collective : BaseSimpleEntity
+
+
+
+
+public partial class Collective
 {
-    public struct CollectiveForecast
+    public class CollectiveForecast : BaseSimpleEntity
     {
         public Catalogue.CollectiveForecastSharedData template;
     }
