@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
+
+
+
+
+
 partial class Generator
 {
     public static int GenerateCollectiveFromDesign(
