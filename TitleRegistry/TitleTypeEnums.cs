@@ -1,0 +1,20 @@
+﻿
+
+
+
+
+
+
+
+
+public enum TITLE_TYPE
+{
+    SITUATION_TITLE,
+    OPTION_TITLE,
+    FORECAST_TITLE,
+
+    BOOL_STAT,
+    TEXT_STAT,
+    BASE_NUMBER_STAT,
+    MODIFYING_NUMBER_STAT
+}
