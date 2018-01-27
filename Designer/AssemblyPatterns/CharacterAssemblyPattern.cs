@@ -244,7 +244,7 @@ public partial class Designer
             if (!Catalogue.characterAssemblyPatterns.Contains(this))
             {
                 Catalogue.characterAssemblyPatterns.Add(this);
-                return Catalogue.characterAssemblyPatterns.Count;
+                return Catalogue.characterAssemblyPatterns.Count - 1;
             }
             else
             {

@@ -12,15 +12,15 @@ public partial class Designer
     {
         static Collective collectiveBeingDesigned;
         static Queue<CollectiveAssemblyPattern> assemblyPatterns;
-        static Queue<ControllingCharacterAssemblyPattern> controllingCharacterAssemblyPatterns;
-        static Queue<MemberCharacterAssemblyPattern> memberCharacterAssemblyPatterns;
+        static Queue<ParticipationAssemblyPattern> controllingCharacterAssemblyPatterns;
+        static Queue<ParticipationAssemblyPattern> memberCharacterAssemblyPatterns;
 
         public static void ResetToNewDesign()
         {
             collectiveBeingDesigned = new Collective();
             assemblyPatterns = new Queue<CollectiveAssemblyPattern>();
-            controllingCharacterAssemblyPatterns = new Queue<ControllingCharacterAssemblyPattern>();
-            memberCharacterAssemblyPatterns = new Queue<MemberCharacterAssemblyPattern>();
+            controllingCharacterAssemblyPatterns = new Queue<ParticipationAssemblyPattern>();
+            memberCharacterAssemblyPatterns = new Queue<ParticipationAssemblyPattern>();
         }
 
         public static void AddSituation(Collective.CollectiveSituation situation)
@@ -43,12 +43,12 @@ public partial class Designer
             assemblyPatterns.Enqueue(newPattern);
         }
 
-        public static void AddControllingCharacterAssemblyPattern(ControllingCharacterAssemblyPattern newPattern)
+        public static void AddControllingCharacterAssemblyPattern(ParticipationAssemblyPattern newPattern)
         {
             controllingCharacterAssemblyPatterns.Enqueue(newPattern);
         }
 
-        public static void AddMemberCharacterAssemblyPattern(MemberCharacterAssemblyPattern newPattern)
+        public static void AddMemberCharacterAssemblyPattern(ParticipationAssemblyPattern newPattern)
         {
             memberCharacterAssemblyPatterns.Enqueue(newPattern);
         }

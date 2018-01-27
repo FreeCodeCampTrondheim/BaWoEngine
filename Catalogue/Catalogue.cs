@@ -24,8 +24,8 @@ public static partial class Catalogue
 
     public static List<Designer.CharacterAssemblyPattern> characterAssemblyPatterns;
     public static List<Designer.CollectiveAssemblyPattern> collectiveAssemblyPatterns;
-    public static List<Designer.ControllingCharacterAssemblyPattern> controllingCharacterAssemblyPatterns;
-    public static List<Designer.MemberCharacterAssemblyPattern> memberCharacterAssemblyPatterns;
+    public static List<Designer.ParticipationAssemblyPattern> controllingCharacterAssemblyPatterns;
+    public static List<Designer.ParticipationAssemblyPattern> memberCharacterAssemblyPatterns;
 
     public static void Initialize()
     {
@@ -38,7 +38,7 @@ public static partial class Catalogue
 
         characterAssemblyPatterns = new List<Designer.CharacterAssemblyPattern>();
         collectiveAssemblyPatterns = new List<Designer.CollectiveAssemblyPattern>();
-        controllingCharacterAssemblyPatterns = new List<Designer.ControllingCharacterAssemblyPattern>();
-        memberCharacterAssemblyPatterns = new List<Designer.MemberCharacterAssemblyPattern>();
+        controllingCharacterAssemblyPatterns = new List<Designer.ParticipationAssemblyPattern>();
+        memberCharacterAssemblyPatterns = new List<Designer.ParticipationAssemblyPattern>();
     }
 }

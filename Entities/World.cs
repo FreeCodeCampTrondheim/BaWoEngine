@@ -6,7 +6,7 @@ using System.Text;
 
 
 
-class World
+public class World
 {
     public List<Character> characters;
     public List<Collective> collectives;
