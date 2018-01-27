@@ -6,22 +6,72 @@ using System.Collections.Generic;
 
 
 
+
 public static partial class Catalogue
 {
     // for access to simple character entities by title
-    public static Dictionary<string, CharacterSituationSharedData> characterSituations;
-    public static Dictionary<string, CharacterOptionSharedData> characterOptions;
-    public static Dictionary<string, CharacterForecastSharedData> characterForecasts;
+    public static List<CharacterSituationSharedData> characterSituations;
+    public static List<CharacterOptionSharedData> characterOptions;
+    public static List<CharacterForecastSharedData> characterForecasts;
 
     // for access to simple collective entities by title
-    public static Dictionary<string, CollectiveSituationSharedData> collectiveSituations;
-    public static Dictionary<string, CollectiveOptionSharedData> collectiveOptions;
-    public static Dictionary<string, CollectiveForecastSharedData> collectiveForecasts;
+    public static List<CollectiveSituationSharedData> collectiveSituations;
+    public static List<CollectiveOptionSharedData> collectiveOptions;
+    public static List<CollectiveForecastSharedData> collectiveForecasts;
 
     // for accessing random allowed values
-    public static Dictionary<string, List<string>> textList;
-    public static Dictionary<string, List<float>> numberList;
+    static List<string[]> textEnums;
+    static List<double[]> numberEnums;
 
+    public static int AddTextEnums(string[] newTextAlternatives, int existingEnumIndex = -1)
+    {
+        if (existingEnumIndex < 0)
+        {
+            textEnums.Add(newTextAlternatives);
+            return textEnums.Count - 1;
+        }
+
+        // combine existing array with new array
+        else
+        {
+            int sizeExisting = textEnums[existingEnumIndex].Length;
+            int sizeNew = newTextAlternatives.Length;
+            int combinedSize = sizeExisting + sizeNew;
+
+            string[] temp = new string[combinedSize];
+            Array.Copy(textEnums[existingEnumIndex], temp, sizeExisting);
+            Array.Copy(newTextAlternatives, 0, temp, sizeExisting, sizeNew);
+
+            textEnums[existingEnumIndex] = temp;
+            return existingEnumIndex;
+        }
+    }
+
+    public static int AddNumberEnums(double[] newNumberAlternatives, int existingEnumIndex = -1)
+    {
+        if (existingEnumIndex < 0)
+        {
+            numberEnums.Add(newNumberAlternatives);
+            return numberEnums.Count - 1;
+        }
+
+        // combine existing array with new array
+        else
+        {
+            int sizeExisting = textEnums[existingEnumIndex].Length;
+            int sizeNew = newNumberAlternatives.Length;
+            int combinedSize = sizeExisting + sizeNew;
+
+            string[] temp = new string[combinedSize];
+            Array.Copy(textEnums[existingEnumIndex], temp, sizeExisting);
+            Array.Copy(newNumberAlternatives, 0, temp, sizeExisting, sizeNew);
+
+            textEnums[existingEnumIndex] = temp;
+            return existingEnumIndex;
+        }
+    }
+
+    // for accessing different patterns for use in generation
     public static List<Designer.CharacterAssemblyPattern> characterAssemblyPatterns;
     public static List<Designer.CollectiveAssemblyPattern> collectiveAssemblyPatterns;
     public static List<Designer.ParticipationAssemblyPattern> controllingCharacterAssemblyPatterns;
@@ -29,12 +79,12 @@ public static partial class Catalogue
 
     public static void Initialize()
     {
-        characterSituations = new Dictionary<string, CharacterSituationSharedData>();
-        characterOptions = new Dictionary<string, CharacterOptionSharedData>();
-        characterForecasts = new Dictionary<string, CharacterForecastSharedData>();
+        characterSituations = new List<CharacterSituationSharedData>();
+        characterOptions = new List<CharacterOptionSharedData>();
+        characterForecasts = new List<CharacterForecastSharedData>();
 
-        textList = new Dictionary<string, List<string>>();
-        numberList = new Dictionary<string, List<float>>();
+        textEnums = new List<string[]>();
+        numberEnums = new List<double[]>();
 
         characterAssemblyPatterns = new List<Designer.CharacterAssemblyPattern>();
         collectiveAssemblyPatterns = new List<Designer.CollectiveAssemblyPattern>();

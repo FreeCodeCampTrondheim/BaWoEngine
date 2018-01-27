@@ -1,6 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿
+
+
+
+
+
+
+
 
 public static partial class Catalogue
 {
@@ -8,8 +13,8 @@ public static partial class Catalogue
     // like character situations, -options and -forecasts.
     public abstract class SimpleEntitySharedData
     {
-        // what the situation/option/forecast is called
-        public string title;
+        // title id to what the situation/option/forecast is called
+        public int title;
 
         /* 
             This is what the situation/option/forecast is about,

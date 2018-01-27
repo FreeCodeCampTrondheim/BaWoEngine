@@ -1,6 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+
+
+
+
+
+
+
 
 public static partial class Catalogue
 {
@@ -14,10 +19,10 @@ public static partial class Catalogue
         // The data about what the character cares about that is added
         // with this situation. The text is the "care tag"  and represents
         // the source of the care, i.e. "Shares Room", "Is Married", "Employed"
-        public Dictionary<string, List<CareAbout>> caresAbout;
+        public Dictionary<int, List<CareAbout>> caresAbout;
 
         // What of the character's motivators are affected by
         // this situation, including the size of extra motivation
-        public Dictionary<string, int> motivators;
+        public Dictionary<int, int> motivators;
     }
 }
