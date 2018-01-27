@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 
 
 
@@ -12,10 +12,10 @@ public static partial class Catalogue
     static void WillpowerModule()
     {
         #region Situations
-        string indexedTitle;
+        int indexedTitle;
 
-        indexedTitle = "Willpower";
-        characterSituations.Add(indexedTitle, new CharacterSituationSharedData
+        indexedTitle = Title.RegisterTitle("Willpower", TITLE_TYPE.SITUATION_TITLE);
+        characterSituations.Add(new CharacterSituationSharedData
         {
             simpleEntityTemplateID = Command.GetNewSimpleEntityTemplateID(),
             title = indexedTitle,
@@ -24,13 +24,23 @@ public static partial class Catalogue
             AttemptLaunching = null,
             stats =
             {
-                numericalStatsBase = new Dictionary<string, double>()
+                baseNumberStats = new Dictionary<int, double>()
                 {
-                    { "Willpower Constant Modifier", 0.0 }
+                    {
+                        Title.RegisterTitle(
+                            "Willpower Constant Modifier", 
+                            TITLE_TYPE.BASE_NUMBER_STAT),
+                        0.0
+                    }
                 },
-                numericalStatsModifiers = new Dictionary<string, double>()
+                modifyingNumberStats = new Dictionary<int, double>()
                 {
-                    { "Willpower Percentage Modifier", 1.0 }
+                    {
+                        Title.RegisterTitle(
+                            "Willpower Percentage Modifier", 
+                            TITLE_TYPE.MODIFYING_NUMBER_STAT),
+                        1.0
+                    }
                 }
             }
         });
