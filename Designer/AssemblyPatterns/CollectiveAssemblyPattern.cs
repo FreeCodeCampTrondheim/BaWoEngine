@@ -50,7 +50,7 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddSituationByChance(
-            Catalogue.CollectiveSituationSharedData situationTemplate,
+            CollectiveSituationSharedData situationTemplate,
             float percentageChance)
         {
             situationsByChance.Add(new SituationByChance()
@@ -62,7 +62,7 @@ public partial class Designer
 
         // runs method to see if simple entity should be added
         public void AddSituationByConditionMethod(
-            Catalogue.CollectiveSituationSharedData situationTemplate,
+            CollectiveSituationSharedData situationTemplate,
             ConditionMethod conditionMethod)
         {
             situationsByMethod.Add(new SituationByMethod()
@@ -77,7 +77,7 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddOptionByChance(
-            Catalogue.CollectiveOptionSharedData optionTemplate,
+            CollectiveOptionSharedData optionTemplate,
             float percentageChance)
         {
             optionsByChance.Add(new OptionByChance()
@@ -89,7 +89,7 @@ public partial class Designer
 
         // runs method to see if simple entity should be added
         public void AddOptionByConditionMethod(
-            Catalogue.CollectiveOptionSharedData optionTemplate,
+            CollectiveOptionSharedData optionTemplate,
             ConditionMethod conditionMethod)
         {
             optionsByMethod.Add(new OptionByMethod()
@@ -104,7 +104,7 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddForecastByChance(
-            Catalogue.CollectiveForecastSharedData forecastTemplate,
+            CollectiveForecastSharedData forecastTemplate,
             float percentageChance)
         {
             forecastsByChance.Add(new ForecastByChance()
@@ -116,7 +116,7 @@ public partial class Designer
 
         // runs method to see if simple entity should be added
         public void AddForecastByConditionMethod(
-            Catalogue.CollectiveForecastSharedData forecastTemplate,
+            CollectiveForecastSharedData forecastTemplate,
             ConditionMethod conditionMethod)
         {
             forecastsByMethod.Add(new ForecastByMethod()
@@ -130,10 +130,10 @@ public partial class Designer
         #region Assemble Semi-Randomized Template Queues
         // gets a set of templates following condition methods that
         // evaluate to true, as well as randomly chosen templates
-        public Queue<Catalogue.CollectiveSituationSharedData> PickSituationTemplates(Collective c)
+        public Queue<CollectiveSituationSharedData> PickSituationTemplates(Collective c)
         {
-            Queue<Catalogue.CollectiveSituationSharedData> situationTemplates
-                    = new Queue<Catalogue.CollectiveSituationSharedData>();
+            Queue<CollectiveSituationSharedData> situationTemplates
+                    = new Queue<CollectiveSituationSharedData>();
 
             double randomNumber;
             for (int i = 0; i < situationsByChance.Count; i++)
@@ -154,10 +154,10 @@ public partial class Designer
 
         // gets a set of templates following condition methods that
         // evaluate to true, as well as randomly chosen templates
-        public Queue<Catalogue.CollectiveOptionSharedData> PickOptionTemplates(Collective c)
+        public Queue<CollectiveOptionSharedData> PickOptionTemplates(Collective c)
         {
-            Queue<Catalogue.CollectiveOptionSharedData> optionTemplates
-                    = new Queue<Catalogue.CollectiveOptionSharedData>();
+            Queue<CollectiveOptionSharedData> optionTemplates
+                    = new Queue<CollectiveOptionSharedData>();
 
             double randomNumber;
             for (int i = 0; i < optionsByChance.Count; i++)
@@ -178,10 +178,10 @@ public partial class Designer
 
         // gets a set of templates following condition methods that
         // evaluate to true, as well as randomly chosen templates
-        public Queue<Catalogue.CollectiveForecastSharedData> PickForecastTemplates(Collective c)
+        public Queue<CollectiveForecastSharedData> PickForecastTemplates(Collective c)
         {
-            Queue<Catalogue.CollectiveForecastSharedData> forecastTemplates
-                    = new Queue<Catalogue.CollectiveForecastSharedData>();
+            Queue<CollectiveForecastSharedData> forecastTemplates
+                    = new Queue<CollectiveForecastSharedData>();
 
             double randomNumber;
             for (int i = 0; i < forecastsByChance.Count; i++)
@@ -204,37 +204,37 @@ public partial class Designer
         #region Structs for representing generation by chance and -method
         public struct SituationByChance
         {
-            public Catalogue.CollectiveSituationSharedData template;
+            public CollectiveSituationSharedData template;
             public double chance;
         }
 
         public struct SituationByMethod
         {
-            public Catalogue.CollectiveSituationSharedData template;
+            public CollectiveSituationSharedData template;
             public ConditionMethod method;
         }
 
         public struct OptionByChance
         {
-            public Catalogue.CollectiveOptionSharedData template;
+            public CollectiveOptionSharedData template;
             public double chance;
         }
 
         public struct OptionByMethod
         {
-            public Catalogue.CollectiveOptionSharedData template;
+            public CollectiveOptionSharedData template;
             public ConditionMethod method;
         }
 
         public struct ForecastByChance
         {
-            public Catalogue.CollectiveForecastSharedData template;
+            public CollectiveForecastSharedData template;
             public double chance;
         }
 
         public struct ForecastByMethod
         {
-            public Catalogue.CollectiveForecastSharedData template;
+            public CollectiveForecastSharedData template;
             public ConditionMethod method;
         }
         #endregion

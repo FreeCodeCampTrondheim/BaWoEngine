@@ -9,7 +9,8 @@ using System.Collections.Generic;
 
 public static partial class Catalogue
 {
-    // for access to simple character entities by title
+    #region Simple Entities Shared Data
+    // for access to simple character entities by title id
     public static List<CharacterSituationSharedData> characterSituations;
     public static List<CharacterOptionSharedData> characterOptions;
     public static List<CharacterForecastSharedData> characterForecasts;
@@ -18,10 +19,12 @@ public static partial class Catalogue
     public static List<CollectiveSituationSharedData> collectiveSituations;
     public static List<CollectiveOptionSharedData> collectiveOptions;
     public static List<CollectiveForecastSharedData> collectiveForecasts;
+    #endregion
 
+    #region Text- and Number Enums
     // for accessing random allowed values
-    static List<string[]> textEnums;
-    static List<double[]> numberEnums;
+    public static List<string[]> textEnums;
+    public static List<double[]> numberEnums;
 
     public static int AddTextEnums(string[] newTextAlternatives, int existingEnumIndex = -1)
     {
@@ -70,12 +73,15 @@ public static partial class Catalogue
             return existingEnumIndex;
         }
     }
+    #endregion
 
+    #region Assembly Patterns
     // for accessing different patterns for use in generation
     public static List<Designer.CharacterAssemblyPattern> characterAssemblyPatterns;
     public static List<Designer.CollectiveAssemblyPattern> collectiveAssemblyPatterns;
     public static List<Designer.ParticipationAssemblyPattern> controllingCharacterAssemblyPatterns;
     public static List<Designer.ParticipationAssemblyPattern> memberCharacterAssemblyPatterns;
+    #endregion
 
     public static void Initialize()
     {

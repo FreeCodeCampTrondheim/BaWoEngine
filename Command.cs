@@ -11,10 +11,10 @@ static class Command
 {
     public static List<World> worlds = new List<World>();
 
-    static int nextSimpleTemplateID = 0;
-    public static int GetNewSimpleEntityTemplateID()
+    static int nextSimpleEntitySharedDataID = 0;
+    public static int GetNewSimpleEntitySharedDataID()
     {
-        nextSimpleTemplateID++;
-        return nextSimpleTemplateID;
+        nextSimpleEntitySharedDataID++;
+        return nextSimpleEntitySharedDataID;
     }
 }

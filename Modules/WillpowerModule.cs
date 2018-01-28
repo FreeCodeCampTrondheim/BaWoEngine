@@ -14,10 +14,10 @@ public static partial class Catalogue
         #region Situations
         int indexedTitle;
 
-        indexedTitle = Title.RegisterTitle("Willpower", TITLE_TYPE.SITUATION_TITLE);
+        indexedTitle = Title.RegisterTitle("Willpower", TITLE_TYPE.SITUATION);
         characterSituations.Add(new CharacterSituationSharedData
         {
-            simpleEntityTemplateID = Command.GetNewSimpleEntityTemplateID(),
+            simpleEntitySharedDataID = Command.GetNewSimpleEntitySharedDataID(),
             title = indexedTitle,
             description = "This character has the will to act.",
             ShouldTerminate = null,

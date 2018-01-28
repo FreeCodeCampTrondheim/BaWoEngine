@@ -11,7 +11,7 @@ public partial class Designer
 {
     public class CharacterAssemblyPattern : IRegisterable
     {
-        // use condition method to check for whether you 
+        // use condition method to check for whether you
         // want the simple entity to be generated or not
         public delegate bool ConditionMethod(Character c);
 
@@ -50,7 +50,7 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddSituationByChance(
-            Catalogue.CharacterSituationSharedData situationTemplate,
+            CharacterSituationSharedData situationTemplate,
             float percentageChance)
         {
             situationsByChance.Add(new SituationByChance()
@@ -62,7 +62,7 @@ public partial class Designer
 
         // runs method to see if simple entity should be added
         public void AddSituationByConditionMethod(
-            Catalogue.CharacterSituationSharedData situationTemplate,
+            CharacterSituationSharedData situationTemplate,
             ConditionMethod conditionMethod)
         {
             situationsByMethod.Add(new SituationByMethod()
@@ -77,7 +77,7 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddOptionByChance(
-            Catalogue.CharacterOptionSharedData optionTemplate,
+            CharacterOptionSharedData optionTemplate,
             float percentageChance)
         {
             optionsByChance.Add(new OptionByChance()
@@ -89,7 +89,7 @@ public partial class Designer
 
         // runs method to see if simple entity should be added
         public void AddOptionByConditionMethod(
-            Catalogue.CharacterOptionSharedData optionTemplate,
+            CharacterOptionSharedData optionTemplate,
             ConditionMethod conditionMethod)
         {
             optionsByMethod.Add(new OptionByMethod()
@@ -104,7 +104,7 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddForecastByChance(
-            Catalogue.CharacterForecastSharedData forecastTemplate,
+            CharacterForecastSharedData forecastTemplate,
             float percentageChance)
         {
             forecastsByChance.Add(new ForecastByChance()
@@ -116,7 +116,7 @@ public partial class Designer
 
         // runs method to see if simple entity should be added
         public void AddForecastByConditionMethod(
-            Catalogue.CharacterForecastSharedData forecastTemplate,
+            CharacterForecastSharedData forecastTemplate,
             ConditionMethod conditionMethod)
         {
             forecastsByMethod.Add(new ForecastByMethod()
@@ -130,10 +130,10 @@ public partial class Designer
         #region Assemble Semi-Randomized Template Queues
         // gets a set of templates following condition methods that
         // evaluate to true, as well as randomly chosen templates
-        public Queue<Catalogue.CharacterSituationSharedData> PickSituationTemplates(Character c)
+        public Queue<CharacterSituationSharedData> PickSituationTemplates(Character c)
         {
-            Queue<Catalogue.CharacterSituationSharedData> situationTemplates
-                    = new Queue<Catalogue.CharacterSituationSharedData>();
+            Queue<CharacterSituationSharedData> situationTemplates
+                    = new Queue<CharacterSituationSharedData>();
 
             double randomNumber;
             for (int i = 0; i < situationsByChance.Count; i++)
@@ -154,10 +154,10 @@ public partial class Designer
 
         // gets a set of templates following condition methods that
         // evaluate to true, as well as randomly chosen templates
-        public Queue<Catalogue.CharacterOptionSharedData> PickOptionTemplates(Character c)
+        public Queue<CharacterOptionSharedData> PickOptionTemplates(Character c)
         {
-            Queue<Catalogue.CharacterOptionSharedData> optionTemplates
-                    = new Queue<Catalogue.CharacterOptionSharedData>();
+            Queue<CharacterOptionSharedData> optionTemplates
+                    = new Queue<CharacterOptionSharedData>();
 
             double randomNumber;
             for (int i = 0; i < optionsByChance.Count; i++)
@@ -178,10 +178,10 @@ public partial class Designer
 
         // gets a set of templates following condition methods that
         // evaluate to true, as well as randomly chosen templates
-        public Queue<Catalogue.CharacterForecastSharedData> PickForecastTemplates(Character c)
+        public Queue<CharacterForecastSharedData> PickForecastTemplates(Character c)
         {
-            Queue<Catalogue.CharacterForecastSharedData> forecastTemplates
-                    = new Queue<Catalogue.CharacterForecastSharedData>();
+            Queue<CharacterForecastSharedData> forecastTemplates
+                    = new Queue<CharacterForecastSharedData>();
 
             double randomNumber;
             for (int i = 0; i < forecastsByChance.Count; i++)
@@ -204,37 +204,37 @@ public partial class Designer
         #region Structs for representing generation by chance and -method
         public struct SituationByChance
         {
-            public Catalogue.CharacterSituationSharedData template;
+            public CharacterSituationSharedData template;
             public double chance;
         }
 
         public struct SituationByMethod
         {
-            public Catalogue.CharacterSituationSharedData template;
+            public CharacterSituationSharedData template;
             public ConditionMethod method;
         }
 
         public struct OptionByChance
         {
-            public Catalogue.CharacterOptionSharedData template;
+            public CharacterOptionSharedData template;
             public double chance;
         }
 
         public struct OptionByMethod
         {
-            public Catalogue.CharacterOptionSharedData template;
+            public CharacterOptionSharedData template;
             public ConditionMethod method;
         }
 
         public struct ForecastByChance
         {
-            public Catalogue.CharacterForecastSharedData template;
+            public CharacterForecastSharedData template;
             public double chance;
         }
 
         public struct ForecastByMethod
         {
-            public Catalogue.CharacterForecastSharedData template;
+            public CharacterForecastSharedData template;
             public ConditionMethod method;
         }
         #endregion

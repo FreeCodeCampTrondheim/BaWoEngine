@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿using System.Collections.Generic;
+using System.Text;
 
 
 
@@ -17,56 +17,36 @@ public abstract class BaseSimpleEntity
     // whether the source is a collective instead of a character
     public bool sourceIsCollective = false;
 
-    // combines "about" with description to supply description 
-    // relevant for current situation/option/forecast
-    public string GetDescription(int worldID, Catalogue.SimpleEntitySharedData template)
+    // compiles a description with the full names of all referenced entities
+    public string GetDescription(int worldID, SimpleEntitySharedData sharedData)
     {
-        // where the "@" symbols start
-        string[] startPoints = template.description.Split('@');
-
-        if (startPoints.Length != 0)
+        if (sharedData.description.Contains("@"))
         {
-            // replace the @+type+index patterns with title/name of entity
-            for (int i = 0; i < startPoints.Length; i++)
+            string[] descriptionParts = sharedData.description.Split('@');
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < descriptionParts.Length; i++)
             {
-                // remove the back to only keep type+index pattern
-                string temp = startPoints[i].Split(' ')[0];
+                builder.Append(descriptionParts[i]);
 
-                if (temp.Length == 2)
-                {
-                    // turn text into numerical equivalent, then into index from the "about" list
-                    int entityIndex = about[int.Parse(temp.Substring(2))];
+                // if it's not of type character, then collective is assumed
+                BaseComplexEntity entity = (aboutTypes[i] == COMPLEX_ENTITY_TYPE.CHARACTER) ?
+                    entity = Command.worlds[worldID].characters[about[i]] :
+                    entity = Command.worlds[worldID].collectives[about[i]];
 
-                    // access character
-                    Catalogue.StatGroup stats;
-                    if (temp.Substring(0, 2) == "ch") stats = Command.worlds[worldID].characters[entityIndex].stats;
-                    else if (temp.Substring(0, 2) == "co") stats = Command.worlds[worldID].collectives[entityIndex].stats;
-                    else continue;
-
-                    string name = "";
-                    for (int j = 0; j < stats.baseNumberStats["numberOfNames"]; j++)
-                    {
-                        // concatenate all available name variables
-                        if (stats.textStats.ContainsKey("name" + j))
-                        {
-                            int listNr = stats.textStats["name" + j];
-                            name += Catalogue.textEnums["name" + j][listNr] + " ";
-                        }
-                    }
-
-                    // replace pattern with name of entity
-                    if (name.Length == 0) name = "-- missing name -- ";
-                    startPoints[i] = startPoints[i].Replace(temp, name);
-                }
+                builder.Append(entity.GetName());
             }
 
-            return String.Join("", startPoints);
+            return builder.ToString();
         }
 
-        else return template.description;
+        else return sharedData.description;
     }
 
-    // contains references to world entities like characters 
-    // and collectives to be combined with "description"
+    // what type of complex entity each "@" references, with direct mapping from
+    // list index to the first-to-last order of "@" occurences in description
+    public List<COMPLEX_ENTITY_TYPE> aboutTypes;
+
+    // references to entities in description
     public int[] about;
 }
