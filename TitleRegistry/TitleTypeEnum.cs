@@ -9,9 +9,9 @@
 
 public enum TITLE_TYPE
 {
-    SITUATION_TITLE,
-    OPTION_TITLE,
-    FORECAST_TITLE,
+    SITUATION,
+    OPTION,
+    FORECAST,
 
     BOOL_STAT,
     TEXT_STAT,

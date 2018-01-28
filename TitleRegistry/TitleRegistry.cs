@@ -27,19 +27,19 @@ public static class Title
 
     // returned integer is the "receipt" - the id of the string you stored, use it
     // whenever you can in code, only access title when you need to display it to the user
-    public static int RegisterTitle(string title, TITLE_TYPE typeOfTitle)
+    public static int RegisterTitle(string title, TITLE_TYPE whatIsTitleFor)
     {
         if (title.Length > 0)
         {
-            switch (typeOfTitle)
+            switch (whatIsTitleFor)
             {
-                case TITLE_TYPE.SITUATION_TITLE:
+                case TITLE_TYPE.SITUATION:
                     situationTitles.Add(title);
                     return situationTitles.Count - 1;
-                case TITLE_TYPE.OPTION_TITLE:
+                case TITLE_TYPE.OPTION:
                     optionTitles.Add(title);
                     return optionTitles.Count - 1;
-                case TITLE_TYPE.FORECAST_TITLE:
+                case TITLE_TYPE.FORECAST:
                     forecastTitles.Add(title);
                     return forecastTitles.Count - 1;
                 case TITLE_TYPE.BOOL_STAT:
@@ -71,15 +71,15 @@ public static class Title
         {
             switch (typeOfTitle)
             {
-                case TITLE_TYPE.SITUATION_TITLE:
+                case TITLE_TYPE.SITUATION:
                     if (situationTitles.Count > titleNumber)
                         return situationTitles[titleNumber];
                     break;
-                case TITLE_TYPE.OPTION_TITLE:
+                case TITLE_TYPE.OPTION:
                     if (optionTitles.Count > titleNumber)
                         return optionTitles[titleNumber];
                     break;
-                case TITLE_TYPE.FORECAST_TITLE:
+                case TITLE_TYPE.FORECAST:
                     if (forecastTitles.Count > titleNumber)
                         return forecastTitles[titleNumber];
                     break;
@@ -105,5 +105,35 @@ public static class Title
         }
         
         return "Invalid Title Number";
+    }
+
+    // gives you the title id for use with engine
+    public static int GetTitleID(string title, TITLE_TYPE typeOfTitle)
+    {
+        // note that default value of List<T>.IndexOf is -1 if not found
+        if (title.Length > 0)
+        {
+            switch (typeOfTitle)
+            {
+                case TITLE_TYPE.SITUATION:
+                    return situationTitles.IndexOf(title);
+                case TITLE_TYPE.OPTION:
+                    return optionTitles.IndexOf(title);
+                case TITLE_TYPE.FORECAST:
+                    return forecastTitles.IndexOf(title);
+                case TITLE_TYPE.BOOL_STAT:
+                    return boolStatTitles.IndexOf(title);
+                case TITLE_TYPE.TEXT_STAT:
+                    return textStatTitles.IndexOf(title);
+                case TITLE_TYPE.BASE_NUMBER_STAT:
+                    return baseNumberStatTitles.IndexOf(title);
+                case TITLE_TYPE.MODIFYING_NUMBER_STAT:
+                    return modifyingNumberStatTitles.IndexOf(title);
+                default:
+                    return -1;
+            }
+        }
+
+        return -1;
     }
 }
