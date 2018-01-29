@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 
 
 
@@ -11,6 +11,8 @@ public partial class Character
 {
     public class CharacterSituation : BaseSimpleEntity
     {
-        CharacterSituationSharedData sharedData;
+        public CharacterSituationSharedData sharedData;
+
+        public Dictionary<int, CareAbout> caresAbout;
     }
 }

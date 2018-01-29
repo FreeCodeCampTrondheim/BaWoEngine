@@ -17,7 +17,7 @@ public abstract class CharacterSimpleEntitySharedData : SimpleEntitySharedData
     public Termination ShouldTerminate;
 
     // use this to control when new situations, options and/or
-    // forecasts should be added to the character
+    // forecasts should be added to the targets
     public delegate void Launching(Character c);
     public Launching AttemptLaunching;
 }

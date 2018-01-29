@@ -9,13 +9,21 @@ using System.Text;
 
 public abstract class BaseSimpleEntity
 {
-    // which entity is responsible for launching this
-    // situation/option/forecast, the target being the 
-    // entity where this simple entity is listed
+    // which complex entity is responsible for launching
+    // this situation/option/forecast upon the complex
+    // entity where this simple entity resides
     public int sourceEntityID;
 
-    // whether the source is a collective instead of a character
-    public bool sourceIsCollective = false;
+    // the type of complex entity that the source
+    // entity id refers to
+    public COMPLEX_ENTITY_TYPE sourceEntityType;
+
+    // which complex entities this option will affect
+    public int[] targetEntityID;
+
+    // the type of complex entities that the target
+    // entity IDs refers to
+    public COMPLEX_ENTITY_TYPE[] targetEntityType;
 
     // compiles a description with the full names of all referenced entities
     public string GetDescription(int worldID, SimpleEntitySharedData sharedData)
@@ -30,7 +38,7 @@ public abstract class BaseSimpleEntity
                 builder.Append(descriptionParts[i]);
 
                 // if it's not of type character, then collective is assumed
-                BaseComplexEntity entity = (aboutTypes[i] == COMPLEX_ENTITY_TYPE.CHARACTER) ?
+                BaseComplexEntity entity = (sharedData.aboutTypes[i] == COMPLEX_ENTITY_TYPE.CHARACTER) ?
                     entity = Command.worlds[worldID].characters[about[i]] :
                     entity = Command.worlds[worldID].collectives[about[i]];
 
@@ -42,10 +50,6 @@ public abstract class BaseSimpleEntity
 
         else return sharedData.description;
     }
-
-    // what type of complex entity each "@" references, with direct mapping from
-    // list index to the first-to-last order of "@" occurences in description
-    public List<COMPLEX_ENTITY_TYPE> aboutTypes;
 
     // references to entities in description
     public int[] about;

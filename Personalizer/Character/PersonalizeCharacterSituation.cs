@@ -20,16 +20,10 @@ public static partial class Personalizer
 
         // if "forwardedIndices" is other than null,
         // then the same is assumed for "indexTypes"
-        if (forwardedIndices != null)
-        {
-            ForwardIndices(situation, forwardedIndices, indexTypes);
-            // couple with loved and/or hated complex entities
-            // use semi-randomized filling based on matching personalization numbers
-        }
-        else
-        {
-            // more code here
-        }
+        if (forwardedIndices != null) ForwardIndices(situation, forwardedIndices, indexTypes);
+
+        AddIndicesByStrongestRelationships(situation, sharedData, c);
+        // use semi-randomized filling based on matching personalization numbers
 
         return situation;
     }

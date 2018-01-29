@@ -14,7 +14,7 @@ public static partial class Catalogue
         #region Situations
         int indexedTitle;
 
-        indexedTitle = Title.RegisterTitle("Willpower", TITLE_TYPE.SITUATION);
+        indexedTitle = Title.RegisterTitle("Willpower", TITLE_TYPE.CHARACTER_SITUATION);
         characterSituations.Add(new CharacterSituationSharedData
         {
             simpleEntitySharedDataID = Command.GetNewSimpleEntitySharedDataID(),

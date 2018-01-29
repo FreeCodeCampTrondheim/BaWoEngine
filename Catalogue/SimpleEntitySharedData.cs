@@ -24,4 +24,8 @@ public abstract class SimpleEntitySharedData
     // the resource id for the simple id, to identify it when the
     // developer wants to display or play associated images, sound etc.
     public int simpleEntitySharedDataID;
+
+    // what type of complex entity each "@" references, with direct mapping from
+    // list index to the first-to-last order of "@" occurences in description
+    public COMPLEX_ENTITY_TYPE[] aboutTypes;
 }
