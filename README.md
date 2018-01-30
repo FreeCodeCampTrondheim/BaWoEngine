@@ -10,7 +10,7 @@ This project is the basis for the following future projects:
 * Golden Hands - a BaWo-based game about human potential
 
 ## UPDATED DOCUMENTATION:
-See [Theorize Studio - BaWo Engine](www.theorizestudio.com/BaWoEngine.aspx) 
+See [Theorize Studio - BaWo Engine](http://theorizestudio.com/BaWoEngine.aspx)
 for an extensive, regularly updated description of the project. The website
 includes sections on:
 * [Architecture](http://theorizestudio.com/BaWoEngine.aspx#architecture), 
