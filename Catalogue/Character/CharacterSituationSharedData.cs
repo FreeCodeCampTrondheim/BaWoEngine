@@ -14,5 +14,7 @@ public class CharacterSituationSharedData : CharacterSimpleEntitySharedData
     // character with this situation.
     public StatGroup stats;
 
-    public Dictionary<int, CareAboutSharedData> careAboutSharedData;
+    // what different types of new things the character
+    // might care about with this situation
+    public List<CareAbout> careAbout;
 }

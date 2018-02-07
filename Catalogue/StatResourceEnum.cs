@@ -1,0 +1,16 @@
+﻿
+
+
+
+
+
+
+
+
+public enum STAT_RESOURCE
+{
+    BOOL_STAT,
+    TEXT_STAT,
+    BASE_NUMBER_STAT,
+    MODIFYING_NUMBER_STAT
+}

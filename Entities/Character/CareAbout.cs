@@ -9,10 +9,14 @@
 
 // A unit representing a source of care directed at some entity. 
 // The title of the CareAbout represents its source at an abstract level. 
-// i.e. "Shares Room", "Is Married", "Employed" etc. This title is
-// specified by the associated integer this value is indexed by.
+// i.e. "Shares Room", "Is Married", "Employed" etc.
 public class CareAbout
 {
+    public int id;
+
+    // the title of the CareAbout
+    public string title;
+
     // the index to look up at the world
     public int targetID;
 

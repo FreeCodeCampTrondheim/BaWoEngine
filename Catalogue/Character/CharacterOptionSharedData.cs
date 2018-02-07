@@ -15,7 +15,7 @@ public class CharacterOptionSharedData : CharacterSimpleEntitySharedData
     // The higher the cost the less likely the character is to choose it.
     public uint baseWillpowerCost;
 
-    // Which cares and motivators at the character should be taken into account when
-    // calculating the final cost of willpower needed to choose this option.
-    public List<string> relevantCaresAndMotivators;
+    // Which CareAbouts should be taken into account when calculating the final
+    // cost of willpower needed to choose this option. Integer is ids.
+    public List<int> relevantCareAbouts;
 }
