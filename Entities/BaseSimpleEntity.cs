@@ -38,7 +38,7 @@ public abstract class BaseSimpleEntity
                 builder.Append(descriptionParts[i]);
 
                 // if it's not of type character, then collective is assumed
-                BaseComplexEntity entity = (sharedData.aboutTypes[i] == COMPLEX_ENTITY_TYPE.CHARACTER) ?
+                BaseComplexEntity entity = (sharedData.aboutIndexFilling[i] == COMPLEX_ENTITY_TYPE.CHARACTER) ?
                     entity = Command.worlds[worldID].characters[about[i]] :
                     entity = Command.worlds[worldID].collectives[about[i]];
 

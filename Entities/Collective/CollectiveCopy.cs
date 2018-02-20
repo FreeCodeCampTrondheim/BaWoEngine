@@ -34,13 +34,13 @@ public partial class Collective : BaseComplexEntity
             new List<CollectiveForecast>(forecasts);
 
         newCollective.stats.boolStats =
-            new List<int>(stats.boolStats);
+            new Dictionary<int, BoolStat>(stats.boolStats);
         newCollective.stats.textStats =
-            new Dictionary<int, int>(stats.textStats);
+            new Dictionary<int, TextStat>(stats.textStats);
         newCollective.stats.baseNumberStats =
-            new Dictionary<int, double>(stats.baseNumberStats);
+            new Dictionary<int, BaseNumberStat>(stats.baseNumberStats);
         newCollective.stats.modifyingNumberStats =
-            new Dictionary<int, double>(stats.modifyingNumberStats);
+            new Dictionary<int, ModifyingNumberStat>(stats.modifyingNumberStats);
 
         return newCollective;
     }

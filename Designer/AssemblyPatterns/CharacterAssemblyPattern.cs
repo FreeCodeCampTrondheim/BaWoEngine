@@ -50,24 +50,24 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddSituationByChance(
-            CharacterSituationSharedData situationTemplate,
+            CharacterSituationSharedData situationSharedData,
             float percentageChance)
         {
             situationsByChance.Add(new SituationByChance()
             {
-                template = situationTemplate,
+                template = situationSharedData,
                 chance = percentageChance
             });
         }
 
         // runs method to see if simple entity should be added
         public void AddSituationByConditionMethod(
-            CharacterSituationSharedData situationTemplate,
+            CharacterSituationSharedData situationSharedData,
             ConditionMethod conditionMethod)
         {
             situationsByMethod.Add(new SituationByMethod()
             {
-                template = situationTemplate,
+                template = situationSharedData,
                 method = conditionMethod
             });
         }
@@ -77,24 +77,24 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddOptionByChance(
-            CharacterOptionSharedData optionTemplate,
+            CharacterOptionSharedData optionSharedData,
             float percentageChance)
         {
             optionsByChance.Add(new OptionByChance()
             {
-                template = optionTemplate,
+                template = optionSharedData,
                 chance = percentageChance
             });
         }
 
         // runs method to see if simple entity should be added
         public void AddOptionByConditionMethod(
-            CharacterOptionSharedData optionTemplate,
+            CharacterOptionSharedData optionSharedData,
             ConditionMethod conditionMethod)
         {
             optionsByMethod.Add(new OptionByMethod()
             {
-                template = optionTemplate,
+                template = optionSharedData,
                 method = conditionMethod
             });
         }
@@ -104,35 +104,35 @@ public partial class Designer
         // simple check using chance, with float values
         // from 0 up to and including 1.0
         public void AddForecastByChance(
-            CharacterForecastSharedData forecastTemplate,
+            CharacterForecastSharedData forecastSharedData,
             float percentageChance)
         {
             forecastsByChance.Add(new ForecastByChance()
             {
-                template = forecastTemplate,
+                template = forecastSharedData,
                 chance = percentageChance
             });
         }
 
         // runs method to see if simple entity should be added
         public void AddForecastByConditionMethod(
-            CharacterForecastSharedData forecastTemplate,
+            CharacterForecastSharedData forecastSharedData,
             ConditionMethod conditionMethod)
         {
             forecastsByMethod.Add(new ForecastByMethod()
             {
-                template = forecastTemplate,
+                template = forecastSharedData,
                 method = conditionMethod
             });
         }
         #endregion
 
-        #region Assemble Semi-Randomized Template Queues
-        // gets a set of templates following condition methods that
-        // evaluate to true, as well as randomly chosen templates
-        public Queue<CharacterSituationSharedData> PickSituationTemplates(Character c)
+        #region Assemble Semi-Randomized Shared Data Queues
+        // gets a set of shared data based on whether some condition methods
+        // evaluate to true or false, as well as randomly chosen shared data
+        public Queue<CharacterSituationSharedData> PickSituationSharedData(Character c)
         {
-            Queue<CharacterSituationSharedData> situationTemplates
+            Queue<CharacterSituationSharedData> situationSharedData
                     = new Queue<CharacterSituationSharedData>();
 
             double randomNumber;
@@ -140,23 +140,23 @@ public partial class Designer
             {
                 randomNumber = randomizer.NextDouble();
                 if (situationsByChance[i].chance >= randomNumber)
-                    situationTemplates.Enqueue(situationsByChance[i].template);
+                    situationSharedData.Enqueue(situationsByChance[i].template);
             }
 
             for (int i = 0; i < situationsByMethod.Count; i++)
             {
                 if (situationsByMethod[i].method(c))
-                    situationTemplates.Enqueue(situationsByChance[i].template);
+                    situationSharedData.Enqueue(situationsByChance[i].template);
             }
 
-            return situationTemplates;
+            return situationSharedData;
         }
 
-        // gets a set of templates following condition methods that
-        // evaluate to true, as well as randomly chosen templates
-        public Queue<CharacterOptionSharedData> PickOptionTemplates(Character c)
+        // gets a set of shared data based on whether some condition methods
+        // evaluate to true or false, as well as randomly chosen shared data
+        public Queue<CharacterOptionSharedData> PickOptionSharedData(Character c)
         {
-            Queue<CharacterOptionSharedData> optionTemplates
+            Queue<CharacterOptionSharedData> optionSharedData
                     = new Queue<CharacterOptionSharedData>();
 
             double randomNumber;
@@ -164,23 +164,23 @@ public partial class Designer
             {
                 randomNumber = randomizer.NextDouble();
                 if (optionsByChance[i].chance >= randomNumber)
-                    optionTemplates.Enqueue(optionsByChance[i].template);
+                    optionSharedData.Enqueue(optionsByChance[i].template);
             }
 
             for (int i = 0; i < optionsByMethod.Count; i++)
             {
                 if (optionsByMethod[i].method(c))
-                    optionTemplates.Enqueue(optionsByChance[i].template);
+                    optionSharedData.Enqueue(optionsByChance[i].template);
             }
 
-            return optionTemplates;
+            return optionSharedData;
         }
 
-        // gets a set of templates following condition methods that
-        // evaluate to true, as well as randomly chosen templates
-        public Queue<CharacterForecastSharedData> PickForecastTemplates(Character c)
+        // gets a set of shared data based on whether some condition methods
+        // evaluate to true or false, as well as randomly chosen shared data
+        public Queue<CharacterForecastSharedData> PickForecastSharedData(Character c)
         {
-            Queue<CharacterForecastSharedData> forecastTemplates
+            Queue<CharacterForecastSharedData> forecastSharedData
                     = new Queue<CharacterForecastSharedData>();
 
             double randomNumber;
@@ -188,16 +188,16 @@ public partial class Designer
             {
                 randomNumber = randomizer.NextDouble();
                 if (forecastsByChance[i].chance >= randomNumber)
-                    forecastTemplates.Enqueue(forecastsByChance[i].template);
+                    forecastSharedData.Enqueue(forecastsByChance[i].template);
             }
 
             for (int i = 0; i < forecastsByMethod.Count; i++)
             {
                 if (forecastsByMethod[i].method(c))
-                    forecastTemplates.Enqueue(forecastsByChance[i].template);
+                    forecastSharedData.Enqueue(forecastsByChance[i].template);
             }
 
-            return forecastTemplates;
+            return forecastSharedData;
         }
         #endregion
 

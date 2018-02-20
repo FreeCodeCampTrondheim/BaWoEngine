@@ -1,0 +1,15 @@
+﻿
+
+
+
+
+
+
+
+
+public enum INDEX_FILL_TYPE
+{
+    INDEX_FORWARDING_FIRST,
+    CARE_ABOUT_FIRST,
+    CATEGORY_NUMBER_ONLY
+}

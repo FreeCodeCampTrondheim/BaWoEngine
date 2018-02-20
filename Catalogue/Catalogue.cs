@@ -23,7 +23,7 @@ public static partial class Catalogue
     public static List<CollectiveForecastSharedData> collectiveForecasts;
     #endregion
 
-    public static List<CareAbout> careAboutTypes;
+    public static List<CareAbout> careAbouts;
 
     #region Stat Types
     public static List<string> boolStatIDs;
@@ -49,45 +49,45 @@ public static partial class Catalogue
     #region Registration Methods
     // returns -1 if registration failed,
     // else it returns the new resources' id
-    public static int RegisterNewSharedDataResource(SimpleEntitySharedData resource)
+    public static int RegisterNewSharedDataResource(SimpleEntitySharedData newResource)
     {
-        Type check = resource.GetType();
+        Type check = newResource.GetType();
 
-        if (resource != null)
+        if (newResource != null)
         {
             if (check == typeof(CharacterSituationSharedData))
             {
-                var r = (CharacterSituationSharedData)resource;
+                var r = (CharacterSituationSharedData)newResource;
                 characterSituations.Add(r);
                 return characterSituations.Count - 1;
             }
             else if (check == typeof(CharacterOptionSharedData))
             {
-                var r = (CharacterOptionSharedData)resource;
+                var r = (CharacterOptionSharedData)newResource;
                 characterOptions.Add(r);
                 return characterOptions.Count - 1;
             }
             else if (check == typeof(CharacterForecastSharedData))
             {
-                var r = (CharacterForecastSharedData)resource;
+                var r = (CharacterForecastSharedData)newResource;
                 characterForecasts.Add(r);
                 return characterForecasts.Count - 1;
             }
             else if (check == typeof(CollectiveSituationSharedData))
             {
-                var r = (CollectiveSituationSharedData)resource;
+                var r = (CollectiveSituationSharedData)newResource;
                 collectiveSituations.Add(r);
                 return collectiveSituations.Count - 1;
             }
             else if (check == typeof(CollectiveOptionSharedData))
             {
-                var r = (CollectiveOptionSharedData)resource;
+                var r = (CollectiveOptionSharedData)newResource;
                 collectiveOptions.Add(r);
                 return collectiveOptions.Count - 1;
             }
             else if (check == typeof(CollectiveForecastSharedData))
             {
-                var r = (CollectiveForecastSharedData)resource;
+                var r = (CollectiveForecastSharedData)newResource;
                 collectiveForecasts.Add(r);
                 return collectiveForecasts.Count - 1;
             }
@@ -96,6 +96,14 @@ public static partial class Catalogue
         }
 
         return -1;
+    }
+
+    // returns -1 if registration failed,
+    // else it returns the new resources' id
+    public static int RegisterNewCareAbout(CareAbout newCareAbout)
+    {
+        careAbouts.Add(newCareAbout);
+        return careAbouts.Count - 1;
     }
 
     // returns -1 if registration failed,

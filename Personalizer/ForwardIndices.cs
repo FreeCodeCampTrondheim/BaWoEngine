@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿
 
 
 
@@ -11,16 +11,18 @@ public static partial class Personalizer
 {
     public static void ForwardIndices(
         BaseSimpleEntity simpleEntity,
-        List<int> indicesToForward,
-        List<COMPLEX_ENTITY_TYPE> indexTypes)
+        SimpleEntitySharedData sharedData,
+        int[] indicesToForward)
     {
-        for (int i = 0; i < indicesToForward.Count; i++)
+        int len = indicesToForward.Length;
+        for (int i = 0; i < len; i++)
         {
-            if(indexTypes[i] != COMPLEX_ENTITY_TYPE.NONE)
+            // negative value in "about" indicates no set index
+            if (sharedData.aboutFillSpecs[i].fillType == INDEX_FILL_TYPE.INDEX_FORWARDING_FIRST && 
+                indicesToForward[i] < 0)
             {
-                simpleEntity.aboutTypes[i] = indexTypes[i];
                 simpleEntity.about[i] = indicesToForward[i];
-            }   
+            }
         }
     }
 }

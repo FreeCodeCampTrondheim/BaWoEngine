@@ -15,6 +15,7 @@ public class CharacterSituationSharedData : CharacterSimpleEntitySharedData
     public StatGroup stats;
 
     // what different types of new things the character
-    // might care about with this situation
-    public List<CareAbout> careAbout;
+    // might care about with this situation, which is
+    // useful information during personalization
+    public List<CareAbout> careAbouts;
 }

@@ -34,13 +34,13 @@ public partial class Character : BaseComplexEntity
             new List<CharacterForecast>(forecasts);
 
         newCharacter.stats.boolStats = 
-            new List<int>(stats.boolStats);
+            new Dictionary<int, BoolStat>(stats.boolStats);
         newCharacter.stats.textStats = 
-            new Dictionary<int, int>(stats.textStats);
+            new Dictionary<int, TextStat>(stats.textStats);
         newCharacter.stats.baseNumberStats =
-            new Dictionary<int, double>(stats.baseNumberStats);
+            new Dictionary<int, BaseNumberStat>(stats.baseNumberStats);
         newCharacter.stats.modifyingNumberStats =
-            new Dictionary<int, double>(stats.modifyingNumberStats);
+            new Dictionary<int, ModifyingNumberStat>(stats.modifyingNumberStats);
 
         return newCharacter;
     }

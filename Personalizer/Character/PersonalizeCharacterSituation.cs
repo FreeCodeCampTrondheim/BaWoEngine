@@ -20,10 +20,9 @@ public static partial class Personalizer
 
         // if "forwardedIndices" is other than null,
         // then the same is assumed for "indexTypes"
-        if (forwardedIndices != null) ForwardIndices(situation, forwardedIndices, indexTypes);
+        if (forwardedIndices != null) ForwardIndices(situation, situation.sharedData, forwardedIndices, indexTypes);
 
-        AddIndicesByStrongestRelationships(situation, sharedData, c);
-        // use semi-randomized filling based on matching personalization numbers
+        
 
         return situation;
     }
