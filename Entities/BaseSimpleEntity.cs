@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
+using System.Collections.Generic;
 
 
 
@@ -12,11 +12,11 @@ public abstract class BaseSimpleEntity
     // which complex entity is responsible for launching
     // this situation/option/forecast upon the complex
     // entity where this simple entity resides
-    public int sourceEntityID;
+    public int[] sourceEntityID;
 
     // the type of complex entity that the source
     // entity id refers to
-    public COMPLEX_ENTITY_TYPE sourceEntityType;
+    public COMPLEX_ENTITY_TYPE[] sourceEntityType;
 
     // which complex entities this option will affect
     public int[] targetEntityID;
@@ -38,11 +38,11 @@ public abstract class BaseSimpleEntity
                 builder.Append(descriptionParts[i]);
 
                 // if it's not of type character, then collective is assumed
-                BaseComplexEntity entity = (sharedData.aboutIndexFilling[i] == COMPLEX_ENTITY_TYPE.CHARACTER) ?
+                BaseComplexEntity entity = (sharedData.aboutFillSpecs[i].targetType == COMPLEX_ENTITY_TYPE.CHARACTER) ?
                     entity = Command.worlds[worldID].characters[about[i]] :
                     entity = Command.worlds[worldID].collectives[about[i]];
 
-                builder.Append(entity.GetName());
+                builder.Append(entity.GetName(entity.categoryNumbers));
             }
 
             return builder.ToString();
@@ -52,5 +52,5 @@ public abstract class BaseSimpleEntity
     }
 
     // references to entities in description
-    public int[] about;
+    public List<int> about;
 }

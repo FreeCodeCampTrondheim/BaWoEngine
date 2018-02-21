@@ -16,9 +16,9 @@ public partial class Character : BaseComplexEntity
         
         // copies the content of the current array to a new array
         Array.Copy(
-            personalizationNumbers, 
-            newCharacter.personalizationNumbers, 
-            personalizationNumbers.Length);
+            categoryNumbers, 
+            newCharacter.categoryNumbers, 
+            categoryNumbers.Length);
 
         newCharacter.runSituations = runSituations;
         newCharacter.runOptions = runOptions;

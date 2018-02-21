@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
 
 
 
@@ -9,29 +9,9 @@
 
 public abstract class BaseComplexEntity
 {
-    // the personalization numbers identifies if the complex entity 
-    // can be added as a reference during personalization
-    public int[] personalizationNumbers;
-
-    // which text stats (indicated by integer title id) to use
-    // for displaying name of complex entity
-    public int[] nameTextStats;
-
-    // compiles the full name of the complex entity
-    public string GetName()
-    {
-        StringBuilder builder = new StringBuilder();
-
-        for (int i = 0; i < nameTextStats.Length; i++)
-        {
-            int textID = stats.textStats[nameTextStats[i]];
-            builder.Append(Catalogue.textEnums[textID]);
-
-            if (i < nameTextStats.Length - 1) builder.Append(" ");
-        }
-
-        return builder.ToString();
-    }
+    // the category numbers describes what categories this complex entity
+    // belongs to, and is used during personalization to 
+    public List<int> categoryNumbers;
 
     public StatGroup stats;
 
@@ -40,4 +20,11 @@ public abstract class BaseComplexEntity
     public bool runSituations = true;
     public bool runOptions = true;
     public bool runForecasts = true;
+
+    // the way in which a name is constructed from data based on
+    // category numbers, which makes it possible to add titles 
+    // and other descriptive names, or use various complex entity
+    // situations to build something akin to a name or identifier
+    public delegate string GetNameMethod(int[] categoryNumbers);
+    public GetNameMethod GetName;
 }

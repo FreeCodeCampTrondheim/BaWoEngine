@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 
 
@@ -16,25 +16,25 @@ public static partial class Personalizer
         3) for all non-set indices, assign id of the complex entity with highest score 
     */
     public static void SetIndiciesByCareAbout(
-        BaseSimpleEntity simpleEntity, 
-        SimpleEntitySharedData sharedData,
+        BaseSimpleEntity beingFilled, 
+        SimpleEntitySharedData beingFilledSharedData,
         Character c)
     {
-        int numOfFillSpecs = sharedData.aboutFillSpecs.Length;
+        int numOfFillSpecs = beingFilledSharedData.aboutFillSpecs.Length;
         for (int i = 0; i < numOfFillSpecs; i++)
         {
             // the specification for how to fill the associated 
             // index with a complex entity id
-            IndexFillSpecification spec = sharedData.aboutFillSpecs[i];
+            IndexFillSpecification spec = beingFilledSharedData.aboutFillSpecs[i];
 
             // negative value in "about" indicates no set index
             if (spec.fillType <= INDEX_FILL_TYPE.CARE_ABOUT_FIRST &&
-                simpleEntity.about[i] < 0)
+                beingFilled.about[i] < 0)
             {
                 // all CareAbouts that have any of the specified IDs
                 var temp = GetRelevantCareAbouts(c, spec);
                 
-                simpleEntity.about[i] = GetHighestScoringComplexEntityID(temp);
+                beingFilled.about[i] = GetHighestScoringComplexEntityID(temp);
             }
         }
     }
@@ -78,6 +78,7 @@ public static partial class Personalizer
         // integer is ID of complex entity, double is score sum
         var results = new Dictionary<int, double>();
 
+        // sum up degrees for each complex entity
         for (int i = 0; i < ca.Count; i++)
         {
             if (results.ContainsKey(ca[i].targetAboutIndex))

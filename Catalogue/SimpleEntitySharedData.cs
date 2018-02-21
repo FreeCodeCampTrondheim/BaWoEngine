@@ -27,5 +27,5 @@ public abstract class SimpleEntitySharedData
 
     // what type of complex entity each "@" references, with direct mapping from
     // list index to the first-to-last order of "@" occurences in description
-    public IndexFillSpecification[] aboutFillSpecs;
+    public List<IndexFillSpecification> aboutFillSpecs;
 }

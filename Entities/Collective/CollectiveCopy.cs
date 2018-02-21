@@ -16,9 +16,9 @@ public partial class Collective : BaseComplexEntity
 
         // copies the content of the current array to a new array
         Array.Copy(
-            personalizationNumbers,
-            newCollective.personalizationNumbers,
-            personalizationNumbers.Length);
+            categoryNumbers,
+            newCollective.categoryNumbers,
+            categoryNumbers.Length);
 
         newCollective.runSituations = runSituations;
         newCollective.runOptions = runOptions;

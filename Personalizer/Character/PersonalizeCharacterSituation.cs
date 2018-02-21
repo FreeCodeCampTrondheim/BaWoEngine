@@ -10,19 +10,18 @@
 public static partial class Personalizer
 {
     public static Character.CharacterSituation Personalize(
-        Character c, 
-        CharacterSituationSharedData sharedData,
-        List<int> forwardedIndices = null,
-        List<COMPLEX_ENTITY_TYPE> indexTypes = null)
+        Character c,
+        World w,
+        List<int> forwardedIndices = null)
     {
         Character.CharacterSituation situation =
             new Character.CharacterSituation();
 
-        // if "forwardedIndices" is other than null,
-        // then the same is assumed for "indexTypes"
-        if (forwardedIndices != null) ForwardIndices(situation, situation.sharedData, forwardedIndices, indexTypes);
-
-        
+        // the four stages of personalization
+        ForwardIndices(situation, situation.sharedData, forwardedIndices);
+        SetIndiciesByCareAbout(situation, situation.sharedData, c);
+        SetIndicesByCategoryNumbers(situation, situation.sharedData, w);
+        SetIndicesByPureRandom(situation, situation.sharedData, w);
 
         return situation;
     }
