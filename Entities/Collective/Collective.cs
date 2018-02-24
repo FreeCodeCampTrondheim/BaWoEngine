@@ -13,6 +13,6 @@ public partial class Collective : BaseComplexEntity
     public List<CollectiveOption> options;
     public List<CollectiveForecast> forecasts;
 
-    public List<int> controllingCharacters;
-    public List<int> memberCharacters;
+    public List<Character> controllingCharacters;
+    public List<Character> memberCharacters;
 }

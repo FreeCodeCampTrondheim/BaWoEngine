@@ -24,7 +24,7 @@ public static partial class Personalizer
             // negative value in "about" indicates no set index
             if (beingFilled.about[i] < 0)
             {
-                var tempFillSpecs = sharedData.aboutFillSpecs[i];
+                var tempFillSpecs = sharedData.aboutSpecs[i];
                 
                 List<int> candidates = w.GetComplexEntitiesByCategory(
                     tempFillSpecs.categoryNumbers,

@@ -9,8 +9,8 @@
 
 public partial class Character
 {
-    public class CharacterForecast : BaseSimpleEntity
+    public class CharacterForecast : BaseSimpleEntity, IShareData<CharacterForecastSharedData>
     {
-        CharacterForecastSharedData sharedData;
+        public CharacterForecastSharedData sharedData { get; set; }
     }
 }

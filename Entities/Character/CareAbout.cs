@@ -19,7 +19,7 @@ public struct CareAbout
     // the title of the CareAbout
     public string title;
 
-    // the index to look up in the about 
+    // the index to look up in the about
     // of the simple entity
     public int targetAboutIndex;
 

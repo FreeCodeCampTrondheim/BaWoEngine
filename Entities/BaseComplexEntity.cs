@@ -10,13 +10,14 @@
 public abstract class BaseComplexEntity
 {
     // the category numbers describes what categories this complex entity
-    // belongs to, and is used during personalization to 
+    // belongs to and is used during personalization
     public List<int> categoryNumbers;
 
     public StatGroup stats;
 
     // use the following to disable and enable
-    // complex entity updating
+    // complex entity updating, important for
+    // 
     public bool runSituations = true;
     public bool runOptions = true;
     public bool runForecasts = true;
@@ -25,6 +26,6 @@ public abstract class BaseComplexEntity
     // category numbers, which makes it possible to add titles 
     // and other descriptive names, or use various complex entity
     // situations to build something akin to a name or identifier
-    public delegate string GetNameMethod(int[] categoryNumbers);
+    public delegate string GetNameMethod(List<int> categoryNumbers);
     public GetNameMethod GetName;
 }

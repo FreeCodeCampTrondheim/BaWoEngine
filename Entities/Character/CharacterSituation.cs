@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿
 
 
 
@@ -9,8 +9,8 @@
 
 public partial class Character
 {
-    public class CharacterSituation : BaseSimpleEntity
+    public class CharacterSituation : BaseSimpleEntity, IShareData<CharacterSituationSharedData>
     {
-        public CharacterSituationSharedData sharedData;
+        public CharacterSituationSharedData sharedData { get; set; }
     }
 }

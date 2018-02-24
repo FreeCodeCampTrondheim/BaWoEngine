@@ -9,8 +9,8 @@
 
 public partial class Collective
 {
-    public class CollectiveSituation : BaseSimpleEntity
+    public class CollectiveSituation : BaseSimpleEntity, IShareData<CollectiveSituationSharedData>
     {
-        public CollectiveSituationSharedData sharedData;
+        public CollectiveSituationSharedData sharedData { get; set; }
     }
 }

@@ -23,7 +23,7 @@ public static partial class Personalizer
             // negative value in "about" indicates no set index
             if (beingFilled.about[i] < 0)
             {
-                var targetType = sharedData.aboutFillSpecs[i].targetType;
+                var targetType = sharedData.aboutSpecs[i].targetType;
 
                 int ranNum;
                 switch (targetType)

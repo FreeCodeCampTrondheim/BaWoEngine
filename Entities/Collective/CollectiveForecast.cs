@@ -9,8 +9,8 @@
 
 public partial class Collective
 {
-    public class CollectiveForecast : BaseSimpleEntity
+    public class CollectiveForecast : BaseSimpleEntity, IShareData<CollectiveForecastSharedData>
     {
-        public CollectiveForecastSharedData sharedData;
+        public CollectiveForecastSharedData sharedData { get; set; }
     }
 }

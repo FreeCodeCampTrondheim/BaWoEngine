@@ -7,7 +7,7 @@
 
 
 
-public struct IndexFillSpecification
+public class IndexSpecification
 {
     // at what stage of index filling the process should start
     public INDEX_FILL_TYPE fillType;

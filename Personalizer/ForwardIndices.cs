@@ -17,7 +17,7 @@ public static partial class Personalizer
         for (int i = 0; i < indicesToForward.Count; i++)
         {
             // negative value in "about" indicates no set index
-            if (sharedData.aboutFillSpecs[i].fillType == INDEX_FILL_TYPE.INDEX_FORWARDING_FIRST &&
+            if (sharedData.aboutSpecs[i].fillType == INDEX_FILL_TYPE.INDEX_FORWARDING_FIRST &&
                 beingFilled.about[i] < 0)
             {
                 beingFilled.about[i] = indicesToForward[i];
