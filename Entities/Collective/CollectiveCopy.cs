@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 
 
 
@@ -14,11 +14,7 @@ public partial class Collective : BaseComplexEntity
     {
         Collective newCollective = new Collective();
 
-        // copies the content of the current array to a new array
-        Array.Copy(
-            categoryNumbers,
-            newCollective.categoryNumbers,
-            categoryNumbers.Length);
+        newCollective.categoryNumbers.AddRange(categoryNumbers);
 
         newCollective.runSituations = runSituations;
         newCollective.runOptions = runOptions;

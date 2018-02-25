@@ -34,8 +34,8 @@ public static partial class Catalogue
 
     #region Text- and Number Enums
     // for accessing random allowed values
-    public static List<string[]> textEnums;
-    public static List<double[]> numberEnums;
+    public static List<List<string>> textEnums;
+    public static List<List<double>> numberEnums;
     #endregion
 
     #region Assembly Patterns

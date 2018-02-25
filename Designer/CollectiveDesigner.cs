@@ -54,22 +54,24 @@ public partial class Designer
             memberCharacterAssemblyPatterns.Enqueue(newPattern);
         }
 
-        public static void AddNewControllingCharacter(int characterID)
+        public static void AddNewControllingCharacter(Character c)
         {
-            if (!collectiveBeingDesigned.controllingCharacters.Contains(characterID))
-                collectiveBeingDesigned.controllingCharacters.Add(characterID);
+            if (!collectiveBeingDesigned.controllingCharacters.Contains(c))
+                collectiveBeingDesigned.controllingCharacters.Add(c);
         }
 
-        public static void AddNewMemberCharacter(int characterID)
+        public static void AddNewMemberCharacter(Character c)
         {
-            if (!collectiveBeingDesigned.memberCharacters.Contains(characterID))
-                collectiveBeingDesigned.memberCharacters.Add(characterID);
+            if (!collectiveBeingDesigned.memberCharacters.Contains(c))
+                collectiveBeingDesigned.memberCharacters.Add(c);
         }
 
         public static int SendToWorld(int worldNr = 0)
         {
-            int id = Generator.GenerateCollectiveFromDesign(
-                collectiveBeingDesigned, 
+            World w = Command.worlds[worldNr];
+            int id = Generate(
+                w,
+                collectiveBeingDesigned,
                 assemblyPatterns,
                 controllingCharacterAssemblyPatterns,
                 memberCharacterAssemblyPatterns);

@@ -13,5 +13,5 @@ public partial class Character : BaseComplexEntity
     public List<CharacterOption> options;
     public List<CharacterForecast> forecasts;
 
-    public const int BASE_WILLPOWER = 1000;
+    public int baseWillpower = 1000;
 }

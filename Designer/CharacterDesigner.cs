@@ -19,6 +19,11 @@ public partial class Designer
             characterBeingDesigned = new Character();
             assemblyPatterns = new Queue<CharacterAssemblyPattern>();
         }
+        
+        public static void SetBaseWillpower(int amount)
+        {
+            characterBeingDesigned.baseWillpower = amount;
+        }
 
         public static void AddSituation(Character.CharacterSituation situation)
         {
@@ -42,7 +47,8 @@ public partial class Designer
 
         public static int SendToWorld(int worldNr = 0)
         {
-            int id = Generator.GenerateCharacterFromDesign(characterBeingDesigned, assemblyPatterns);
+            World w = Command.worlds[worldNr];
+            int id = Generate(w, characterBeingDesigned, assemblyPatterns);
 
             ResetToNewDesign();
             return id;

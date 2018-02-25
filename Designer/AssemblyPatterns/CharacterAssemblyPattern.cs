@@ -34,6 +34,11 @@ public partial class Designer
         List<ForecastByMethod> forecastsByMethod = new List<ForecastByMethod>();
         #endregion
 
+        // category numbers are used to separate characters
+        // so as to be able to give them different treatment,
+        // and is primarily used during personalization
+        public List<int> categoryNumbers = new List<int>();
+
         // adds a function pointer which runs special
         // generation procedures on character
         public void SetAdditionalSetup(AdditionalSetupMethod method)

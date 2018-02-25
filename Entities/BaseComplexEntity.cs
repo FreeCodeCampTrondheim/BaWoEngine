@@ -11,9 +11,7 @@ public abstract class BaseComplexEntity
 {
     // the category numbers describes what categories this complex entity
     // belongs to and is used during personalization
-    public List<int> categoryNumbers;
-
-    public StatGroup stats;
+    public List<int> categoryNumbers = new List<int>();
 
     // use the following to disable and enable
     // complex entity updating, important for

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 
 
@@ -7,18 +6,15 @@ using System.Collections.Generic;
 
 
 
-public partial class Character : BaseComplexEntity
+
+public partial class Character
 {
     // copies all data
     public Character GetCopy()
     {
         Character newCharacter = new Character();
-        
-        // copies the content of the current array to a new array
-        Array.Copy(
-            categoryNumbers, 
-            newCharacter.categoryNumbers, 
-            categoryNumbers.Length);
+
+        newCharacter.categoryNumbers.AddRange(categoryNumbers);
 
         newCharacter.runSituations = runSituations;
         newCharacter.runOptions = runOptions;
