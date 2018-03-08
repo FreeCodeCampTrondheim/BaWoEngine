@@ -64,7 +64,7 @@ partial class Designer
         }
 
         /*
-            Complete all assembly patterns 
+            Complete all assembly patterns
         */
 
         w.collectives.Add(c);
